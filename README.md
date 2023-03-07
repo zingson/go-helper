@@ -1,0 +1,2 @@
+# goh
+Go Helper Function . 
