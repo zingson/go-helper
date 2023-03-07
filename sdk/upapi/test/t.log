@@ -1,0 +1,65 @@
+time=2023-01-13T14:50:07+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/backendToken  
+请求报文：{"appId":"9e211304be4a46fdb7dff03f7a01b2ef","nonceStr":"524Nu5hOI9CbpeVo","secret":"acf33e66a8a54f9d977d4143e1f17bfe","signature":"2e5e6a5abc470a714f2bb7d5c156cf031731aade98233297774d748f3354e93f","timestamp":1673592606}  
+响应报文：{"resp":"00","msg":"成功","params":{"expiresIn":7200,"backendToken":"05c8d43a2000004512Jv9n7i"}}      
+| 220ms  rid:c237189f0c6341f4bbdc1c172a0c0b42 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=220 path=/backendToken
+time=2023-01-13T14:50:07+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/activity.quota  
+请求报文：{"activityNo":"3102022111027937","activityType":"3","appId":"9e211304be4a46fdb7dff03f7a01b2ef","backendToken":"05c8d43a2000004512Jv9n7i","transSeqId":"b6f70cafe8ec8999b75e10c6429b13a7"}  
+响应报文：{"resp":"BC0024","msg":"非法请求[业务权限认证失败,bussCode:0702]","params":{}}      
+| 132ms  rid:b26aa4cf407e5b7a9ab4d227ffa6fa7e appid=9e211304be4a46fdb7dff03f7a01b2ef ms=132 path=/activity.quota
+time=2023-01-13T14:50:43+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/backendToken  
+请求报文：{"appId":"9e211304be4a46fdb7dff03f7a01b2ef","nonceStr":"wNIF80gzOPlRE6WY","secret":"acf33e66a8a54f9d977d4143e1f17bfe","signature":"127f72c3f8a714e6ea35d6d52332413d7b7a4b51dc70bda6d1a8c03d66032b42","timestamp":1673592643}  
+响应报文：{"resp":"00","msg":"成功","params":{"expiresIn":7200,"backendToken":"05c8d484200400441UPYRr4z"}}      
+| 203ms  rid:3f5d3e501b9547035039a4546f0ba83a appid=9e211304be4a46fdb7dff03f7a01b2ef ms=203 path=/backendToken
+time=2023-01-13T14:50:46+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/activity.quota  
+请求报文：{"activityNo":"3102022100115856","activityType":"3","appId":"9e211304be4a46fdb7dff03f7a01b2ef","backendToken":"05c8d484200400441UPYRr4z","transSeqId":"9c1301cfb7270a24b493edfa54880e6c"}  
+响应报文：{"resp":"00","msg":"成功","params":{"dayCount":"null","dayRemainAmount":"null","yearCount":"null","allCount":"null","monthCount":"null","allRemainAmount":"1","monthRemainAmount":"null","yearAmount":"null","allRemainCount":"null","startMark":"2","awardShowInfoList":[],"yearRemainAmount":"null","yearRemainCount":"null","dayAmount":"null","activityNo":"3102022100115856","transSeqId":"9c1301cfb7270a24b493edfa54880e6c","limitType":"01","activityMark":"01","monthRemainCount":"null","allAmountUseupTime":"2023-01-13 14:50:44","dayRemainCount":"null","allAmount":"1","monthAmount":"null","activityType":"3","respCode":"00","respMsg":"成功"}}      
+| 2176ms  rid:118ec263b518f8581ba2c66c3022eddb appid=9e211304be4a46fdb7dff03f7a01b2ef ms=2176 path=/activity.quota
+time=2023-01-19T18:31:00+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"9v58kAW2z8mPMiVYELxBSg==","nonceStr":"PE2ImLhnpUSaJsiX","openId":"","signature":"sc4V/xE/xKoShk08fg6Lh8meddWSG10R39AeuOBfnx9VZrcQ79AI6qDf9z6OC5X6ULzYH4XrtxVx+EOciRLUrQImjRB2UuEL8pC3XaGkSOl9DbhlWft+uQdyoWSSGfT7NyidDD6y097RaZDVwztRjZ16qEBJ/SUAu1ssUcsbvOmV8m1UxVfWsTEdLBtqWnt2/S33uZTRucApb9cPc9d/m1l9x/GK+njNre/obZCdjqXhjTWhD9vmGr+ERpAauKzZNNEn01ReWkmultZVtwIwov0FMnNUfzO9H2F0ELPx5mR57FbmGbxumXnmRplTtKer2L6OlFk7ZbL4SdX9RaYJAQ==","timestamp":"1674124260","transSeqId":"1040ad9ebd01c75d330b236a9fb6b937","transTs":"20230119"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"1040ad9ebd01c75d330b236a9fb6b937","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 314ms  rid:b71f166306ffd8fac0379f83f0bab2c0 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=314 path=/coupon.download
+time=2023-02-22T10:23:41+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"jF99a8lsEuQrlI39TlWw2w==","nonceStr":"QeJSk7TcW5Y6Qqrk","openId":"","signature":"TC17SLEqNZJJ+AIzw1HWuDrjG7l4kMHvsTPt3xn0cvrAUSlydma2KptFmv+P0qIE9HaMslspRvs4H9zqX8fssPD+Q8KeYwQ899N5vy/ASqj5eaRdc9CA34rhQJg9NFttW+dr3B+CVQwnNsQUMGK3L6Sa/gvXJNm4tuva9bR4JMTFQQ7JOdANmE9j67o//nCCih7lycuXo+pzJBAClFTDJ203CCLOODzlkM28tPQjAKgcCqLvNOpd8EhLKD+7uVPJxVOPB1bXu8OSRrla/tOnXdI9IVylM14kqaUJeHENGKC7S6Bq8mtxNUI5n0SyYWn8KKAfNBI7aYwzLk87SxDKVA==","timestamp":"1677032621","transSeqId":"5795b0c528430dc1f10fd1661564dcb4","transTs":"20230222"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"5795b0c528430dc1f10fd1661564dcb4","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 376ms  rid:6d4d34d2de78a8f77fd4664154a7fd2a appid=9e211304be4a46fdb7dff03f7a01b2ef ms=376 path=/coupon.download
+time=2023-02-24T18:42:29+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"8+3CKEQXFnaADVHJ0VgXzg==","nonceStr":"ariRIXWAZ6hat9VD","openId":"","signature":"XabkMjADDc5TUkIOzdmzKDQ39XCkJq6tSTn/kWe68bxlppG+w7xE9kpUR0JZcEFRCRcgD1L7rZLu2/AD1XLdOjwaAbBaKgq2BazwS5NPgY1ajjI17s3SVdjuSxqvkg3p4nZyd1MTpwhODZBXQmD6onnrlce3kqIHQcCcRgGSFZ9FFSZYSU7qUfzbTizRvyEU8ck3RXzhRsOScBKhy4TNNajpWbcGMeTThcTi/ZWQmW3mHuVcb2JdKQafpOgcRvC82OrvK77OpBfLQD8zJS65W8F1xR0lThQ1Lx1VN5Q2jUnazIcoVdRuoQlYIIaGZGcrZLcDy1nOVv/sVNXLjVeD8A==","timestamp":"1677235349","transSeqId":"7da968fb07ae057e79e137d7a981a5f5","transTs":"20230224"}  
+响应报文：   Error: UP_HTTP_ERR:Post "https://open.95516.com/open/access/1.0/coupon.download": Bad Request   
+| 85ms  rid:adc397bc7e4f793f85cb3f3b140f92eb appid=9e211304be4a46fdb7dff03f7a01b2ef ms=85 path=/coupon.download
+time=2023-02-24T18:43:37+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"8+3CKEQXFnaADVHJ0VgXzg==","nonceStr":"weIT5IAMrimQK5K4","openId":"","signature":"Oe8AmMP00ycMzSmJXdGLbF0cxOqA9tBkbTvXSmqgavmrahvZoiW3nGr1/W5Zjk7Vrcvmn1Olx4Q4iec7mzwiJ5rX9WYbmEA1a5tI8gTbv/jvSsM3f6wsHay2z9Or8wiVdXzDkl3oyTuiGliPf3toNC3zycPhd4igfor4uNel1DihJ8gihtPs8hJeE7JNjl7MUJ1HBUCGmpqnKCwkCLpR4d/wa5fp6wYKEuCndYT/ZOCqG8ZB+HVrr8VmOuwy1+LDdb4fO10z2LItl3c4M24haYBxwhItWnQDgK4wNVb5ILAl+Rn3jDXPwIp8KzHg5O31c0qWi8B8L24zZRwvvRToCQ==","timestamp":"1677235417","transSeqId":"9c29fab5144b314c29f8bbcd69289e0d","transTs":"20230224"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"9c29fab5144b314c29f8bbcd69289e0d","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 341ms  rid:22c3263150dc84fdb524051428ce4069 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=341 path=/coupon.download
+time=2023-02-24T18:43:47+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"8+3CKEQXFnaADVHJ0VgXzg==","nonceStr":"tlmrZ6l0XDY9OuKj","openId":"","signature":"Ce+yjFMCK/BTHAdY6LzkbQ05PQPA+UmCCrwboK366SYSmTGSVg4p09lJOrG/ta4Sr11mk6oIf1YE4rEyBg4EG6/8jlJjwID8Hi8IzlzGK9s9s1hMZWHbRE0QMF1DvWxBy3HL2hQIIKQHZT9WmlGsxGqpZPNckUckTyfEhoqfWYSRtoxjYR6vzPgqcIV/iOXUYcoXpaAw/9ezZsSA56DqJx5l3b2dN1jSdj3OnhNOu8St0XcuHWas5OrsaaQbFDsbUWsjXtmL3oUyY2w16cbGeVic4wcpkRZbrUvI8D+9K6Ok8zty27osOrmZggIUdnzoUMWtYYwquWQ1WJK5elceNw==","timestamp":"1677235426","transSeqId":"82c5660c2f9d32ce1d209c6007cb2f17","transTs":"20230224"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"82c5660c2f9d32ce1d209c6007cb2f17","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 226ms  rid:be6023cb5260d4858d7412e527242044 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=226 path=/coupon.download
+time=2023-02-24T18:43:53+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"8+3CKEQXFnaADVHJ0VgXzg==","nonceStr":"TZkYHIWvqh2DPgI9","openId":"","signature":"BZW6cFkiGr+JlNtxpXhh3TZpsqspZ9NsPmRIveDdxVk/AuGwSef6GyYDm38Yk9piKLlglRdgYnklpXubJD6pJUyyHocwKBVVAnHUAIKIl/mv9zhDywWmRmMxD4a/ckjL+x2p51Q0n7TMidiXD8IF+5VtUi22N0APiT5RMrJd6HY9LFffTpjiBRin1R//Uve4tk2J4mqP+/K5hu2601ItCcKQKoh7W/KpKJvogVe89D3A/lPqnDOT7CaJSgFLBBAfkG0Benldi+oXQZsd8NfN2aX5/iiNN4+1cNeON0BKnA2Qza5xDZ71rWb+7eJUlQaK6OuLQCJRLXdsNTryzUrxfg==","timestamp":"1677235432","transSeqId":"22729471f5871dd61b369f0d7a5a2383","transTs":"20230224"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"22729471f5871dd61b369f0d7a5a2383","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 223ms  rid:08861609bfc0136e8841ed9bd644d1e7 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=223 path=/coupon.download
+time=2023-02-24T18:43:58+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"8+3CKEQXFnaADVHJ0VgXzg==","nonceStr":"NG5fp0gtWohfNedc","openId":"","signature":"NrrQM+jphpwGkzph8KkhcfJlsBhpCJQqzw/pzNCnbU7hLA/NiVmUv+Ns865jI1cJl9wgUAa2HEcpgythu3ILSk//UdwKgbJunBROU929waMZ+nVJBA6PXDukPZvEnhikg3TKNo4D9fjq6cPjTB2uAxStignpsiB3W89IPubA9NRl5zB2NRhGUUNWuJqoMNOfcEO1V6CUCEfHQNPXiBmYC1PYEvOmE4q/ZF7OV7JZLudVqdSSWOgUmciKgmqht1mllVb1AHg/6bZgC1t9IK9Ullz6ytnKHkWbc1JRXTLEGrnIh43Z2NzSpb+at2pUke3/Y756+FpEQ+AKImece1DxAw==","timestamp":"1677235438","transSeqId":"9a906031c390bf11a7f077a92ae647a1","transTs":"20230224"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"9a906031c390bf11a7f077a92ae647a1","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 295ms  rid:ee4d9440af3b53671529df1a56eccb99 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=295 path=/coupon.download
+time=2023-02-24T18:44:16+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"8+3CKEQXFnaADVHJ0VgXzg==","nonceStr":"CZoog6AroMbq5qLf","openId":"","signature":"h/V3njaZATy0oBys10GbPgLjpC4qW/h0M7rnSckykjpa603R3eWOslRdOmOAE7J+8xASvVfA1ZdF3fyX32uZ1V0w5+8P8/K9+A8NHtNqL25Xb6sNOYvlBrmU2nnkcVhAaba1H6xrQarp7zXFyjAAgXn+4TFHB2f3KK5HVoGr0SOFS924VV3WJOjwQeGmM0PBzDv9giTj5lE/QUqpll5xJq0WNfsDGhMmlHuOq/AIrPZLLTdgoNWur4cXXGMDrkausoIgz7wm19eTLJyXlm7UiPYm+mezxt+xwjVsgj6QfOjylibmaFfPrX83b3B+06VNZclosGdWeQc9Hg2KFPd2tQ==","timestamp":"1677235455","transSeqId":"81593afdad9d31b700249b898932243c","transTs":"20230224"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"81593afdad9d31b700249b898932243c","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 290ms  rid:98a192e89fa7ec82c40341ee768667f0 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=290 path=/coupon.download
+time=2023-03-01T13:36:25+08:00 level=info msg=云闪付upapi 
+请求URL：POST https://open.95516.com/open/access/1.0/coupon.download  
+请求报文：{"acctEntityTp":"03","appId":"9e211304be4a46fdb7dff03f7a01b2ef","cardNo":"","couponId":"3102023011347995","couponNum":1,"mobile":"z+IO65KVwnOACUOJNgCP1w==","nonceStr":"YwaXTX3eMKt2uV9N","openId":"","signature":"nKK4pEjWJEsgT3gmxvcKVhZ/cYFXPmY+UVh79AvE8HFeZ3SWQWyoHNhtgPGTSk3XyXMSq/6Ei5/zoGA93ncRKLv7P0seZGrgpIKFrazYiKTWVM3ytzwRYllGjY9/VWKiat/KzMCbPYonfw2T3JOxpDxNLzTPq56nLCFJC12nVzobAdchWQmyMIlHSDVlLRYhi/mplew3ZXCWgPaM8c8mGSRmCdyGnqJPoKTGZsveJw8B5MIHZj7i4veXq3tNQYiBd1oFprGOB2i41Mz6iOkjibl07ZH/bMR2tbAPgskW11PbCjWn0nyJzD6AFYnaKAMYApB7iGMSGeRtBJ571bbfxw==","timestamp":"1677648984","transSeqId":"f9007798e01d0c8ad3dffff67ed57f31","transTs":"20230301"}  
+响应报文：{"resp":"00","msg":"成功","params":{"transSeqId":"f9007798e01d0c8ad3dffff67ed57f31","couponId":"3102023011347995","respCode":"00","respMsg":"成功"}}      
+| 294ms  rid:f48e0798d87fc3806d9830ef39ca0fc4 appid=9e211304be4a46fdb7dff03f7a01b2ef ms=294 path=/coupon.download

@@ -1,0 +1,1 @@
+服务商：https://pay.weixin.qq.com/wiki/doc/apiv3_partner/index.shtml

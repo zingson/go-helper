@@ -1,0 +1,6 @@
+联迪音箱对接
+
+宁波放心充项目测试环境AppId为：01979603，
+测试地址为：https://demo-pushsrv.unimarspay.com。
+
+接口文档：https://artisan.landicorp.com/doc/api?id=37a893b4d3ee452ba487f2f0061c62cc
