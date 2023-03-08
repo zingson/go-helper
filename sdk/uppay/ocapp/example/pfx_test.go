@@ -4,7 +4,7 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
-	"github.com/zingson/goh/sdk/uppay/ocwap"
+	"github.com/zingson/go-helper/sdk/uppay/ocwap"
 	"golang.org/x/crypto/pkcs12"
 	"io/ioutil"
 	"log"

@@ -2,8 +2,8 @@ package cmbnetpay
 
 import (
 	"github.com/sirupsen/logrus"
-	"github.com/zingson/goh/hid"
-	"github.com/zingson/goh/htime"
+	"github.com/zingson/go-helper/hid"
+	"github.com/zingson/go-helper/htime"
 	"testing"
 )
 

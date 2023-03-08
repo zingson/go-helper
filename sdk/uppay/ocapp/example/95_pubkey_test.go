@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/zingson/goh/sdk/uppay/ocapp"
+	"github.com/zingson/go-helper/sdk/uppay/ocapp"
 	"testing"
 )
 

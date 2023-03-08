@@ -3,7 +3,7 @@ package helper
 import (
 	"encoding/json"
 	"fmt"
-	douyinpoi "github.com/zingson/goh/sdk/sdk-douyin-poi"
+	douyinpoi "github.com/zingson/go-helper/sdk/sdk-douyin-poi"
 )
 
 // OrderPush 担保交易的订单同步（如果使用担保交易的支付，需要调用此接口同步订单）。

@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/zingson/goh/sdk/upapi"
-	"github.com/zingson/goh/sdk/uppay/ocapp"
+	"github.com/zingson/go-helper/sdk/upapi"
+	"github.com/zingson/go-helper/sdk/uppay/ocapp"
 	"html/template"
 	"log"
 	"net/http"

@@ -1,18 +1,19 @@
-package hjson
+package test
 
 import (
+	"github.com/zingson/go-helper/hjson"
 	"testing"
 )
 
 func TestParse(t *testing.T) {
 	data := "{\"a\":\"aaaa\"}"
-	v, err := Parse[map[string]string](data)
+	v, err := hjson.Parse[map[string]string](data)
 	if err != nil {
 		t.Error(err)
 		return
 	}
 	t.Log(v)
-	s := Stringify(v)
+	s := hjson.Stringify(v)
 	t.Log(s)
 }
 
@@ -21,11 +22,11 @@ type Ms struct {
 }
 
 func (o *Ms) Json() string {
-	return Stringify(o)
+	return hjson.Stringify(o)
 }
 
 func TestConvert(t *testing.T) {
-	ms, err := Convert[map[string]any, Ms](map[string]any{"a": "123"})
+	ms, err := hjson.Convert[map[string]any, Ms](map[string]any{"a": "123"})
 	if err != nil {
 		return
 	}

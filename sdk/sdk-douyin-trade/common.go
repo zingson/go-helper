@@ -13,7 +13,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
-	douyinpoi "github.com/zingson/goh/sdk/sdk-douyin-poi"
+	douyinpoi "github.com/zingson/go-helper/sdk/sdk-douyin-poi"
 	"io/ioutil"
 	"math/big"
 	"net/http"

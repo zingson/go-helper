@@ -4,7 +4,7 @@ import (
 	"dmkt/src/config"
 	"encoding/json"
 	"fmt"
-	douyinpoi "github.com/zingson/goh/sdk/sdk-douyin-poi"
+	douyinpoi "github.com/zingson/go-helper/sdk/sdk-douyin-poi"
 	"testing"
 )
 

@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// 定义Time 与 JSON互转的格式
+// RFC3339 定义Time 与 JSON互转的格式
 type RFC3339 time.Time
 
 func (nt RFC3339) String() string {

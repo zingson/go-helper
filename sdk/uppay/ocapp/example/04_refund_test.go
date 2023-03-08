@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	log "github.com/sirupsen/logrus"
-	"github.com/zingson/goh/sdk/uppay/ocapp"
+	"github.com/zingson/go-helper/sdk/uppay/ocapp"
 	"net/http"
 	"testing"
 )

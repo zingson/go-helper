@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/zingson/goh/sdk/uppay/ocapp"
+	"github.com/zingson/go-helper/sdk/uppay/ocapp"
 	"io/ioutil"
 )
 

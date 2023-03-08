@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
-	"github.com/zingson/goh/htime"
+	"github.com/zingson/go-helper/htime"
 )
 
 // QueryFbPubKey 查询招行公钥 接口文档:http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/QueryKeyAPI

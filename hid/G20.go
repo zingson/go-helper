@@ -18,7 +18,6 @@ var g *snowflake.Node
 
 func init() {
 	n := getLocalIP() + 1000
-	rand.Seed(n)
 	g, _ = snowflake.NewNode(n % 1000)
 }
 
