@@ -114,7 +114,7 @@ func ConsumeNotifyFrontHandler(cbFunc func(writer http.ResponseWriter, request *
 	})
 }
 
-//ConsumeNotifyHandler 消费异步通知结果
+// ConsumeNotifyHandler 消费异步通知结果
 func ConsumeNotifyHandler(cbFunc func(o *ConsumeNotifyEntity) error) http.Handler {
 	return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		var (
