@@ -3,8 +3,8 @@ package test
 import (
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
+	"github.com/zingson/go-helper/sdk/allinpay"
 	"io/ioutil"
-	"root/src/sdk/allinpay"
 )
 
 func config() (cfg *allinpay.Config) {

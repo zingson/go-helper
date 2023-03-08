@@ -1,12 +1,12 @@
 package test
 
 import (
-	"root/src/sdk/upapi"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"testing"
 	"time"
 )
 
-//PointAcquire 赠送专享红包
+// PointAcquire 赠送专享红包
 func TestPointAcquire(t *testing.T) {
 	err := upapi.PointAcquire(cfgtoml(), &upapi.PointAcquireParams{
 		TransSeqId: upapi.Rand32(),

@@ -4,7 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"github.com/BurntSushi/toml"
-	v3 "root/src/sdk/wxpay/v3"
+	v3 "github.com/zingson/go-helper/sdk/wxpay/v3"
 	"testing"
 )
 

@@ -4,8 +4,8 @@ import (
 	_ "embed"
 	"github.com/BurntSushi/toml"
 	"github.com/sirupsen/logrus"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"os"
-	"root/src/sdk/upapi"
 	"testing"
 )
 

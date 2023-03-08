@@ -2,8 +2,8 @@ package test
 
 import (
 	"github.com/sirupsen/logrus"
+	"github.com/zingson/go-helper/sdk/metro2"
 	"os"
-	"root/src/sdk/metro2"
 	"testing"
 )
 

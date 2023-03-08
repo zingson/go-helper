@@ -1,7 +1,7 @@
 package test
 
 import (
-	"root/src/sdk/metro2"
+	"github.com/zingson/go-helper/sdk/metro2"
 	"testing"
 )
 

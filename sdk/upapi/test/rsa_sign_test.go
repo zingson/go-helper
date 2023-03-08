@@ -5,9 +5,9 @@ import (
 	"encoding/pem"
 	"fmt"
 	log "github.com/sirupsen/logrus"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"io/ioutil"
 	"net/http"
-	"root/src/sdk/upapi"
 	"strings"
 	"testing"
 )

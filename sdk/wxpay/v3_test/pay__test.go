@@ -1,7 +1,7 @@
 package v3_test
 
 import (
-	"root/src/sdk/wxpay/v3"
+	"github.com/zingson/go-helper/sdk/wxpay/v3"
 	"testing"
 )
 

@@ -2,7 +2,7 @@ package bankcmbc
 
 import (
 	"errors"
-	"root/src/helper/htime"
+	"github.com/zingson/go-helper/helper/htime"
 	"strconv"
 	"strings"
 )

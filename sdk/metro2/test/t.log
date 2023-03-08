@@ -41,7 +41,7 @@ ResponseBody: {"GuidRequest":"","Code":200,"Message":"","Data":{"Vouchers":[{"Gu
   
 |214ms
 
-time=2022-09-21T17:16:10+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=d2827482c0eb25e8530e605575d42a72&timestamp=1663751770874&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
+time=2022-09-21T17:16:10+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=d2827482c0eb25e8530e605575d42a72&timestamp=1663751770874&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
 time=2022-09-21T17:16:11+08:00 level=info msg=rid: d2827482c0eb25e8530e605575d42a72 Metro2 HttpPost 
 ServiceUrl：https://msd.himkt.cn/gw/voucher/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"d2827482c0eb25e8530e605575d42a72","signature":"f+SrDR8n2T2IsDfTkOgWAVixSrVHnJIYrEQtOr1gBM+3+uMFW6VCHwSsxKlioGuK10R7GMvrtu+tGvJrJ9r0KRsbvN/8yaRp6HGFtcQdgilG6xyZLbIrZw7upgdUpR+RhagSe1QZpdF3I0u//quxLow/g2eRYnUG37qShqYhlMYc0CSM+CpvWQRAwBKsvJOE/080vG3enmjv1EzxJUT6HaR2NluNjnrFjeX7F823aSVWpZivX3dnB4ZsRXDSG3ibcHOOlGJqzjBTJdxjul5OUdTg2F2E+1Hgi4GNGVv8HEKqI1tLynttIyUYkz9GDXRS/KElHf/2xlYGFcJ2vxyDbQ==","signtype":"RSA2","timestamp":"1663751770874","version":"2.0"}  
@@ -50,8 +50,8 @@ ResponseHeader：{}
 ResponseBody: {"GuidRequest":"1acbcdfbc4934a32cdef789ecba292df","Code":500,"Message":"11400:券平台【metro2】应用编号【chid=SM202208080004】无效"}  
 ResponseError：MTR_500:11400:券平台【metro2】应用编号【chid=SM202208080004】无效  
 |130ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-21T17:21:44+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=d5c5098ab3c120b97f7304b9769c9cc1&timestamp=1663752104607&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-21T17:21:44+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=d5c5098ab3c120b97f7304b9769c9cc1&timestamp=1663752104607&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
 time=2022-09-21T17:21:44+08:00 level=info msg=rid: d5c5098ab3c120b97f7304b9769c9cc1 Metro2 HttpPost 
 ServiceUrl：https://msd.himkt.cn/gw/voucher/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"d5c5098ab3c120b97f7304b9769c9cc1","signature":"1YOz4l0GlzSetPoUo//wrZDXtLenaEgIEGlSyhAeTBFq5xvNipUoaP8hkNGVpLsEvTcMrw5uyTDrzeAEJNqzcZ5SbipgB3J09MpVw/U98ovGrkEJU7rGBcRLNvf7S9OPWlfgSyIeTslx0+8S7cYaw5oNH1iB6y8euu1ptLk1ZmlYy4ptYkSgPfRzJQVf+QV7cjJ31/dHTTymg5FN0wwSpBu3xshWapmeej8KXVPAsaKo3T8bZmacpm/UmeNnydPWi91JHqNqlaA1yyCfL3eEXjH8/FcgUb9K/sabQQOP99TN+5scrd9ZiAb9MxxcRylElHzQrcZVxDZaljz7pmoSzQ==","signtype":"RSA2","timestamp":"1663752104607","version":"2.0"}  
@@ -60,8 +60,8 @@ ResponseHeader：{}
 ResponseBody: {"GuidRequest":"8fc707d3dede3e74bc0dcefe24f50d4c","Code":500,"Message":"METRO2:验签失败"}  
 ResponseError：MTR_500:METRO2:验签失败  
 |124ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-21T17:24:51+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=ef3ecbc99ad84c60c1ed80c12ac5fb2d&timestamp=1663752291992&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-21T17:24:51+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=ef3ecbc99ad84c60c1ed80c12ac5fb2d&timestamp=1663752291992&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
 time=2022-09-21T17:24:52+08:00 level=info msg=rid: ef3ecbc99ad84c60c1ed80c12ac5fb2d Metro2 HttpPost 
 ServiceUrl：https://msd.himkt.cn/gw/voucher/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"ef3ecbc99ad84c60c1ed80c12ac5fb2d","signature":"jTh2DrnbFPgH/SRbCFyWVhXq93zch6MDNvOXDxwms+V3ZNVClo3HpNMSwSo7z04SXgOTQjIUDs6InjtOKdBVJW4QPB8UtLGHzNAeTyNcgOHzh8TMUeokLEuuypVb1o5dkgxnnQ0I5J6uUCcvf3gh+hdgjtDbggMeGztJofME9PTKLxPUkOHkZx3e6Y9URMoaNaq/5j8kajMDjTHjiUEH1SRXT4LN/IifwIdbjH4PHHPuyd6p4AHK60S5TuaUINHtW5Pfq2Xk2D67En4nFdYkAo2KnJ5DKOHNaltob3IOTjZuxt5FqRKhQqwerzPQMxW3d267YDNMnGrXY7iJQGLBpw==","signtype":"RSA2","timestamp":"1663752291992","version":"2.0"}  
@@ -70,8 +70,8 @@ ResponseHeader：{}
 ResponseBody: {"GuidRequest":"9a1122c1853f81a8c028e5967ccd0d9b","Code":500,"Message":"METRO2:验签失败"}  
 ResponseError：MTR_500:METRO2:验签失败  
 |127ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-21T17:25:19+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=c19e553d79281f28c6cf29d9114498b2&timestamp=1663752319917&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-21T17:25:19+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=c19e553d79281f28c6cf29d9114498b2&timestamp=1663752319917&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
 time=2022-09-21T17:25:19+08:00 level=info msg=rid: c19e553d79281f28c6cf29d9114498b2 Metro2 HttpPost 
 ServiceUrl：http://localhost/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"c19e553d79281f28c6cf29d9114498b2","signature":"R5hcBQXWEgrjN093IuDfyG+OUQoIeZMBauHMp/K1SqrHszwSYtUtWuulLvb0zadeTiiaFGKvcMzeQ1CPXXwmUD1uxf+Xc2G/coKs7LCr/hHt+gtdPl+gNr3IW43vuEjxDWGvQ4CFKfQt7kgT0tejilYEVY0wRbYisbJPmQstpRCmg4f23jC4/wf8Q158vIFrUceCqHUHVF7LLEF3LyI4n67uPsRCJzZqq8ZNziFkn0VkYYHp8b9cje8wWeOMprehDQNLb1v92pdU+t5O+XYPUQJYLS08G4Ee7KzDUy+16WUKLHsP9d/fsXltVsLn2kGJkAjYJrtMhY+F0Kn3FkCebQ==","signtype":"RSA2","timestamp":"1663752319917","version":"2.0"}  
@@ -80,8 +80,8 @@ ResponseHeader：{}
 ResponseBody: {"GuidUser":"13611703040","MobilePhone":"13611703040"}  
 ResponseError：MTR_0:  
 |63ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-21T17:32:19+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=d39fd794fa6c90908e77478ff53eb22c&timestamp=1663752739148&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-21T17:32:19+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=d39fd794fa6c90908e77478ff53eb22c&timestamp=1663752739148&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
 time=2022-09-21T17:32:19+08:00 level=info msg=rid: d39fd794fa6c90908e77478ff53eb22c Metro2 HttpPost 
 ServiceUrl：http://localhost/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"d39fd794fa6c90908e77478ff53eb22c","signature":"TVJu1napgrMxduc8jIvJAUiG6qb2qaT+4MZigvGse6shLZR3WbdKTCqkmBcxobCVKgc8tlvToUo7YgqbKZwRKwR4Bv2IEG0JMm5V8HCJO7z3pCxkLxaH/TpifzBLSMoySblXAVxBa6KieOmnPrUSf6NDRVe4ZGEPe9cxqwIRUnT6oknTAZjUiPod7jVMZrTttt3uUy1kuAMUjvU5MUoIkhYf22rbswFusBn2b6JvbRViDY3ljT5WGwyUEKjVbvpdefll4NEOYOyGU4j6CThA79HIO/Aoczu0l5cSbbxgwa7TlGrB9Snf9z9U7i1qiELRuKu8/bbWBcnxFh17I3Tycg==","signtype":"RSA2","timestamp":"1663752739148","version":"2.0"}  
@@ -90,8 +90,8 @@ ResponseHeader：{}
 ResponseBody: {"GuidUser":"13611703040","MobilePhone":"13611703040"}  
 ResponseError：MTR_0:  
 |102ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-21T17:32:34+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=64f2c9524fe923c8fbe086ba2f649209&timestamp=1663752754170&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-21T17:32:34+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=64f2c9524fe923c8fbe086ba2f649209&timestamp=1663752754170&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:114
 time=2022-09-21T17:32:34+08:00 level=info msg=rid: 64f2c9524fe923c8fbe086ba2f649209 Metro2 HttpPost 
 ServiceUrl：http://localhost/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"64f2c9524fe923c8fbe086ba2f649209","signature":"Iy0osIqjIh5Hjy7qQ2Bp8X0/ovhRfg1y3AusgfwoVuY3kK1M9TGn4oz8JL/FetQTnt6i5DNgS4Gm4rJNTqJhWN9UwTrGTiSQ+BWRagf1rRku5mxeJkSjwhqdhEm6X/suXRFuadwR7rdtLmFL3CbD5wKCQUhKZy3rO1Tm1W84ZXH/YJ6QST/8kx8dF+MIeSXpRUUricWIHbN2e4RrkzS8j7E+wGXpslio3QfLJOMJlDScQkXOoZZMtmr+XMbwouyP5VliUVo1LCDjOXi9UGoY7bbY6WMXrh9ABYEd+da0a9Huh9QhZxtkytHBGyl7oSBk4e2g0paIwAB72F+b2NiGLA==","signtype":"RSA2","timestamp":"1663752754170","version":"2.0"}  
@@ -100,9 +100,9 @@ ResponseHeader：{}
 ResponseBody: {"GuidUser":"13611703040","MobilePhone":"13611703040"}  
 ResponseError：MTR_0:  
 |97ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-21T17:40:29+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=1e36c776a439a7d922ed2456d89e24b6&timestamp=1663753229253&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:115
-time=2022-09-21T17:40:29+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"ce8ee013a116ae21233a1623e1879f9f","Code":200,"Message":"ok","data":{"GuidUser":"13611703040","MobilePhone":"13611703040"}} func=root/src/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:125
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-21T17:40:29+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=1e36c776a439a7d922ed2456d89e24b6&timestamp=1663753229253&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:115
+time=2022-09-21T17:40:29+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"ce8ee013a116ae21233a1623e1879f9f","Code":200,"Message":"ok","data":{"GuidUser":"13611703040","MobilePhone":"13611703040"}} func=github.com/zingson/go-helper/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:125
 time=2022-09-21T17:40:29+08:00 level=info msg=rid: 1e36c776a439a7d922ed2456d89e24b6 Metro2 HttpPost 
 ServiceUrl：http://localhost/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"1e36c776a439a7d922ed2456d89e24b6","signature":"owH+bHYlaA3isKat8/6pXZWfP+H7RchA4SkYSyRwJGjg+H4uvEPMdPqGGN8pChBkGaAuT7r5LvJva4MGNRlkTC8J4Hyf1hA0hnPYzzCHDBXWVJCAxXWpz4d6bXr6Rr9vQGNHbcQR3jFbmfJn0u3EwH3YkdyCwKNDynzIAcDQw+jdZZ+Vf9V7+/zZiFiN3e9wIUbgfhXYHT4IlyfHo8jSyGXUkNh/9EVb9HqWV/7eHHmONFcgN+aUJzYBHirL8MANou9fV2ZLoZvuYXIKI5ZvR5a4HxV/qbwrl0z9wArb3pd2Xd7Z2+W9kY62tfbJVB1A/N0kFqIirFsDrCiIPRWgdw==","signtype":"RSA2","timestamp":"1663753229253","version":"2.0"}  
@@ -111,9 +111,9 @@ ResponseHeader：{"Content-Length":"138","Content-Type":"text/plain; charset=utf
 ResponseBody: {"GuidRequest":"ce8ee013a116ae21233a1623e1879f9f","Code":200,"Message":"ok","data":{"GuidUser":"13611703040","MobilePhone":"13611703040"}}  
 ResponseError：MTR_ERR:签名验证失败 rsa.VerifyPKCS1v15 crypto/rsa: verification error  
 |63ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-21T17:43:23+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=daa70f92ebbbf462b0a22e966230f9bd&timestamp=1663753403585&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:115
-time=2022-09-21T17:43:23+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"3ec4d9f4b238de56501bcdc60f997e89","Code":200,"Message":"ok","data":{"GuidUser":"13611703040","MobilePhone":"13611703040"}} func=root/src/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:125
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-21T17:43:23+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"AppToken":"testtoken"}&nonce=daa70f92ebbbf462b0a22e966230f9bd&timestamp=1663753403585&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:115
+time=2022-09-21T17:43:23+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"3ec4d9f4b238de56501bcdc60f997e89","Code":200,"Message":"ok","data":{"GuidUser":"13611703040","MobilePhone":"13611703040"}} func=github.com/zingson/go-helper/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:125
 time=2022-09-21T17:43:23+08:00 level=info msg=rid: daa70f92ebbbf462b0a22e966230f9bd Metro2 HttpPost 
 ServiceUrl：http://localhost/metro2/user/info  
 RequestHeader：{"appid":"SM202208080004","nonce":"daa70f92ebbbf462b0a22e966230f9bd","signature":"gNLCQYnTcCcHWHILZhe4grxwxmNIJU628ZJXCW8VEuoWGqgtrk4jQDBmo1qN9xMxuQG66vTyvO9tlbbcmXtdimfjz11HmXEwRiHIK8Ctg+5ohDruR2yRzBGZa9Wq23440a1t+DJOAJock4Z3VQggUKSCPZ3DAdDH9CwvjR9KF0p6fcOJpZzzoVmH1YLiQUtu4TECO+brzS8o8oUBZdgI3tk40a0e0I/w3CZlABlAW35Y484Szk7uFGWVbGWdsfZ4N7x+vSLrB+o7r4jKbCaSEwLox/TsLqZKpI63QCQeeo9xGGgJyNPywOp4n6Rmea0B4HOwfEVAo4ngYv3y6RXcBg==","signtype":"RSA2","timestamp":"1663753403585","version":"2.0"}  
@@ -122,9 +122,9 @@ ResponseHeader：{"Content-Length":"138","Content-Type":"text/plain; charset=utf
 ResponseBody: {"GuidRequest":"3ec4d9f4b238de56501bcdc60f997e89","Code":200,"Message":"ok","data":{"GuidUser":"13611703040","MobilePhone":"13611703040"}}  
   
 |63ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
-time=2022-09-22T10:54:09+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw=="}&nonce=2c412e939d3888a1712b22e9ab6c8310&timestamp=1663815249603&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
-time=2022-09-22T10:54:10+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{}} func=root/src/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:39
+time=2022-09-22T10:54:09+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw=="}&nonce=2c412e939d3888a1712b22e9ab6c8310&timestamp=1663815249603&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
+time=2022-09-22T10:54:10+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{}} func=github.com/zingson/go-helper/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
 time=2022-09-22T10:54:10+08:00 level=info msg=rid: 2c412e939d3888a1712b22e9ab6c8310 Metro2 HttpPost 
 ServiceUrl：https://extptp.test.smartmetro.tech/extp/tp/user/register  
 RequestHeader：{"appid":"SM202208080004","nonce":"2c412e939d3888a1712b22e9ab6c8310","signature":"hAhnxv4sF75/ujzXyCSyeRDcA8VEqdLTpT9xoQOf5Nthftf+PE0hZfqk6zOc0AkjKCisnkN5Eqd8+BbOTTRo9dBcKu+lVlRhai6u6/0PqjYCLaxGBwxpVE8XCJ0LwFkFT/ljBnFOtniAI0RBHioTcbuDYdQPz7bEdKFwSUyE93hIb6avaxp1b4slwdohINvyXSpjxdqEbDGNg+BHxBsrdnCYEopxU8b+hmac6thVIgJ3T2UtsCUfPxjt4t3mZWnpMwf1xVznZ3BJHtjfB0i1ensMxsunEejBsrqOZqx6fISgnXIV4ApW1CSmXdebS+atGZSZ09mJyahmZpj7Wg/fFg==","signtype":"RSA2","timestamp":"1663815249603","version":"2.0"}  
@@ -133,9 +133,9 @@ ResponseHeader：{"Connection":"keep-alive","Content-Type":"application/json; ch
 ResponseBody: {"GuidRequest":"","Code":200,"Message":"","Data":{}}  
   
 |434ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41
-time=2022-09-22T10:54:10+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidActivity":"6d6f24f3c3604fed886d5b8ec3c8779d","GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw==","TradeNo":"13611703040101"}&nonce=2c412e939d3888a1712b22e9ab6c8310&timestamp=1663815250037&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
-time=2022-09-22T10:54:10+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{"Vouchers":[{"GuidVoucher":"f56a793777ba407a9bceab1728f2aa73","Times":1,"TimeBegin":"2022-09-22 10:54:10","TimeEnd":"2022-09-22 23:59:59","TradeNo":"13611703040101"}]}} func=root/src/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41
+time=2022-09-22T10:54:10+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidActivity":"6d6f24f3c3604fed886d5b8ec3c8779d","GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw==","TradeNo":"13611703040101"}&nonce=2c412e939d3888a1712b22e9ab6c8310&timestamp=1663815250037&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
+time=2022-09-22T10:54:10+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{"Vouchers":[{"GuidVoucher":"f56a793777ba407a9bceab1728f2aa73","Times":1,"TimeBegin":"2022-09-22 10:54:10","TimeEnd":"2022-09-22 23:59:59","TradeNo":"13611703040101"}]}} func=github.com/zingson/go-helper/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
 time=2022-09-22T10:54:10+08:00 level=info msg=rid: 2c412e939d3888a1712b22e9ab6c8310 Metro2 HttpPost 
 ServiceUrl：https://extptp.test.smartmetro.tech/extp/application/voucher/assign  
 RequestHeader：{"appid":"SM202208080004","nonce":"2c412e939d3888a1712b22e9ab6c8310","signature":"Hr+axyxvySfojFZe0h3GbtMea/zvZY6+qayKmeWw56NlAxwAvnInSzvk1Wklo1d+WNYZAptrmEhzwBp9IWVbaE4ybZFhs5QAd4EE2obrFsxQCL8Uwrd62NF9N3VNOZfvYc3Y7Zhka2OIXVm1uXGu7vaQ3/KfoAIYM1qs4HxE5hcpHS4JFExFUnBk5Zbw2skmmtoQxCxK0IgO2AKTeIwBVFeJn/B0QdQqECbvM9vkorJqAfg9z+jxIe9ow6PFuxAb7nqnM0ICGBzv5aytXCK6i0VCOttNnGrwc3vm0OhylwSM73NAcZuqw5z04ek/Gybcu+Cy1G02uk0lPdNgr/mUiQ==","signtype":"RSA2","timestamp":"1663815250037","version":"2.0"}  
@@ -144,9 +144,9 @@ ResponseHeader：{"Connection":"keep-alive","Content-Type":"application/json; ch
 ResponseBody: {"GuidRequest":"","Code":200,"Message":"","Data":{"Vouchers":[{"GuidVoucher":"f56a793777ba407a9bceab1728f2aa73","Times":1,"TimeBegin":"2022-09-22 10:54:10","TimeEnd":"2022-09-22 23:59:59","TradeNo":"13611703040101"}]}}  
   
 |184ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41
-time=2022-09-22T11:09:44+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw=="}&nonce=e8edd70d3317d840265e30099325ffca&timestamp=1663816184263&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
-time=2022-09-22T11:09:45+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{}} func=root/src/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41
+time=2022-09-22T11:09:44+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw=="}&nonce=e8edd70d3317d840265e30099325ffca&timestamp=1663816184263&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
+time=2022-09-22T11:09:45+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{}} func=github.com/zingson/go-helper/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
 time=2022-09-22T11:09:45+08:00 level=info msg=rid: e8edd70d3317d840265e30099325ffca Metro2 HttpPost 
 ServiceUrl：https://extptp.test.smartmetro.tech/extp/tp/user/register  
 RequestHeader：{"appid":"SM202208080004","nonce":"e8edd70d3317d840265e30099325ffca","signature":"rwG1BHAUZqPDjnZbA23UnfK3KPr2Xs9dtnoM2qtOV8fAfEs9CCN57jO3WC2434QLqnE2I6xUYpkFea2hTYkID+53A6bOSrEm61pQlnWA7oTMHJfMns45218pZngLHiOO4nZ1M0z7iQztwTNtsIa543VALcrCNbK0yyeCTHtQeX2lZchw3BvURgUN8aHd4YyKCg7/hiFn83LX8Z8Is6xo1WPe71QcVcJLpcrALWQvJOT4f9EBP7cmov2BUsabkV2g0gb2pjS/wibKhVyid3DuNHTOBd5q53BGcizWrdCEmQ4bGuqsQm/cv8fMp53s7S8R9Y4olZedKC0uErW8punHQg==","signtype":"RSA2","timestamp":"1663816184263","version":"2.0"}  
@@ -155,9 +155,9 @@ ResponseHeader：{"Connection":"keep-alive","Content-Type":"application/json; ch
 ResponseBody: {"GuidRequest":"","Code":200,"Message":"","Data":{}}  
   
 |1068ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41
-time=2022-09-22T11:09:45+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidActivity":"6d6f24f3c3604fed886d5b8ec3c8779d","GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw==","TradeNo":"13611703040101"}&nonce=e8edd70d3317d840265e30099325ffca&timestamp=1663816185331&version=2.0 func=root/src/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
-time=2022-09-22T11:09:46+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{"Vouchers":[{"GuidVoucher":"f56a793777ba407a9bceab1728f2aa73","Times":1,"TimeBegin":"2022-09-22 10:54:10","TimeEnd":"2022-09-22 23:59:59","TradeNo":"13611703040101"}]}} func=root/src/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41
+time=2022-09-22T11:09:45+08:00 level=debug msg=metro2 请求报文签名字符串：appid=SM202208080004&body={"GuidActivity":"6d6f24f3c3604fed886d5b8ec3c8779d","GuidUser":"13611703040","MobilePhone":"ne1t4NW3RzKUNrcIEHgPHw==","TradeNo":"13611703040101"}&nonce=e8edd70d3317d840265e30099325ffca&timestamp=1663816185331&version=2.0 func=github.com/zingson/go-helper/sdk/metro2.rsaSign file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:117
+time=2022-09-22T11:09:46+08:00 level=debug msg=metro2 响应报文验签字符串：{"GuidRequest":"","Code":200,"Message":"","Data":{"Vouchers":[{"GuidVoucher":"f56a793777ba407a9bceab1728f2aa73","Times":1,"TimeBegin":"2022-09-22 10:54:10","TimeEnd":"2022-09-22 23:59:59","TradeNo":"13611703040101"}]}} func=github.com/zingson/go-helper/sdk/metro2.rsaVerify file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:127
 time=2022-09-22T11:09:46+08:00 level=info msg=rid: e8edd70d3317d840265e30099325ffca Metro2 HttpPost 
 ServiceUrl：https://extptp.test.smartmetro.tech/extp/application/voucher/assign  
 RequestHeader：{"appid":"SM202208080004","nonce":"e8edd70d3317d840265e30099325ffca","signature":"icUAewW8Ugvc492XZzaXd/xOTt1EeDoX3l7+oEp1eA0yENEPIXjj0u8Pz36rhjbQ5G7Vgljet7MJeoaF+wwbUgq/eq6UUs9sNbEofSd04MRG5nEgy648wgJk31pg6Gei7LynPreULXVc8tNzWw4niH+5vZpF8VAdPkcuEofuTLQT5HjNW7MVEQBVPatph3m1tYpVqO8TSTqBMh0E9SxUPrs42JgKfqjIstkBMtl1Wu04vFXoIP0EaO5HmZKP4uYTvUpyfK1xehCu1klyq5p0Lz54YlvIfNalSOPEnyJwNJUtQ8+RCd7zumooYzpnpX2NWZ4Nr31jLNt+eLWKUK1TsA==","signtype":"RSA2","timestamp":"1663816185331","version":"2.0"}  
@@ -166,4 +166,4 @@ ResponseHeader：{"Connection":"keep-alive","Content-Type":"application/json; ch
 ResponseBody: {"GuidRequest":"","Code":200,"Message":"","Data":{"Vouchers":[{"GuidVoucher":"f56a793777ba407a9bceab1728f2aa73","Times":1,"TimeBegin":"2022-09-22 10:54:10","TimeEnd":"2022-09-22 23:59:59","TradeNo":"13611703040101"}]}}  
   
 |890ms
- func=root/src/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41
+ func=github.com/zingson/go-helper/sdk/metro2.HttpPost.func1 file=D:/Projects/himkt-go/hm-voucher/src/sdk/metro2/protocol.go:41

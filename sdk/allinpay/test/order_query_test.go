@@ -1,7 +1,7 @@
 package test
 
 import (
-	"root/src/sdk/allinpay"
+	"github.com/zingson/go-helper/sdk/allinpay"
 	"testing"
 )
 

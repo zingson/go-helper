@@ -2,7 +2,7 @@ package test
 
 import (
 	"encoding/json"
-	"root/src/sdk/upapi"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"testing"
 	"time"
 )
@@ -27,7 +27,7 @@ func TestCouponDownload(t *testing.T) {
 		TransTs:    time.Now().Format("20060102"),
 		CouponId:   "-3102023011347995",
 		CouponNum:  1,
-		Mobile:     "17710046353",
+		Mobile:     "15215943910",
 	})
 	if err != nil {
 		t.Error(err.Error())

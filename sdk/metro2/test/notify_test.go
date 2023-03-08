@@ -2,8 +2,8 @@ package test
 
 import (
 	"context"
-	"root/src/h"
-	"root/src/sdk/metro2"
+	"github.com/zingson/go-helper/h"
+	"github.com/zingson/go-helper/sdk/metro2"
 	"testing"
 	"time"
 )

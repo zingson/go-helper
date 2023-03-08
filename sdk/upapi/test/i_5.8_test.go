@@ -2,8 +2,8 @@ package test
 
 import (
 	"fmt"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"net/http"
-	"root/src/sdk/upapi"
 	"testing"
 )
 

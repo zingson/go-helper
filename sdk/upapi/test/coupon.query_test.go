@@ -2,7 +2,7 @@ package test
 
 import (
 	"fmt"
-	"root/src/sdk/upapi"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"testing"
 )
 

@@ -1,7 +1,7 @@
 package test
 
 import (
-	"root/src/sdk/upapi"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"testing"
 	"time"
 )

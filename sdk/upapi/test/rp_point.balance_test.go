@@ -1,12 +1,12 @@
 package test
 
 import (
-	"root/src/sdk/upapi"
+	"github.com/zingson/go-helper/sdk/upapi"
 	"testing"
 )
 
-//专享红包余额查询
-//根据专享红包活动 id 查询用户的该专享红包余额。
+// 专享红包余额查询
+// 根据专享红包活动 id 查询用户的该专享红包余额。
 func TestPointBalance(t *testing.T) {
 	_, err := upapi.PointBalance(cfgtoml(), &upapi.PointBalanceParams{
 		PointId:      "4122042628792805",
