@@ -56,7 +56,7 @@ func MemberVipAcquire(c *Config, p *MemberVipAcquireParams) (r *MemberVipAcquire
 	return
 }
 
-//请求参数
+// 请求参数
 type MemberVipAcquireParams struct {
 	SysId      string `json:"sysId"`
 	OpenId     string `json:"openId"`
@@ -67,7 +67,7 @@ type MemberVipAcquireParams struct {
 	IsLimit    string `json:"isLimit"`
 }
 
-//响应结构体
+// 响应结构体
 type MemberVipAcquireResult struct {
 	Resp string `json:"resp"`
 	Msg  string `json:"msg"`

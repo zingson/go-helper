@@ -8,7 +8,7 @@ import (
 
 // 加密结果以base64输出
 
-//ECB加密
+// ECB加密
 func TRIPLE_DES_ECB_PKCS5_Encode(src, key string) (string, error) {
 	data := []byte(src)
 	keyByte := []byte(key)
@@ -34,7 +34,7 @@ func TRIPLE_DES_ECB_PKCS5_Encode(src, key string) (string, error) {
 	return base64.StdEncoding.EncodeToString(out), nil
 }
 
-//ECB解密
+// ECB解密
 func TRIPLE_DES_ECB_PKCS5_Decode(src, key string) (string, error) {
 	data, err := base64.StdEncoding.DecodeString(src)
 	if err != nil {

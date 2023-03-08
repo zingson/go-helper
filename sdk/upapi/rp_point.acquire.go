@@ -11,7 +11,7 @@ import (
 文档： https://opentools.95516.com/applet/#/docs/develop/api-backend?id=_02040801
 */
 
-//PointAcquire 赠送专享红包
+// PointAcquire 赠送专享红包
 func PointAcquire(c *Config, p *PointAcquireParams) (err error) {
 	if p.AccEntityTp == "" {
 		p.AccEntityTp = AETP_03

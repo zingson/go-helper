@@ -24,7 +24,7 @@ const (
 	SCOPE_FACE   Scope = "scope.face"
 )
 
-//AccEntityTp 账户主体类型， 2 位，可选： 01 -手机号 02 -卡号 03 -用户（三选一）
+// AccEntityTp 账户主体类型， 2 位，可选： 01 -手机号 02 -卡号 03 -用户（三选一）
 type AccEntityTp string
 
 const (

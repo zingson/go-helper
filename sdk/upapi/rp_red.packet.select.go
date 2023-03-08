@@ -10,7 +10,7 @@ import (
 查询银联红包接入方账户余额查询。
 */
 
-//RedPacketSelect 机构账户（红包）余额查询
+// RedPacketSelect 机构账户（红包）余额查询
 func RedPacketSelect(c *Config, insAccId string, backendToken func(config *Config) string) (rs *RedPacketResult, err error) {
 	bm := NewBodyMap()
 	bm.Set("appId", c.Appid)

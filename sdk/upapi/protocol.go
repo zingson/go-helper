@@ -6,14 +6,14 @@ import (
 	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
-	"io/ioutil"
+	"io"
 	"math/rand"
 	"net/http"
 	"strings"
 	"time"
 )
 
-//Post 云闪付接口 POST请求
+// Post 云闪付接口 POST请求
 func Post(c *Config, path string, bodyMap *BodyMap) (respBody *RespBody, err error) {
 	var (
 		rid      = Rand32()
@@ -45,7 +45,7 @@ func Post(c *Config, path string, bodyMap *BodyMap) (respBody *RespBody, err err
 		err = errors.New(resp.Status)
 		return
 	}
-	bytes, err := ioutil.ReadAll(resp.Body)
+	bytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return
 	}
@@ -59,7 +59,7 @@ func Post(c *Config, path string, bodyMap *BodyMap) (respBody *RespBody, err err
 	return
 }
 
-//Call RSASha256方式签名，其它签名或者加密方式请使用Post方法
+// Call RSASha256方式签名，其它签名或者加密方式请使用Post方法
 func Call(c *Config, path string, bm *BodyMap, result interface{}) (err error) {
 	//计算签名
 	signature := bm.Sha256Sign(c.Secret)
@@ -103,7 +103,7 @@ type RespBody struct {
 	Params interface{} `json:"params"`
 }
 
-//GetRandomString 获取随机字符串 length：字符串长度
+// GetRandomString 获取随机字符串 length：字符串长度
 func GetRandomString(length int) string {
 	str := "0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
 	var (
@@ -119,7 +119,7 @@ func GetRandomString(length int) string {
 	return string(result)
 }
 
-//Decode3DES 云闪付敏感数据解密
+// Decode3DES 云闪付敏感数据解密
 func Decode3DES(symmetricKey string, v string) (val string, err error) {
 	if v == "" {
 		val = ""
@@ -134,7 +134,7 @@ func Decode3DES(symmetricKey string, v string) (val string, err error) {
 	return
 }
 
-//Encode3DES 云闪付敏感数据加密
+// Encode3DES 云闪付敏感数据加密
 func Encode3DES(symmetricKey string, v string) (val string, err error) {
 	if v == "" {
 		val = ""

@@ -68,7 +68,7 @@ func MemberPointDeduct(c *Config, p *MemberPointDeductParams) (r *MemberPointDed
 	return
 }
 
-//请求参数
+// 请求参数
 type MemberPointDeductParams struct {
 	SysId       string `json:"sysId"`
 	OpenId      string `json:"openId"`
@@ -81,7 +81,7 @@ type MemberPointDeductParams struct {
 	DescCode    string `json:"descCode"`
 }
 
-//响应结构体
+// 响应结构体
 type MemberPointDeductResult struct {
 	Resp string `json:"resp"`
 	Msg  string `json:"msg"`

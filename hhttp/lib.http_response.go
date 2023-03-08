@@ -1,4 +1,4 @@
-package utils
+package hhttp
 
 import (
 	"crypto/md5"

@@ -117,14 +117,14 @@ func (bm *BodyMap) FrontSignParams() string {
 }
 
 // 计算SHA256签名
-//步骤一：拼接待签名字符串，得到string1
-//对所有待签名参数按照字段名的ASCII码进行从小到大排序（字典序），然后使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串string1，如：
-//appId=a5949221470c4059b9b0b45a90c81527&frontToken=U72eJp21SkuzKRdUK+jyFw==&nonceStr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://mobile.xxx.com?params=value
-//>string1 := bm.SignParams(secret)
-//步骤二：对待签名字符串进行SHA256签名，得到signature
-//将步骤一得到的待签名字符串string1转换成byte数组，传入方法sha256(byte[] data)中，执行后将返回签名结果signature。
-//如：a4bb34a2b60aa34ec4f03754547ca3e39a80e628b9760323d10561997935bb42。
-//>return fmt.Sprintf("%x", sha256.Sum256([]byte(string1)))
+// 步骤一：拼接待签名字符串，得到string1
+// 对所有待签名参数按照字段名的ASCII码进行从小到大排序（字典序），然后使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串string1，如：
+// appId=a5949221470c4059b9b0b45a90c81527&frontToken=U72eJp21SkuzKRdUK+jyFw==&nonceStr=Wm3WZYTPz0wzccnW&timestamp=1414587457&url=http://mobile.xxx.com?params=value
+// >string1 := bm.SignParams(secret)
+// 步骤二：对待签名字符串进行SHA256签名，得到signature
+// 将步骤一得到的待签名字符串string1转换成byte数组，传入方法sha256(byte[] data)中，执行后将返回签名结果signature。
+// 如：a4bb34a2b60aa34ec4f03754547ca3e39a80e628b9760323d10561997935bb42。
+// >return fmt.Sprintf("%x", sha256.Sum256([]byte(string1)))
 func (bm *BodyMap) Sha256Sign(secret string) string {
 	string1 := bm.SignParams(secret)
 	return fmt.Sprintf("%x", sha256.Sum256([]byte(string1)))

@@ -1,4 +1,4 @@
-package utils
+package hstr
 
 import (
 	"bytes"
@@ -73,8 +73,8 @@ func ConvertStruct2json(src interface{}) string {
 	return string(json)
 }
 
-//StrContains 验证字符串是否包含字符串
-//pattern 正则
+// StrContains 验证字符串是否包含字符串
+// pattern 正则
 func StrContains(pattern string, str string) bool {
 	matched, _ := regexp.MatchString(pattern, str)
 	return matched
@@ -174,7 +174,7 @@ func RandInt64(min, max int64) int64 {
 	return rand.Int63n(max-min) + min
 }
 
-//InArray 判断某一个值是否含在切片之中
+// InArray 判断某一个值是否含在切片之中
 func InArray(val interface{}, array interface{}) (exists bool) {
 	exists = false
 

@@ -96,7 +96,7 @@ func RsaVerify(sign, value, pubKey string) (err error) {
 	return
 }
 
-//@params containNilVal true空字段参与签名 false空字段不参与签名
+// @params containNilVal true空字段参与签名 false空字段不参与签名
 func rsaSignSortMap(params *BodyMap, containNilVal bool) string {
 	var (
 		buf     strings.Builder

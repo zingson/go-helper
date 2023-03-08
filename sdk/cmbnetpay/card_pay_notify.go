@@ -1,45 +1,41 @@
 package cmbnetpay
 
 import (
-	"dmkt/src/biz/hd"
-	"dmkt/src/biz/plat"
-	"errors"
 	"fmt"
-	"github.com/zingson/goh/utils"
-	"go.mongodb.org/mongo-driver/bson"
 	"net/http"
 )
 
 // NotifyRSAVerify 成功支付结果验签
 func NotifyRSAVerify(payNotify *PayNotify) (ok bool, err error) {
-	order, err := hd.NewOrderDao().FindOne(nil, bson.D{bson.E{"order_id", payNotify.NoticeData.OrderNo}})
-	if err != nil {
-		err = errors.New(fmt.Sprintf("cmbnetpay:NotifyRSAVerify:查询订单失败, payNotify:%v, error:%s", payNotify, err.Error()))
-		return
-	}
+	//order, err := hd.NewOrderDao().FindOne(nil, bson.D{bson.E{"order_id", payNotify.NoticeData.OrderNo}})
+	//if err != nil {
+	//	err = errors.New(fmt.Sprintf("cmbnetpay:NotifyRSAVerify:查询订单失败, payNotify:%v, error:%s", payNotify, err.Error()))
+	//	return
+	//}
 	//通过渠道编号查询渠道信息
-	chap, err := plat.NewChapDao().FindOne(nil, bson.D{bson.E{"chid", order.PayChid}})
-	if err != nil {
-		return
-	}
-	conf := &Config{}
-	err = utils.ConvertStructData(chap.Param[string(plat.CHAN_PAY_CMBNETPAY)], conf)
-	if err != nil {
-		return
-	}
+	//chap, err := plat.NewChapDao().FindOne(nil, bson.D{bson.E{"chid", order.PayChid}})
+	//if err != nil {
+	//return
+	//}
 
-	pubkey, err := QueryFbPubKey(conf)
-	if err != nil {
-		err = errors.New(fmt.Sprintf("cmbnetpay:NotifyRSAVerify:获取公钥失败, payNotify:%v, error:%s", payNotify, err.Error()))
-		return
-	}
-	reqMap := StructToMap(payNotify.NoticeData)
-	waitForSignStr := SortMap(reqMap, true)
-	ok, err = RSAVerify(waitForSignStr, payNotify.Sign, []byte(pubkey))
-	if !ok {
-		err = errors.New(fmt.Sprintf("cmbnetpay:NotifyRSAVerify:验签失败, payNotify:%v, error:%s", payNotify, err.Error()))
-		return
-	}
+	//conf := &Config{}
+	//err = utils.ConvertStructData(chap.Param[string(plat.CHAN_PAY_CMBNETPAY)], conf)
+	//if err != nil {
+	//	return
+	//	}
+
+	//pubkey, err := QueryFbPubKey(conf)
+	//if err != nil {
+	//	err = errors.New(fmt.Sprintf("cmbnetpay:NotifyRSAVerify:获取公钥失败, payNotify:%v, error:%s", payNotify, err.Error()))
+	//	return
+	//}
+	//	reqMap := StructToMap(payNotify.NoticeData)
+	//	waitForSignStr := SortMap(reqMap, true)
+	//ok, err = RSAVerify(waitForSignStr, payNotify.Sign, []byte(pubkey))
+	//if !ok {
+	//	err = errors.New(fmt.Sprintf("cmbnetpay:NotifyRSAVerify:验签失败, payNotify:%v, error:%s", payNotify, err.Error()))
+	//	return
+	//	}
 	return
 }
 

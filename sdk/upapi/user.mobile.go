@@ -1,6 +1,6 @@
 package upapi
 
-//UserMobile 取用户手机号码
+// UserMobile 取用户手机号码
 func UserMobile(conf *Config, accessToken, openId string, backendToken func(config *Config) string) (r *UserMobileResult, err error) {
 	bm := NewBodyMap()
 	bm.Set("appId", conf.Appid)

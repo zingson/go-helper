@@ -1,7 +1,6 @@
 package cmbnetpay
 
 import (
-	"dmkt/src/config"
 	"github.com/sirupsen/logrus"
 	"github.com/zingson/goh/hid"
 	"github.com/zingson/goh/htime"
@@ -41,7 +40,7 @@ func TestCardPay(t *testing.T) {
 		OrderNo:        orderNo,
 		Amount:         "0.01",
 		ExpireTimeSpan: "15",
-		PayNoticeUrl:   config.HimktC().BaseUrl + "/gw/" + config.Name + "/pay/cmbnetpay/notify",
+		//PayNoticeUrl:   config.HimktC().BaseUrl + "/gw/" + config.Name + "/pay/cmbnetpay/notify",
 		//PayNoticePara:  orderNo + "|" + conf.MerchantNo,
 	}
 	resHtml, err := CardPay(conf, &CardPayReq{

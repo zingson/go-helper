@@ -69,7 +69,7 @@ func MemberPointAcquire(c *Config, p *MemberPointAcquireParams) (r *MemberPointA
 	return
 }
 
-//请求参数
+// 请求参数
 type MemberPointAcquireParams struct {
 	SysId       string `json:"sysId"`
 	OpenId      string `json:"openId"`
@@ -83,7 +83,7 @@ type MemberPointAcquireParams struct {
 	InMode      string `json:"inMode"`
 }
 
-//响应结构体
+// 响应结构体
 type MemberPointAcquireResult struct {
 	Resp string `json:"resp"`
 	Msg  string `json:"msg"`

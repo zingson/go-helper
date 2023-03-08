@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-//PointBalance 专享红包余额查询
-//根据专享红包活动 id 查询用户的该专享红包余额。
+// PointBalance 专享红包余额查询
+// 根据专享红包活动 id 查询用户的该专享红包余额。
 func PointBalance(c *Config, p *PointBalanceParams, backendToken func(config *Config) string) (rs *PointBalanceResult, err error) {
 	if p.AccessId == "" {
 		p.AccessId = "UP"

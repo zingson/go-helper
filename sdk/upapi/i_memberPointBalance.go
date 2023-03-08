@@ -46,7 +46,7 @@ func MemberPointBalance(c *Config, p *MemberPointBalanceParams) (r *MemberPointB
 	return
 }
 
-//请求参数
+// 请求参数
 type MemberPointBalanceParams struct {
 	SysId        string `json:"sysId"`
 	OpenId       string `json:"openId"`
@@ -56,14 +56,14 @@ type MemberPointBalanceParams struct {
 	BackendToken string `json:"backendToken"`
 }
 
-//响应结构体
+// 响应结构体
 type MemberPointBalanceResult struct {
 	Resp   string                       `json:"resp"`
 	Msg    string                       `json:"msg"`
 	Params MemberPointBalanceResultData `json:"params"`
 }
 
-//响应结构体参数信息
+// 响应结构体参数信息
 type MemberPointBalanceResultData struct {
 	AccSt           string `json:"acctSt"`
 	AvlBalance      string `json:"avlBalance"`
