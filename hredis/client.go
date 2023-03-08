@@ -1,6 +1,7 @@
 package hredis
 
 import (
+	"github.com/go-redis/redis/v8"
 	"sync"
 )
 

@@ -5,10 +5,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type Option struct {
-	Dsn string `json:"dsn"`
-}
-
 type DB struct {
 	Option
 	*mongo.Database
