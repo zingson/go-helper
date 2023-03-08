@@ -16,6 +16,14 @@ spec示例： 0 0 0 * * *
 
 */
 
+// Storage 任务存储，如：存储到数据库表
+type Storage interface {
+	Find() []*Entry                                  // 1. 查询有变更的任务 2.当前时间大于下一次执行时间的任务
+	Save(entry *Entry)                               // 保存任务，key已存在则不更新
+	Lock(key string, prev, next time.Time) (ok bool) // 根据Key+prev加锁
+	Log(entry *Entry, ms int64)                      // 记录日志
+}
+
 // New 计划任务
 func New(storage Storage) *Cron {
 	t := &Cron{Cron: cron.New(cron.WithSeconds()), storage: storage, entry: sync.Map{}, handler: sync.Map{}}
@@ -32,29 +40,18 @@ type Cron struct {
 	handler    sync.Map // 任务处理  name -> Handler
 }
 
+func (c *Cron) AddFunc(key, spec string, f func()) {
+	c.Handler(newCustomHandler(key, f)).addJob(key, key, spec, nil)
+}
+
+func (c *Cron) AddJob(key, spec string, job cron.Job) {
+	c.Handler(newCustomHandler(key, job.Run)).addJob(key, key, spec, nil)
+}
+
 // Handler 任务处理
 type Handler interface {
 	Name() string
 	Run(v []byte)
-}
-
-// Entry 任务对象
-type Entry struct {
-	Key        string // 唯一标识
-	Spec       string //
-	Handler    string //
-	Args       []byte //
-	Err        error  //
-	Enable     bool   // true=正常 false=禁用
-	cron.Entry        //
-}
-
-// Storage 任务存储，如：存储到数据库表
-type Storage interface {
-	Find() []*Entry                                  // 1. 查询有变更的任务 2.解锁当前时间大于下一次执行时间的任务
-	Save(entry *Entry)                               // 保存任务，key已存在则不更新
-	Lock(key string, prev, next time.Time) (ok bool) // 根据Key与前后时间加锁
-	Log(entry *Entry, ms int64)                      // 记录日志
 }
 
 func (c *Cron) Handler(handlers ...Handler) *Cron {
@@ -64,55 +61,59 @@ func (c *Cron) Handler(handlers ...Handler) *Cron {
 	return c
 }
 
-type customHandler struct {
-	name string
-	f    func()
-}
+// Entry 任务对象
+type Entry struct {
+	Key     string       // 唯一标识
+	Spec    string       // 时间表达式
+	Handler string       // 工作名字
+	Args    []byte       // 参数
+	Err     error        // 错误
+	Enable  bool         // true=正常 false=禁用
+	Next    time.Time    // 下一次时间
+	Prev    time.Time    // 上一次时间
+	EntryID cron.EntryID // ID，仅相当于当前实例唯一
 
-func newCustomHandler(name string, f func()) *customHandler { return &customHandler{name, f} }
-
-func (o *customHandler) Name() string { return o.name }
-
-func (o *customHandler) Run([]byte) { o.f() }
-
-func (c *Cron) PutEntry(entry ...*Entry) {
-	for _, item := range entry {
-		c.entry.Store(item.Key, item)
-	}
+	schedule cron.Schedule
 }
 
 func (c *Cron) GetEntry(key string) (entry *Entry) {
 	v, ok := c.entry.Load(key)
-	if ok {
-		entry = v.(*Entry)
+	if !ok {
+		v = &Entry{Key: key}
+		c.entry.Store(key, v)
 	}
-	entry = &Entry{}
+	entry = v.(*Entry)
 	return
 }
 
-func (c *Cron) AddFunc(key, spec string, f func()) {
-	c.Handler(newCustomHandler(key, f)).addJob(key, key, spec, nil)
-}
-
-func (c *Cron) AddJob(key, spec string, job cron.Job) {
-	c.Handler(newCustomHandler(key, job.Run)).addJob(key, key, spec, nil)
-}
-
+// 新增计划任务
 func (c *Cron) addJob(key, handler, spec string, args []byte) {
 	entry := c.GetEntry(key)
 	if entry.Spec == spec && len(entry.Args) == len(args) {
 		return
 	}
 	c.Remove(key)
-	entryID, err := c.Cron.AddJob(spec, cron.NewChain(skipIfStillRunning(c, key), log(c, key)).Then(run(c, handler, args)))
+	entryID, err := c.Cron.AddJob(spec, cron.NewChain(cron.SkipIfStillRunning(cron.DefaultLogger), lock(c, key)).Then(run(c, handler, args)))
 	if err != nil {
 		println("【 key =", key, "】 AddJobError:", err.Error())
 	}
-	entry = &Entry{Key: key, Spec: spec, Err: err, Handler: handler, Args: args, Enable: true, Entry: c.Entry(entryID)}
-	c.PutEntry(entry)
+
+	entry.EntryID = entryID
+	ey := c.Entry(entryID)
+	if ey.Schedule != nil {
+		entry.schedule = ey.Schedule
+		entry.Next = entry.schedule.Next(time.Now())
+	}
+	entry.Spec = spec
+	entry.Err = err
+	entry.Handler = handler
+	entry.Args = args
+	entry.Enable = true
+
 	c.storage.Save(entry)
 }
 
+// 运行
 func run(c *Cron, handler string, args []byte) cron.FuncJob {
 	return func() {
 		if v, ok := c.handler.Load(handler); ok {
@@ -121,32 +122,31 @@ func run(c *Cron, handler string, args []byte) cron.FuncJob {
 	}
 }
 
-// skipIfStillRunning 如果任务在执行则跳过
-func skipIfStillRunning(c *Cron, key string) cron.JobWrapper {
+// 全局锁+运行日志
+func lock(c *Cron, key string) cron.JobWrapper {
 	return func(j cron.Job) cron.Job {
 		return cron.FuncJob(func() {
 			entry := c.GetEntry(key)
+			if entry.schedule == nil {
+				return
+			}
+			if entry.Next.IsZero() {
+				entry.Next = entry.schedule.Next(time.Now())
+			}
+			entry.Prev = entry.Next
+			entry.Next = entry.schedule.Next(entry.Prev)
+
+			// 加全局锁
 			if ok := c.storage.Lock(entry.Key, entry.Prev, entry.Next); !ok {
 				return
 			}
-			j.Run()
-		})
-	}
-}
 
-// log 记任务执行日志
-func log(c *Cron, key string) cron.JobWrapper {
-	return func(j cron.Job) cron.Job {
-		return cron.FuncJob(func() {
-			var entry = c.GetEntry(key)
+			//记录日志
 			var milli = time.Now().UnixMilli()
-			var err error
 			defer func() {
 				if r := recover(); r != nil {
-					err = r.(error)
+					entry.Err = r.(error)
 				}
-				entry.Err = err
-				entry.Entry = c.Entry(entry.ID)
 				c.storage.Log(entry, time.Now().UnixMilli()-milli)
 			}()
 			j.Run()
@@ -162,7 +162,7 @@ func (c *Cron) Run(key string) {
 
 // Remove 删除任务
 func (c *Cron) Remove(key string) {
-	c.Cron.Remove(c.GetEntry(key).ID)
+	c.Cron.Remove(c.GetEntry(key).EntryID)
 }
 
 // 读取任务加入到计划
@@ -172,11 +172,11 @@ func (c *Cron) refreshJob() {
 		return
 	}
 	for _, item := range list {
-		if item.Enable {
-			c.addJob(item.Key, item.Handler, item.Spec, item.Args)
+		if !item.Enable {
+			c.Remove(item.Key)
 			continue
 		}
-		c.Remove(item.Key)
+		c.addJob(item.Key, item.Handler, item.Spec, item.Args)
 	}
 	return
 }
