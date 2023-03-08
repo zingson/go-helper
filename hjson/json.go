@@ -27,6 +27,7 @@ func Convert[S any, T any](source S) (target T, err error) {
 	return
 }
 
+// Must 忽略异常
 func Must[T any](v T, err error) T {
 	if err != nil {
 		panic(err)
