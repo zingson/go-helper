@@ -21,7 +21,7 @@ type Storage interface {
 	Find() []*Entry                                  // 1. 查询有变更的任务 2.当前时间大于下一次执行时间的任务
 	Save(entry *Entry)                               // 保存任务，key已存在则不更新
 	Lock(key string, prev, next time.Time) (ok bool) // 根据Key+prev加锁
-	Log(entry *Entry, ms int64)                      // 记录日志
+	Log(entry *Entry)                                // 记录日志
 }
 
 // New 计划任务
@@ -64,8 +64,9 @@ func (c *Cron) Handler(handlers ...Handler) *Cron {
 // Entry 任务对象
 type Entry struct {
 	Key     string       // 唯一标识
+	Label   string       // 显示名字
 	Spec    string       // 时间表达式
-	Handler string       // 工作名字
+	Handler string       // 处理函数类型
 	Args    []byte       // 参数
 	Err     error        // 错误
 	Enable  bool         // true=正常 false=禁用
@@ -88,10 +89,14 @@ func (c *Cron) GetEntry(key string) (entry *Entry) {
 
 // 新增计划任务
 func (c *Cron) addJob(key, handler, spec string, args []byte) {
+	if spec == "" || key == "" || handler == "" {
+		return
+	}
 	entry := c.GetEntry(key)
 	if entry.Spec == spec && len(entry.Args) == len(args) {
 		return
 	}
+
 	c.Remove(key)
 	entryID, err := c.Cron.AddJob(spec, cron.NewChain(cron.SkipIfStillRunning(cron.DefaultLogger), lock(c, key)).Then(run(c, handler, args)))
 	if err != nil {
@@ -109,7 +114,6 @@ func (c *Cron) addJob(key, handler, spec string, args []byte) {
 	entry.Handler = handler
 	entry.Args = args
 	entry.Enable = true
-
 	c.storage.Save(entry)
 }
 
@@ -142,12 +146,11 @@ func lock(c *Cron, key string) cron.JobWrapper {
 			}
 
 			//记录日志
-			var milli = time.Now().UnixMilli()
 			defer func() {
 				if r := recover(); r != nil {
 					entry.Err = r.(error)
 				}
-				c.storage.Log(entry, time.Now().UnixMilli()-milli)
+				c.storage.Log(entry)
 			}()
 			j.Run()
 		})
