@@ -26,18 +26,18 @@ type Storage interface {
 
 // New 计划任务
 func New(storage Storage) *Cron {
-	t := &Cron{Cron: cron.New(cron.WithSeconds()), storage: storage, entry: sync.Map{}, handler: sync.Map{}}
+	t := &Cron{c: cron.New(cron.WithSeconds()), storage: storage, entry: sync.Map{}, handler: sync.Map{}}
 	t.AddFunc("RefreshJob", "33 0/3 * * * *", t.refreshJob) // 定时从存储中读取任务加入
-	t.Start()
+	t.c.Start()
 	return t
 }
 
 // Cron 计划任务
 type Cron struct {
-	*cron.Cron          //
-	storage    Storage  // 任务存储
-	entry      sync.Map // 任务对象  key -> Entry
-	handler    sync.Map // 任务处理  name -> Handler
+	c       *cron.Cron //
+	storage Storage    // 任务存储
+	entry   sync.Map   // 任务对象  key -> Entry
+	handler sync.Map   // 任务处理  name -> Handler
 }
 
 func (c *Cron) AddFunc(key, spec string, f func()) {
@@ -98,13 +98,13 @@ func (c *Cron) addJob(key, handler, spec string, args []byte) {
 	}
 
 	c.Remove(key)
-	entryID, err := c.Cron.AddJob(spec, cron.NewChain(cron.SkipIfStillRunning(cron.DefaultLogger), lock(c, key)).Then(run(c, handler, args)))
+	entryID, err := c.c.AddJob(spec, cron.NewChain(cron.SkipIfStillRunning(cron.DefaultLogger), lock(c, key)).Then(run(c, handler, args)))
 	if err != nil {
 		println("【 key =", key, "】 AddJobError:", err.Error())
 	}
 
 	entry.EntryID = entryID
-	ey := c.Entry(entryID)
+	ey := c.c.Entry(entryID)
 	if ey.Schedule != nil {
 		entry.schedule = ey.Schedule
 		entry.Next = entry.schedule.Next(time.Now())
@@ -165,7 +165,7 @@ func (c *Cron) Run(key string) {
 
 // Remove 删除任务
 func (c *Cron) Remove(key string) {
-	c.Cron.Remove(c.GetEntry(key).EntryID)
+	c.c.Remove(c.GetEntry(key).EntryID)
 }
 
 // 读取任务加入到计划

@@ -56,8 +56,8 @@ func (o *DaoImpl[T]) Collection(opts ...*options.CollectionOptions) (c *mongo.Co
 	return o.Database().Collection(o.model.TableName(), append(o.colOpts, opts...)...)
 }
 
-func (o *DaoImpl[T]) InsertOne(ctx context.Context, document *T) (id string, err error) {
-	r, err := o.Collection().InsertOne(ctx, &document)
+func (o *DaoImpl[T]) InsertOne(ctx context.Context, document any) (id string, err error) {
+	r, err := o.Collection().InsertOne(ctx, document)
 	if err != nil {
 		return
 	}
@@ -65,8 +65,16 @@ func (o *DaoImpl[T]) InsertOne(ctx context.Context, document *T) (id string, err
 	return
 }
 
+func (o *DaoImpl[T]) InsertMany(ctx context.Context, documents []any) (r *mongo.InsertManyResult, err error) {
+	return o.Collection().InsertMany(ctx, documents)
+}
+
 func (o *DaoImpl[T]) UpdateOne(ctx context.Context, filter bson.D, update bson.M, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
 	return o.Collection().UpdateOne(ctx, filter, update, opts...)
+}
+
+func (o *DaoImpl[T]) UpdateMany(ctx context.Context, filter bson.D, update bson.M, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+	return o.Collection().UpdateMany(ctx, filter, update, opts...)
 }
 
 func (o *DaoImpl[T]) DeleteOne(ctx context.Context, filter bson.D) (*mongo.DeleteResult, error) {
