@@ -135,8 +135,8 @@ func (o *DaoImpl[T]) Aggregate(ctx context.Context, pipeline bson.A, opts ...*op
 }
 
 // DaoAggregate 聚合查询返回自定义类型
-func DaoAggregate[R any](db *mongo.Database, ctx context.Context, pipeline bson.A, opts ...*options.AggregateOptions) (list []*R, err error) {
-	return DaoCursor[R](db.Aggregate(ctx, pipeline, opts...))
+func DaoAggregate[R any](c *mongo.Collection, ctx context.Context, pipeline bson.A, opts ...*options.AggregateOptions) (list []*R, err error) {
+	return DaoCursor[R](c.Aggregate(ctx, pipeline, opts...))
 }
 
 func DaoCursor[R any](cursor *mongo.Cursor, e error) (values []*R, err error) {
