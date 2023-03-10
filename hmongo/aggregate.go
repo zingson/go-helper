@@ -8,7 +8,8 @@ import (
 	"go.mongodb.org/mongo-driver/x/bsonx"
 )
 
-//Aggregate 聚合查询
+// Aggregate 聚合查询
+// deprecated
 func Aggregate(ctx context.Context, c *mongo.Collection, pipeline interface{}, result interface{}, opts ...*options.AggregateOptions) (err error) {
 	cursor, err := c.Aggregate(ctx, pipeline, opts...)
 	if err != nil {
@@ -24,7 +25,8 @@ func Aggregate(ctx context.Context, c *mongo.Collection, pipeline interface{}, r
 	return
 }
 
-// 待测试
+// AggregatePage 待测试
+// deprecated
 func AggregatePage(ctx context.Context, c *mongo.Collection, pipeline bson.A, pageNum, pageSize int64, result interface{}, opts ...*options.AggregateOptions) (total int64, err error) {
 	if pageNum <= 0 {
 		pageNum = 1
@@ -50,7 +52,8 @@ func AggregatePage(ctx context.Context, c *mongo.Collection, pipeline bson.A, pa
 	return
 }
 
-//AggregateSearch 集合多字段关键字搜索
+// AggregateSearch 集合多字段关键字搜索
+// deprecated
 func AggregateSearch(ctx context.Context, c *mongo.Collection, filter bson.M, concat bson.A, keywords string, sort bson.D, pageNum, pageSize int64, result interface{}, opts ...*options.AggregateOptions) (total int64, err error) {
 	if filter == nil {
 		filter = bson.M{}

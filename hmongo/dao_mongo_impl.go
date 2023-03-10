@@ -10,14 +10,12 @@ import (
 
 /*
 使用说明：
-type JobDao struct {
+type XxDao struct {
 	hmongo.DaoImpl[*Job]
 }
-
-func NewJobDao() *JobDao {
-	return &JobDao{*hmongo.NewDaoImpl[*Job](db)}
+func NewXxDao() *XxDao {
+	return &XxDao{*hmongo.NewXxImpl[*Xx](db)}
 }
-
 */
 
 type Table interface {
@@ -100,14 +98,18 @@ func (o *DaoImpl[T]) FindOneAndUpdate(ctx context.Context, filter bson.D, update
 }
 
 func (o *DaoImpl[T]) Find(ctx context.Context, filter bson.D, opts ...*options.FindOptions) (list []*T, err error) {
-	return DaoFind[T](o.Collection(), ctx, filter, opts...)
+	return DaoFind[T](ctx, o.Collection(), filter, opts...)
 }
 
-func DaoFind[R any](col *mongo.Collection, ctx context.Context, filter bson.D, opts ...*options.FindOptions) (list []*R, err error) {
+func DaoFind[R any](ctx context.Context, col *mongo.Collection, filter bson.D, opts ...*options.FindOptions) (list []*R, err error) {
 	return DaoCursor[R](col.Find(ctx, filter, opts...))
 }
 
 func (o *DaoImpl[T]) FindPage(ctx context.Context, filter bson.D, sort bson.D, pageNum, pageSize int64) (list []*T, total int64, err error) {
+	return DaoFindPage[T](ctx, o.Collection(), filter, sort, pageNum, pageSize)
+}
+
+func DaoFindPage[T any](ctx context.Context, c *mongo.Collection, filter bson.D, sort bson.D, pageNum, pageSize int64) (list []*T, total int64, err error) {
 	if sort == nil || len(sort) == 0 {
 		sort = append(sort, bson.E{"_id", -1})
 	}
@@ -118,12 +120,12 @@ func (o *DaoImpl[T]) FindPage(ctx context.Context, filter bson.D, sort bson.D, p
 		pageSize = 20
 	}
 
-	list, err = o.Find(ctx, filter, options.Find().SetSort(sort).SetSkip((pageNum-1)*pageSize).SetLimit(pageSize))
+	list, err = DaoFind[T](ctx, c, filter, options.Find().SetSort(sort).SetSkip((pageNum-1)*pageSize).SetLimit(pageSize))
 	if err != nil {
 		return
 	}
 
-	total, err = o.Count(ctx, filter)
+	total, err = c.CountDocuments(ctx, filter)
 	if err != nil {
 		return
 	}
@@ -135,7 +137,7 @@ func (o *DaoImpl[T]) Aggregate(ctx context.Context, pipeline bson.A, opts ...*op
 }
 
 // DaoAggregate 聚合查询返回自定义类型
-func DaoAggregate[R any](c *mongo.Collection, ctx context.Context, pipeline bson.A, opts ...*options.AggregateOptions) (list []*R, err error) {
+func DaoAggregate[R any](ctx context.Context, c *mongo.Collection, pipeline bson.A, opts ...*options.AggregateOptions) (list []*R, err error) {
 	return DaoCursor[R](c.Aggregate(ctx, pipeline, opts...))
 }
 
@@ -157,10 +159,14 @@ func (o *DaoImpl[T]) Cursor(cursor *mongo.Cursor, e error) (values []*T, err err
 }
 
 func (o *DaoImpl[T]) Transaction(fn func(sessionContext mongo.SessionContext) (any, error), opts ...*options.SessionOptions) (v any, err error) {
+	return Transaction(o.db.Client(), fn, opts...)
+}
+
+func Transaction(client *mongo.Client, fn func(sessionContext mongo.SessionContext) (any, error), opts ...*options.SessionOptions) (any, error) {
 	ctx := context.Background()
-	session, err := o.db.Client().StartSession(opts...)
+	session, err := client.StartSession(opts...)
 	if err != nil {
-		return
+		return nil, err
 	}
 	defer session.EndSession(ctx)
 	return session.WithTransaction(ctx, fn)

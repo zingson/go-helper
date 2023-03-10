@@ -2,7 +2,6 @@ package hmongo
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 )
 
@@ -28,7 +27,7 @@ func DsnLoad(files ...string) string {
 	if len(files) > 0 {
 		filename = files[0]
 	}
-	bs, err := ioutil.ReadFile(filename)
+	bs, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Println("Error hmongo file:", err.Error())
 		return ""
@@ -47,7 +46,7 @@ func KvName() string {
 		name = name + "_" + denv
 		return name
 	}
-	if bs, _ := ioutil.ReadFile("/run/secrets/denv"); bs != nil && string(bs) == "local" {
+	if bs, _ := os.ReadFile("/run/secrets/denv"); bs != nil && string(bs) == "local" {
 		name = name + "_" + string(bs)
 		return name
 	}

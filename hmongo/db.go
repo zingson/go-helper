@@ -5,11 +5,15 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// DB
+// deprecated
 type DB struct {
 	Option
 	*mongo.Database
 }
 
+// NewDB
+// deprecated
 func NewDB(option Option, opts ...*options.ClientOptions) (db *DB) {
 	db = &DB{Option: option}
 	db.SetOption(option, opts...)

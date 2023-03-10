@@ -1,13 +1,14 @@
-package hredis
+package test
 
 import (
 	"context"
 	"github.com/go-redis/redis/v8"
+	"github.com/zingson/go-helper/hredis"
 	"testing"
 )
 
 func TestNew(t *testing.T) {
-	client := NowClient("redis://:Himkt2022@r-uf60buxhzyv6oilsdvpd.redis.rds.aliyuncs.com:6379/0")
+	client := hredis.NowClient("redis://:Himkt2022@r-uf60buxhzyv6oilsdvpd.redis.rds.aliyuncs.com:6379/0")
 
 	err := client.Set(context.Background(), "k2", "k2", -1).Err()
 	if err != nil {

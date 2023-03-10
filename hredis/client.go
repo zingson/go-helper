@@ -10,7 +10,7 @@ type Option struct {
 }
 
 // newClient
-// redisURL无密码示例 redis://101.133.221.239:7777/0
+// redisURL无密码示例 redis://1.1.1.1:7777/0
 // redisURL带密码示例 redis://user:password@localhost:6789/3?dial_timeout=3&db=1&read_timeout=6s&max_retries=2
 func newClient(redisURL string) *redis.Client {
 	opt, err := redis.ParseURL(redisURL)
