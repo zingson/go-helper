@@ -1,7 +1,8 @@
-package hmcode
+package test
 
 import (
 	"fmt"
+	"github.com/zingson/go-helper/hmcode"
 	"math/rand"
 	"strconv"
 	"testing"
@@ -11,7 +12,7 @@ import (
 func TestEncode12(t *testing.T) {
 	val := "121234567891"
 	t.Log("原始val：", val)
-	code, err := Encode12(val)
+	code, err := hmcode.Encode12(val)
 	if err != nil {
 		t.Error(err)
 		return
@@ -19,7 +20,7 @@ func TestEncode12(t *testing.T) {
 	t.Log(val[11:12])
 	t.Log("code = " + code)
 	t.Log("=====恢复混淆=====")
-	r, err := Decode12(code)
+	r, err := hmcode.Decode12(code)
 	if err != nil {
 		t.Error(err)
 		return
@@ -34,7 +35,7 @@ func TestEncode12w100(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 	begval := 100000000
 	for i := 0; i < 1000000; i++ {
-		_, err := Encode12("12" + strconv.Itoa(begval+i) + strconv.Itoa(rand.Intn(10)))
+		_, err := hmcode.Encode12("12" + strconv.Itoa(begval+i) + strconv.Itoa(rand.Intn(10)))
 		if err != nil {
 			t.Error(err)
 			return
@@ -53,7 +54,7 @@ func TestCode12(t *testing.T) {
 	begTime := time.Now().UnixNano()
 	sum := 1000000
 	for i := 0; i < sum; i++ {
-		c, err := Code12("10", strconv.Itoa(100000000+i))
+		c, err := hmcode.Code12("10", strconv.Itoa(100000000+i))
 		if err != nil {
 			t.Error(err)
 			return
@@ -67,7 +68,7 @@ func TestCode12(t *testing.T) {
 }
 
 func TestCode12Verify(t *testing.T) {
-	err := Code12Verify("100941990995")
+	err := hmcode.Code12Verify("100941990995")
 	if err != nil {
 		t.Error(err)
 		return
@@ -80,7 +81,7 @@ func TestCode12For(t *testing.T) {
 	sum := 10
 	INVALID_COUPON_CODE := 0
 	for i := 0; i < sum; i++ {
-		err := Code12Verify("10094192165" + strconv.Itoa(i))
+		err := hmcode.Code12Verify("10094192165" + strconv.Itoa(i))
 		if err == nil {
 			INVALID_COUPON_CODE++
 		}

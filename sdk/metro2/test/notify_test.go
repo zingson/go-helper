@@ -1,17 +1,14 @@
 package test
 
 import (
-	"context"
-	"github.com/zingson/go-helper/h"
 	"github.com/zingson/go-helper/sdk/metro2"
 	"testing"
-	"time"
 )
 
 func TestToken(t *testing.T) {
 	k := metro2.TokenKey("testtoken")
 	t.Log(k)
-	h.REDIS.Set(context.TODO(), k, "{\"GuidUser\":\"13611703040\",\"MobilePhone\":\"13611703040\"}", 12*time.Hour)
+	//h.REDIS.Set(context.TODO(), k, "{\"GuidUser\":\"13611703040\",\"MobilePhone\":\"13611703040\"}", 12*time.Hour)
 }
 
 func TestQueryUser(t *testing.T) {

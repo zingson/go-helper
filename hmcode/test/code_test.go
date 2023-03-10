@@ -1,4 +1,4 @@
-package hmcode
+package test
 
 import "testing"
 

@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"crypto/tls"
 	"github.com/jordan-wright/email"
+	"github.com/zingson/go-helper/hmail"
 	"mime"
 	"net/smtp"
-	"root/hmail"
 	"strings"
 )
 

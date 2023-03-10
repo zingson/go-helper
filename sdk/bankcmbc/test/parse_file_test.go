@@ -1,8 +1,9 @@
-package bankcmbc
+package test
 
 import (
 	_ "embed"
 	"encoding/json"
+	"github.com/zingson/go-helper/sdk/bankcmbc"
 	"testing"
 )
 
@@ -36,7 +37,7 @@ nuQW7o0OY9QIbQmclwJFAIlPzvwU7t4pUYt7P0ApaenWU+p6HR+zdBJyVEvfeW+L
 
 // 解析文件测试
 func TestParseFile(t *testing.T) {
-	rows, err := ParseFile(yhkms, rsapub)
+	rows, err := bankcmbc.ParseFile(yhkms, rsapub)
 	if err != nil {
 		t.Fatal(err)
 	}

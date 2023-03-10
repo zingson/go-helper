@@ -1,7 +1,7 @@
 package test
 
 import (
-	"root/hmail"
+	"github.com/zingson/go-helper/hmail"
 	"testing"
 	"time"
 )

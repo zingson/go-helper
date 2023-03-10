@@ -1,4 +1,4 @@
-package hmongo
+package test
 
 import (
 	"testing"

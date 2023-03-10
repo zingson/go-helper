@@ -1,4 +1,4 @@
-package bankcmbc
+package test
 
 import (
 	"crypto/rand"

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-//go:embed .appcode
+// //go:embed .appcode
 var appcode string
 
 var conf = &Config{
