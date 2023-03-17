@@ -77,6 +77,9 @@
         </p>
         <p><span>优惠金额</span><span class="value">¥{{.DiscountAmt}}</span></p>
         <p><span>订单金额</span><span class="value payAmt">¥{{.PayAmt}}</span></p>
+        {{if .TotalRefundAmt}}
+        <p><span>退款金额</span><span class="value">¥{{.TotalRefundAmt}}</span></p>
+        {{end}}
     </div>
 </div>
 

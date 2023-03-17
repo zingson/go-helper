@@ -22,6 +22,15 @@ func OrderDetailHtml(data OrderDetailParam) (html string, err error) {
 			data.StatusLabel = OrderStatusLabel[data.OrderStatus]
 		}
 	}
+	if data.TotalAmt == "" {
+		data.TotalAmt = "0.00"
+	}
+	if data.PayAmt == "" {
+		data.PayAmt = "0.00"
+	}
+	if data.DiscountAmt == "" {
+		data.DiscountAmt = "0.00"
+	}
 
 	if htmlTemplate == nil {
 		htmlTemplate, err = template.New("svc_occOrderDetail").Parse(htmlTpl)
