@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>订单详情</title>
+    <style>
+        html, body, h3, p {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .app {
+            background: #F1F1F1;
+            min-height: 100%;
+        }
+
+        .block {
+            background: #ffffff;
+        }
+
+        .block h3 {
+            background: #F1F1F1;
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: unset;
+            padding: 0 15px;
+            color: #787474;
+        }
+
+        .block p {
+            padding: 0 15px;
+            line-height: 40px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .gdsImg{
+            display: block;
+            border: none;
+            margin: 10px 10px 10px 0;
+            padding: 0;
+            height: 80px;
+            width: 35%;
+            object-fit: cover;
+        }
+        .value{
+            color: #535050;
+        }
+        .payAmt{
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="block">
+        <h3>基础信息</h3>
+        <p><span>订单编号</span><span class="value">{{.OrderId}}</span></p>
+        <p><span>订单状态</span><span class="value">{{.StatusLabel}}</span></p>
+        <p><span>下单时间</span><span class="value">{{.OrderDt}}</span></p>
+        <p><span>商户名称</span><span class="value">{{.MctNm}}</span></p>
+    </div>
+
+    <div class="block">
+        <h3>商品</h3>
+        <p>
+            <img class="gdsImg" src="{{.GoodsImg}}"/>
+            <span class="value">
+                <span style="display: block;">{{.GoodsName}}</span>
+                x{{.GoodsNum}}
+            </span>
+        </p>
+        <p><span>优惠金额</span><span class="value">¥{{.DiscountAmt}}</span></p>
+        <p><span>订单金额</span><span class="value payAmt">¥{{.PayAmt}}</span></p>
+    </div>
+</div>
+
+</body>
+</html>
