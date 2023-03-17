@@ -9,15 +9,29 @@ import (
 //go:embed svc_occOrderDetail.html
 var htmlTpl string
 
+var htmlTemplate *template.Template
+
 // OrderDetailHtml 订单详情查看
 // 提供查看订单的默认页面
 func OrderDetailHtml(data OrderDetailParam) (html string, err error) {
-	t, err := template.New("svc_occOrderDetail").Parse(htmlTpl)
-	if err != nil {
-		return
+
+	if data.StatusLabel == "" {
+		if data.RefundStatus != REFUND_STATUS_0 {
+			data.StatusLabel = RefundStatusLabel[data.RefundStatus]
+		} else {
+			data.StatusLabel = OrderStatusLabel[data.OrderStatus]
+		}
 	}
+
+	if htmlTemplate == nil {
+		htmlTemplate, err = template.New("svc_occOrderDetail").Parse(htmlTpl)
+		if err != nil {
+			return
+		}
+	}
+
 	var buf bytes.Buffer
-	err = t.Execute(&buf, data)
+	err = htmlTemplate.Execute(&buf, data)
 	if err != nil {
 		return
 	}
@@ -31,9 +45,9 @@ type OrderDetailParam struct {
 	TotalAmt       string       //Y 订单原金额, 单位：元
 	PayAmt         string       //N 订单实际支付金额，单位：元  支付网关支付金额。此处如果为空必须在状态变更时推送
 	DiscountAmt    string       //N 第三方平台优惠金额 第三方平台优惠金额。此处如果为空必须在状态变更时推送。 单位：元
-	GoodsImg       string       // 商品图链接
+	GoodsImg       string       //Y 商品图链接
 	GoodsName      string       //Y 商品名称
-	GoodsNum       string       // 商品数量
+	GoodsNum       string       //Y 商品数量
 	StatusLabel    string       //Y 订单状态文字
 	OrderStatus    OrderStatus  //Y 订单状态 0-待支付  1-支付成功 2-已过期 3-支付失败  ,4-取消
 	RefundStatus   RefundStatus //Y 退款状态 0-无退款  1-退款申请 2-已退款 3-部分退款

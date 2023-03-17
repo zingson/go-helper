@@ -36,6 +36,14 @@ const (
 	ORDER_STATUS_4 OrderStatus = "4"
 )
 
+var OrderStatusLabel = map[OrderStatus]string{
+	ORDER_STATUS_0: "待支付",
+	ORDER_STATUS_1: "支付成功",
+	ORDER_STATUS_2: "已过期",
+	ORDER_STATUS_3: "支付失败",
+	ORDER_STATUS_4: "已取消",
+}
+
 // RefundStatus 退款状态 0-无退款  1-退款申请 2-已退款 3-部分退款
 type RefundStatus string
 
@@ -45,6 +53,13 @@ const (
 	REFUND_STATUS_2 RefundStatus = "2"
 	REFUND_STATUS_3 RefundStatus = "3"
 )
+
+var RefundStatusLabel = map[RefundStatus]string{
+	REFUND_STATUS_0: "无退款",
+	REFUND_STATUS_1: "退款申请",
+	REFUND_STATUS_2: "已退款",
+	REFUND_STATUS_3: "部分退款",
+}
 
 type OrderPushBody struct {
 	CcbDiscountAmt     string `json:"CCB_DISCOUNT_AMT"`      //建行支付侧优惠金额		15,2		C		N		在建行支付网关产生的优惠总金额
