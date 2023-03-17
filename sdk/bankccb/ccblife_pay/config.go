@@ -5,6 +5,7 @@ type Config struct {
 	ServiceSvcjson    string `json:"service_svcjson" toml:"service_svcjson"`       // 服务地址
 	ServiceOccplatreq string `json:"service_occplatreq" toml:"service_occplatreq"` // 退款和订单查询 服务地址
 	MerchantId        string `json:"merchant_id" toml:"merchant_id"`               // 商户号
+	MerchantName      string `json:"merchant_name" toml:"merchant_name"`           // 商户名称
 	PosId             string `json:"pos_id" toml:"pos_id"`                         // 商户柜台代码
 	BranchId          string `json:"branch_id" toml:"branch_id"`                   // 分行代码
 	PlatformId        string `json:"platform_id" toml:"platform_id"`               // 服务方编号

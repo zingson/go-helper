@@ -11,6 +11,7 @@ type PayNotifyParams struct {
 	ORDERID  string `json:"ORDERID"`
 	PAYMENT  string `json:"PAYMENT"`
 	CURCODE  string `json:"CURCODE"`
+	ISECNY   string `json:"ISECNY"` //统一支付网关，如果客户使用的是数币支付，服务器通知及页面通知会增加此字段 ISECNY=Y
 	REMARK1  string `json:"REMARK1"`
 	REMARK2  string `json:"REMARK2"`
 	ACC_TYPE string `json:"ACC_TYPE"`
