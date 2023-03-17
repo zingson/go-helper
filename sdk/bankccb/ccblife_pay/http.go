@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-//Post 接口请求
+// Post 接口请求
 func Post(conf *Config, serviceUrl string, CLD_TX_CODE string, CLD_BODY interface{}) (resBody string, err error) {
 	var (
 		rid     = Rand32()
@@ -29,8 +29,8 @@ func Post(conf *Config, serviceUrl string, CLD_TX_CODE string, CLD_BODY interfac
 		}
 		millisecond := fmt.Sprintf("%d", time.Now().UnixMilli()-milli)
 		nlog := logrus.WithField("mchid", conf.PlatformId).WithField("millisecond", millisecond)
-		nlog.Infof("rid:%s 建行生活 明文 请求URL：%s  请求报文：%s  响应报文：%s  %s  | %sms", rid, serviceUrl, reqBody, resBody, errMsg, millisecond)
-		nlog.Infof("rid:%s 建行生活 密文 请求URL：%s  请求报文：%s  响应报文：%s  %s  | %sms", rid, serviceUrl, reqEn, resEn, errMsg, millisecond)
+		nlog.Infof("rid:%s 建行生活 明文 请求URL：%s  请求报文：%s  响应报文：%s  %s   %sms", rid, serviceUrl, reqBody, resBody, errMsg, millisecond)
+		nlog.Infof("rid:%s 建行生活 密文 请求URL：%s  请求报文：%s  响应报文：%s  %s   %sms", rid, serviceUrl, reqEn, resEn, errMsg, millisecond)
 	}()
 
 	cntmap := map[string]interface{}{
