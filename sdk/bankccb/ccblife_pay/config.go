@@ -1,5 +1,6 @@
 package ccblife_pay
 
+// Config 建行生活配置参数
 type Config struct {
 	ServiceSvcjson    string `json:"service_svcjson" toml:"service_svcjson"`       // 服务地址
 	ServiceOccplatreq string `json:"service_occplatreq" toml:"service_occplatreq"` // 退款和订单查询 服务地址

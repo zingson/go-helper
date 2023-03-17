@@ -1,9 +1,10 @@
-package aliyunoss
+package test
 
 import (
 	"encoding/json"
 	"fmt"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/sts"
+	"github.com/zingson/go-helper/sdk/aliyunoss"
 	"testing"
 )
 
@@ -31,7 +32,7 @@ func TestSts1(t *testing.T) {
 }
 
 func TestSts(t *testing.T) {
-	skk, err := Sts(getConfig())
+	skk, err := aliyunoss.Sts(getConfig())
 	if err != nil {
 		t.Error(err)
 		return

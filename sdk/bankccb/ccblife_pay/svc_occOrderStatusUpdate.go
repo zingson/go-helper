@@ -1,19 +1,21 @@
 package ccblife_pay
 
-// MebOrderPush 服务方订单推送
-// 仅仅是推送到建行生活APP进行订单展示
-func MebOrderPush(conf *Config, cldBody OrderPushParams) (v OrderPushBody, err error) {
-	return Call[OrderPushBody](conf, conf.ServiceSvcjson, "svc_occMebOrderPush", cldBody)
+import "github.com/zingson/go-helper/htype"
+
+// OrderStatusUpdate 服务方订单状态变更
+func OrderStatusUpdate(conf *Config, cldBody OrderStatusUpdateParams) (v OrderStatusUpdateBody, err error) {
+	return Call[OrderStatusUpdateBody](conf, conf.ServiceSvcjson, "svc_occOrderStatusUpdate", cldBody)
 }
 
-type OrderPushParams struct {
+type OrderStatusUpdateParams struct {
 	UserId         string       `json:"USER_ID"`          //Y 客户编号，建行生活的会员编号
 	OrderId        string       `json:"ORDER_ID"`         //Y 订单编号
+	InformId       InformId     `json:"INFORM_ID"`        // 通知类型 0-支付状态修改，1-退款状态修改
 	OrderDt        string       `json:"ORDER_DT"`         //Y 订单日期 yyyyMMddHHmmss
 	TotalAmt       string       `json:"TOTAL_AMT"`        //Y 订单原金额, 单位：元
 	PayAmt         string       `json:"PAY_AMT"`          //N 订单实际支付金额，单位：元  支付网关支付金额。此处如果为空必须在状态变更时推送
 	DiscountAmt    string       `json:"DISCOUNT_AMT"`     //N 第三方平台优惠金额 第三方平台优惠金额。此处如果为空必须在状态变更时推送。
-	OrderStatus    OrderStatus  `json:"ORDER_STATUS"`     //Y 订单状态 0-待支付  1-支付成功 2-已过期 3-支付失败  ,4-取消
+	PayStatus      OrderStatus  `json:"PAY_STATUS"`       //Y 订单状态 0-待支付  1-支付成功 2-已过期 3-支付失败  ,4-取消
 	RefundStatus   RefundStatus `json:"REFUND_STATUS"`    //Y 退款状态 0-无退款  1-退款申请 2-已退款 3-部分退款
 	InvDt          string       `json:"INV_DT"`           //N 订单过期日期 yyyyMMddHHmmss
 	MctNm          string       `json:"MCT_NM"`           //Y 商户名称
@@ -25,28 +27,16 @@ type OrderPushParams struct {
 	PlatOrderType  string       `json:"PLAT_ORDER_TYPE"`  //N 服务方订单类型  T0000-普通类型 T0001-洗车 T0002-加油 T0003-停车 T0004-修车 T0005-充电 T0006-年检代办 T0007-道路救援 T0008-云南中石油充值
 }
 
-// OrderStatus 订单状态 0-待支付  1-支付成功 2-已过期 3-支付失败  ,4-取消
-type OrderStatus string
+// InformId 通知类型 0-支付状态修改，1-退款状态修改
+type InformId string
 
 const (
-	ORDER_STATUS_0 OrderStatus = "0"
-	ORDER_STATUS_1 OrderStatus = "1"
-	ORDER_STATUS_2 OrderStatus = "2"
-	ORDER_STATUS_3 OrderStatus = "3"
-	ORDER_STATUS_4 OrderStatus = "4"
+	INFORM_ID_0 InformId = "0"
+	INFORM_ID_1 InformId = "1"
 )
 
-// RefundStatus 退款状态 0-无退款  1-退款申请 2-已退款 3-部分退款
-type RefundStatus string
-
-const (
-	REFUND_STATUS_0 RefundStatus = "0"
-	REFUND_STATUS_1 RefundStatus = "1"
-	REFUND_STATUS_2 RefundStatus = "2"
-	REFUND_STATUS_3 RefundStatus = "3"
-)
-
-type OrderPushBody struct {
-	CcbDiscountAmt     string `json:"CCB_DISCOUNT_AMT"`      //建行支付侧优惠金额		15,2		C		N		在建行支付网关产生的优惠总金额
-	CcbDiscountAmtDesc string `json:"CCB_DISCOUNT_AMT_DESC"` //建行支付侧优惠定义		1000		C		N		"建行支付侧优惠定义（各金额之和等于建行支付侧优惠金额） 格式：名称=金额|@|名称=金额 例如：优惠券A=0.05|@|活动A=0.99"
+type OrderStatusUpdateBody struct {
+	IsSuccess          htype.Bool `json:"IS_SUCCESS"`            //是否更新成功 0-否，1-是。
+	CcbDiscountAmt     string     `json:"CCB_DISCOUNT_AMT"`      //建行支付侧优惠金额
+	CcbDiscountAmtDesc string     `json:"CCB_DISCOUNT_AMT_DESC"` //建行支付侧优惠定义
 }

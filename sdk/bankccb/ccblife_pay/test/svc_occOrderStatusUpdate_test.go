@@ -5,17 +5,18 @@ import (
 	"testing"
 )
 
-// 测试订单推送
-func TestSVC_occMebOrderPush(t *testing.T) {
+// 服务商订单更新
+func TestOrderStatusUpdate(t *testing.T) {
 	conf := getConfig()
-	_, err := ccblife_pay.MebOrderPush(conf, ccblife_pay.OrderPushParams{
+	rs, err := ccblife_pay.OrderStatusUpdate(conf, ccblife_pay.OrderStatusUpdateParams{
 		UserId:         "YSM202112210902914",
 		OrderId:        "16301406188963962893",
+		InformId:       ccblife_pay.INFORM_ID_0,
 		OrderDt:        "20230227173944",
 		TotalAmt:       "0.02",
-		PayAmt:         "",
+		PayAmt:         "0.02",
 		DiscountAmt:    "",
-		OrderStatus:    ccblife_pay.ORDER_STATUS_1,
+		PayStatus:      ccblife_pay.ORDER_STATUS_1,
 		RefundStatus:   ccblife_pay.REFUND_STATUS_0,
 		InvDt:          "",
 		MctNm:          "海脉云",
@@ -30,5 +31,5 @@ func TestSVC_occMebOrderPush(t *testing.T) {
 		t.Error(err.Error())
 		return
 	}
-	t.Log("ok.")
+	t.Log("ok.", rs.IsSuccess)
 }

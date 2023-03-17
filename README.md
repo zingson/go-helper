@@ -1,3 +1,3 @@
-# goh
+# go-helper
 
 Go Helper Function. 

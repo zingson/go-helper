@@ -1,4 +1,4 @@
-package aliyunoss
+package test
 
 import (
 	"bytes"
@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
+	"github.com/zingson/go-helper/sdk/aliyunoss"
 	"net/http"
 	"net/url"
 	"testing"
@@ -15,7 +16,7 @@ import (
 func TestA(t *testing.T) {
 	t.Log("111 ", getConfig().Endpoint)
 
-	bucket, _ := NewBucket(getConfig())
+	bucket, _ := aliyunoss.NewBucket(getConfig())
 	signurl, err := bucket.SignURL("images/20201225/ud.png", oss.HTTPGet, 3600)
 	if err != nil {
 		t.Error(err)
