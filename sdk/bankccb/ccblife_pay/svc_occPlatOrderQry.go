@@ -1,27 +1,8 @@
 package ccblife_pay
 
-import (
-	"encoding/json"
-	"errors"
-)
-
-// Query 服务方订单查询
-func Query(conf *Config, params *QryParams) (cldBody *QueryCldBody, err error) {
-	resBody, err := Post(conf, conf.ServiceOccplatreq, "svc_occPlatOrderQry", params)
-	if err != nil {
-		return
-	}
-	var resResult QryResResult
-	err = json.Unmarshal([]byte(resBody), &resResult)
-	if err != nil {
-		return
-	}
-	if resResult.CLD_HEADER.CLD_TX_RESP.CLD_CODE != "CLD_SUCCESS" { // 判断成功状态码
-		err = errors.New(resResult.CLD_HEADER.CLD_TX_RESP.CLD_DESC)
-		return
-	}
-	cldBody = resResult.CLD_BODY
-	return
+// PlatOrderQry 服务方订单查询
+func PlatOrderQry(conf *Config, params *QryParams) (cldBody QueryCldBody, err error) {
+	return Call[QueryCldBody](conf, conf.ServiceOccplatreq, "svc_occPlatOrderQry", params)
 }
 
 type TxType string
@@ -87,27 +68,3 @@ const (
 	TXN_STATUS_02 TxnStatus = "02"
 	TXN_STATUS_T0 TxnStatus = "T0"
 )
-
-/*
-CLD_HEADER
-...CLD_TX_CHNL
-...CLD_TX_TIME
-...CLD_TX_CODE
-...CLD_TX_SEQ
-...CLD_TX_RESP
-......CLD_CODE
-......CLD_DESC
-*/
-type QryResResult struct {
-	CLD_HEADER struct {
-		CLD_TX_CHNL string `json:"CLD_TX_CHNL"`
-		CLD_TX_TIME string `json:"CLD_TX_TIME"`
-		CLD_TX_CODE string `json:"CLD_TX_CODE"`
-		CLD_TX_SEQ  string `json:"CLD_TX_SEQ"`
-		CLD_TX_RESP struct {
-			CLD_CODE string `json:"CLD_CODE"` // 响应码
-			CLD_DESC string `json:"CLD_DESC"`
-		} `json:"CLD_TX_RESP"`
-	} `json:"CLD_HEADER"`
-	CLD_BODY *QueryCldBody `json:"CLD_BODY"`
-}

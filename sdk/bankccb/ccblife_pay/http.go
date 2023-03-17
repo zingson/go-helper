@@ -13,6 +13,55 @@ import (
 	"time"
 )
 
+var (
+	ErrNetwork = errors.New("网络错误.[CCB]")
+)
+
+// Call 调用建行接口
+func Call[R any](conf *Config, serviceUrl string, cldTxCode string, cldBody any) (body R, err error) {
+	resBody, err := Post(conf, serviceUrl, cldTxCode, cldBody)
+	if err != nil {
+		return
+	}
+	var res Response[R]
+	err = json.Unmarshal([]byte(resBody), &res)
+	if err != nil {
+		return
+	}
+
+	// 判断成功状态码
+	if res.CLD_HEADER.CLD_TX_RESP.CLD_CODE != "CLD_SUCCESS" {
+		err = errors.New(fmt.Sprintf("%s.[%s]", res.CLD_HEADER.CLD_TX_RESP.CLD_DESC, res.CLD_HEADER.CLD_TX_RESP.CLD_CODE))
+		return
+	}
+	body = res.CLD_BODY
+	return
+}
+
+/*
+CLD_HEADER
+...CLD_TX_CHNL
+...CLD_TX_TIME
+...CLD_TX_CODE
+...CLD_TX_SEQ
+...CLD_TX_RESP
+......CLD_CODE
+......CLD_DESC
+*/
+type Response[T any] struct {
+	CLD_HEADER struct {
+		CLD_TX_CHNL string `json:"CLD_TX_CHNL"`
+		CLD_TX_TIME string `json:"CLD_TX_TIME"`
+		CLD_TX_CODE string `json:"CLD_TX_CODE"`
+		CLD_TX_SEQ  string `json:"CLD_TX_SEQ"`
+		CLD_TX_RESP struct {
+			CLD_CODE string `json:"CLD_CODE"` // 响应码
+			CLD_DESC string `json:"CLD_DESC"`
+		} `json:"CLD_TX_RESP"`
+	} `json:"CLD_HEADER"`
+	CLD_BODY T `json:"CLD_BODY"`
+}
+
 // Post 接口请求
 func Post(conf *Config, serviceUrl string, CLD_TX_CODE string, CLD_BODY interface{}) (resBody string, err error) {
 	var (
@@ -29,8 +78,8 @@ func Post(conf *Config, serviceUrl string, CLD_TX_CODE string, CLD_BODY interfac
 		}
 		millisecond := fmt.Sprintf("%d", time.Now().UnixMilli()-milli)
 		nlog := logrus.WithField("mchid", conf.PlatformId).WithField("millisecond", millisecond)
-		nlog.Infof("rid:%s 建行生活 明文 请求URL：%s  请求报文：%s  响应报文：%s  %s   %sms", rid, serviceUrl, reqBody, resBody, errMsg, millisecond)
-		nlog.Infof("rid:%s 建行生活 密文 请求URL：%s  请求报文：%s  响应报文：%s  %s   %sms", rid, serviceUrl, reqEn, resEn, errMsg, millisecond)
+		nlog.Infof("rid:%s 建行生活 %s 明文 接口地址：%s  请求报文：%s  响应报文：%s  %s   %sms", rid, CLD_TX_CODE, serviceUrl, reqBody, resBody, errMsg, millisecond)
+		nlog.Infof("rid:%s 建行生活 %s 密文 接口地址：%s  请求报文：%s  响应报文：%s  %s   %sms", rid, CLD_TX_CODE, serviceUrl, reqEn, resEn, errMsg, millisecond)
 	}()
 
 	cntmap := map[string]interface{}{
@@ -63,6 +112,10 @@ func Post(conf *Config, serviceUrl string, CLD_TX_CODE string, CLD_BODY interfac
 	// HTTP POST
 	resp, err := http.Post(serviceUrl, "application/json", strings.NewReader(reqEn))
 	if err != nil {
+		return
+	}
+	if resp.StatusCode != http.StatusOK {
+		err = ErrNetwork
 		return
 	}
 	rBytes, err := io.ReadAll(resp.Body)
