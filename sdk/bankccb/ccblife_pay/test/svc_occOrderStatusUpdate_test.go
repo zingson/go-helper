@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"github.com/zingson/go-helper/sdk/bankccb/ccblife_pay"
 	"testing"
 )
@@ -20,7 +21,7 @@ func TestOrderStatusUpdate(t *testing.T) {
 		RefundStatus:   ccblife_pay.REFUND_STATUS_0,
 		InvDt:          "",
 		MctNm:          "海脉云",
-		CusOrderUrl:    "",
+		CusOrderUrl:    fmt.Sprintf("%s/jhsh/order/detail?orderId=%s", "https://msd.himkt.cn/gw/upmp", "16301406188963962893"),
 		OccMctLogoUrl:  "",
 		PayFlowId:      "",
 		PayUserId:      "",

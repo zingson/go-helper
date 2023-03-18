@@ -53,3 +53,12 @@ func (nt *T14) UnmarshalJSON(data []byte) error {
 func NowF14() string {
 	return T14(time.Now()).String()
 }
+
+// ParseT14 解析时间
+func ParseT14(t14 string) time.Time {
+	t14Time, err := time.Parse(LayoutT14, t14)
+	if err != nil {
+		return time.Time{}
+	}
+	return t14Time
+}

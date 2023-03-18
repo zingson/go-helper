@@ -1,5 +1,6 @@
 package htime
 
+// deprecated
 func GetFirst() (dayStr string) {
 	t := NowF8()
 	content := t[:len(t)-2]

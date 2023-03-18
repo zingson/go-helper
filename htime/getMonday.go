@@ -4,12 +4,14 @@ import (
 	"time"
 )
 
+// deprecated
 func GetMonday() (thisMonday string) {
 	now := time.Now()
 	thisMonday = GetMondayOfWeek(now, "20060102")
 	return
 }
 
+// deprecated
 func GetMondayOfWeek(t time.Time, fmtStr string) (dayStr string) {
 	dayObj := GetZeroTime(t)
 	if t.Weekday() == time.Monday {
@@ -26,6 +28,7 @@ func GetMondayOfWeek(t time.Time, fmtStr string) (dayStr string) {
 
 }
 
+// deprecated
 func GetZeroTime(t time.Time) time.Time {
 	return time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
 }
