@@ -16,7 +16,7 @@ const (
 	MAX_DECRYPT_BLOCK = 128 //RSA最大解密密文大小
 )
 
-//RsaDecode 建行生活解密
+// RsaDecode 建行生活解密
 func RsaDecode(data string, priKey string) (v string, err error) {
 	defer func() {
 		if err != nil {
@@ -86,7 +86,7 @@ func RsaDecode(data string, priKey string) (v string, err error) {
 	return
 }
 
-//RsaEncode 建行生活加密
+// RsaEncode 建行生活加密
 func RsaEncode(data string, pubKey string) (v string, err error) {
 	defer func() {
 		if err != nil {

@@ -78,7 +78,7 @@ type QueryCldBodyList struct {
 	// 更多字段，参考建行文档
 }
 
-//状态 "00-交易成功标志  01-交易失败  02-不确定  04-不确定  TO-交易超时
+// 状态 "00-交易成功标志  01-交易失败  02-不确定  04-不确定  TO-交易超时
 type TxnStatus string
 
 const (
