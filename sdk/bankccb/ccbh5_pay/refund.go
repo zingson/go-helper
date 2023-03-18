@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-//Refund svc_occPlatRefund 订单退款
+// Refund svc_occPlatRefund 订单退款
 func Refund(conf *Config, orderId string, refundAmt int64, payTime string) (body *RefundBody, err error) {
 	layout := "20060102150405"
 	pt, err := time.Parse(layout, payTime)

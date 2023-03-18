@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-//Post 接口请求
+// Post 接口请求
 func Post(conf *Config, serviceUrl string, CLD_TX_CODE string, CLD_BODY interface{}) (resBody string, err error) {
 	var (
 		rid     = Rand32()
