@@ -31,6 +31,9 @@ func OrderDetailHtml(data OrderDetailParam) (html string, err error) {
 	if data.DiscountAmt == "" {
 		data.DiscountAmt = "0.00"
 	}
+	if data.TotalRefundAmt == "0" || data.TotalRefundAmt == "0.00" {
+		data.TotalRefundAmt = ""
+	}
 
 	if htmlTemplate == nil {
 		htmlTemplate, err = template.New("svc_occOrderDetail").Parse(htmlTpl)

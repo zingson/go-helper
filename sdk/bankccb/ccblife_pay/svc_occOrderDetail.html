@@ -36,6 +36,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #f1f1f1;
         }
         .gdsImg{
             display: block;
@@ -47,7 +48,7 @@
             object-fit: cover;
         }
         .value{
-            color: #535050;
+            color: #7a7575;
         }
         .payAmt{
             font-weight: bold;
@@ -72,7 +73,7 @@
             <img class="gdsImg" src="{{.GoodsImg}}"/>
             <span class="value">
                 <span style="display: block;">{{.GoodsName}}</span>
-                <span>x{{.GoodsNum}}</span>
+                <span style="display: block;text-align: right;">x{{.GoodsNum}}</span>
             </span>
         </p>
         <p><span>优惠金额</span><span class="value">¥{{.DiscountAmt}}</span></p>
