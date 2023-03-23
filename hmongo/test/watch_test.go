@@ -24,7 +24,7 @@ type TestDao struct {
 }
 
 func NewTestDao() *TestDao {
-	return &TestDao{hmongo.NewDaoImpl[Test](hmongo.NowDatabase(hmongo.DsnLoad()))}
+	return &TestDao{hmongo.NewDaoImpl[Test](hmongo.NowDatabase(hmongo.Dsn()))}
 }
 
 func TestWatch(t *testing.T) {

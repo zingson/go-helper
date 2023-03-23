@@ -6,5 +6,5 @@ import (
 )
 
 func TestDsnLoad(t *testing.T) {
-	t.Log(hmongo.DsnLoad())
+	t.Log(hmongo.Dsn())
 }

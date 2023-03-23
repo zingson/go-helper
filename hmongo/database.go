@@ -9,16 +9,16 @@ import (
 	"sync"
 )
 
-var _cache sync.Map
+var dbCache sync.Map
 
 // NowDatabase 当前数据库连接
 func NowDatabase(dsn string, opts ...*options.ClientOptions) (database *mongo.Database) {
-	if v, ok := _cache.Load(dsn); ok {
+	if v, ok := dbCache.Load(dsn); ok {
 		database = v.(*mongo.Database)
 		return
 	}
 	database = newDatabase(dsn, opts...)
-	_cache.Store(dsn, database)
+	dbCache.Store(dsn, database)
 	return
 }
 
