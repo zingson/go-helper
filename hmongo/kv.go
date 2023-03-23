@@ -70,18 +70,25 @@ func (c *Client) Get(key string, opt any) {
 }
 
 // Get 读指定Key的配置
-func Get[T any](c *Client, key string) (v *T) {
+func Get[T any](c *Client, key string) (v T) {
 	c.Get(key, &v)
 	return
 }
 
 // 从缓存读
 func (c *Client) cacheLoad(key string, value any) bool {
+	/*k := key + "_"
+	if b, ok := c.cache.Load(k); ok {
+		value = &b
+		return true
+	}*/
+
 	if b, ok := c.cache.Load(key); ok {
 		err := json.Unmarshal(b.([]byte), value)
 		if err != nil {
 			panic(fmt.Errorf("key=%s 配置解析异常 %s", key, err.Error()))
 		}
+		//c.cache.Store(k, value) // 缓存解析结果
 		return true
 	}
 	return false

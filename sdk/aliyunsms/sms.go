@@ -13,12 +13,12 @@ type Config struct {
 	AccessKeySecret string `json:"access_key_secret"` // 阿里云获取
 }
 
-func Client(config *Config) (*dysmsapi.Client, error) {
+func Client(config Config) (*dysmsapi.Client, error) {
 	return dysmsapi.NewClientWithAccessKey(config.RegionId, config.AccessKeyId, config.AccessKeySecret)
 }
 
 // Send 发送短信
-func Send(config *Config, rid, phoneNumbers, signName, templateCode string, params map[string]string) (err error) {
+func Send(config Config, rid, phoneNumbers, signName, templateCode string, params map[string]string) (err error) {
 	var resBody string
 	defer func() {
 		errMsg := ""

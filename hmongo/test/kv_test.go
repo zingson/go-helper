@@ -15,6 +15,10 @@ func dsn() string {
 	return string(b)
 }
 
+func dsn1() string {
+	return hmongo.Dsn()
+}
+
 var kvClient = hmongo.NewKv(dsn(), "dsys_config")
 
 func TestGet(t *testing.T) {
