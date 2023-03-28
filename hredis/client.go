@@ -1,8 +1,6 @@
 package hredis
 
 import (
-	"crypto/sha1"
-	"fmt"
 	"github.com/redis/go-redis/v9"
 	"strings"
 	"sync"
@@ -18,13 +16,12 @@ var (
 
 // NowClient 获取缓存客户端，不存在则创建
 func NowClient(redisURL string) (client redis.UniversalClient) {
-	k := fmt.Sprintf("%x", sha1.Sum([]byte(redisURL)))
-	if v, ok := _cache.Load(k); ok {
-		client = v.(*redis.Client)
+	if v, ok := _cache.Load(redisURL); ok {
+		client = v.(redis.UniversalClient)
 		return
 	}
 	client = newClient(redisURL)
-	_cache.Store(k, client)
+	_cache.Store(redisURL, client)
 	return
 }
 
