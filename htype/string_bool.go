@@ -12,8 +12,8 @@ const (
 	False Bool = "0"
 )
 
-func (t Bool) MarshalJSON() ([]byte, error) {
-	return []byte(t), nil
+func (t *Bool) MarshalJSON() ([]byte, error) {
+	return []byte("\"" + *t + "\""), nil
 }
 
 // UnmarshalJSON json解析时支持字符串与数字 1 与 0

@@ -27,6 +27,11 @@ func Convert[S any, T any](source S) (target T, err error) {
 	return
 }
 
+// MustConvert 对象通过json中转转换
+func MustConvert[S any, T any](source S) (target T) {
+	return Must(Convert[S, T](source))
+}
+
 // Must 忽略异常
 func Must[T any](v T, err error) T {
 	if err != nil {

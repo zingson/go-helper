@@ -33,3 +33,8 @@ func TestConvert(t *testing.T) {
 
 	t.Log(ms.Json())
 }
+
+func TestMustConvert(t *testing.T) {
+	ms := hjson.MustConvert[map[string]any, Ms](map[string]any{"a": "123"})
+	t.Log(ms.Json())
+}
