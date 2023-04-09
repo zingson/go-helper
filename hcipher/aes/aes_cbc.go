@@ -37,7 +37,7 @@ func DecodeCBC(ciphertext, key string) (plaintext string, err error) {
 		err = errors.New("aes.NewCipher error" + err.Error())
 		return
 	}
-	blockMode := cipher.NewCBCDecrypter(block, []byte(string(key)[0:block.BlockSize()]))
+	blockMode := cipher.NewCBCDecrypter(block, []byte(key[0:block.BlockSize()]))
 	plainText := make([]byte, len(cipherText))
 	blockMode.CryptBlocks(plainText, cipherText)
 	plainText = UnPadding(plainText)
