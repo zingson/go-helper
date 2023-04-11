@@ -63,8 +63,12 @@ func (o *DaoImpl[T]) InsertOne(ctx context.Context, document any) (id string, er
 	return
 }
 
-func (o *DaoImpl[T]) InsertMany(ctx context.Context, documents []any) (r *mongo.InsertManyResult, err error) {
-	return o.Collection().InsertMany(ctx, documents)
+func (o *DaoImpl[T]) InsertMany(ctx context.Context, documents []*T) (r *mongo.InsertManyResult, err error) {
+	var docs []any
+	for _, doc := range documents {
+		docs = append(docs, doc)
+	}
+	return o.Collection().InsertMany(ctx, docs)
 }
 
 func (o *DaoImpl[T]) UpdateOne(ctx context.Context, filter bson.D, update bson.M, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
