@@ -6,15 +6,15 @@ import (
 )
 
 func TestTimeRangeDaysF(t *testing.T) {
-	beg, end := htime.TimeRangeDaysF(1, htime.LayoutT14)
+	beg, end := htime.RangeDaysF(1, htime.LayoutT14)
 	t.Log(beg, " - ", end)
 
-	beg, end = htime.TimeRangeWeekF(1, htime.LayoutT14)
+	beg, end = htime.RangeWeekF(1, htime.LayoutT14)
 	t.Log(beg, " - ", end)
 
-	beg, end = htime.TimeRangeMonthF(1, htime.LayoutT14)
+	beg, end = htime.RangeMonthF(1, htime.LayoutT14)
 	t.Log(beg, " - ", end)
 
-	beg, end = htime.TimeRangeYearF(1, htime.LayoutT14)
+	beg, end = htime.RangeYearF(1, htime.LayoutT14)
 	t.Log(beg, " - ", end)
 }
