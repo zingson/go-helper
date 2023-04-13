@@ -3,6 +3,7 @@ package aliyunsls
 import (
 	"fmt"
 	"github.com/aliyun/aliyun-log-go-sdk/producer"
+	"net"
 	"time"
 )
 
@@ -45,10 +46,42 @@ func (c *Client) Producer() *producer.Producer {
 	return c.producer
 }
 
-//Log 记录日志  { msg:"" }
+// Log 记录日志  { msg:"" }
 func (c *Client) Log(topic string, kv map[string]string) {
-	err := c.producer.SendLog(c.Project, c.Logstore, topic, c.source, producer.GenerateLog(uint32(time.Now().Unix()), kv))
+	source := c.source
+	if v, ok := kv["source"]; ok {
+		source = v
+	}
+	err := c.producer.SendLog(c.Project, c.Logstore, topic, source, producer.GenerateLog(uint32(time.Now().Unix()), kv))
 	if err != nil {
 		fmt.Println("SLS SendLog Error:", err.Error())
 	}
+}
+
+// 获取本机网卡IP
+func getLocalIP() (ipv4 string) {
+	var (
+		err     error
+		addrs   []net.Addr
+		addr    net.Addr
+		ipNet   *net.IPNet // IP地址
+		isIpNet bool
+	)
+	// 获取所有网卡
+	if addrs, err = net.InterfaceAddrs(); err != nil {
+		ipv4 = "127.0.0.1"
+		return
+	}
+	// 取第一个非lo的网卡IP
+	for _, addr = range addrs {
+		// 这个网络地址是IP地址: ipv4, ipv6
+		if ipNet, isIpNet = addr.(*net.IPNet); isIpNet && !ipNet.IP.IsLoopback() {
+			// 跳过IPV6
+			if ipNet.IP.To4() != nil {
+				ipv4 = ipNet.IP.String() // 192.168.1.1
+				return
+			}
+		}
+	}
+	return
 }

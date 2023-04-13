@@ -83,6 +83,10 @@ func (o *DaoImpl[T]) DeleteOne(ctx context.Context, filter bson.D) (*mongo.Delet
 	return o.Collection().DeleteOne(ctx, filter)
 }
 
+func (o *DaoImpl[T]) DeleteMany(ctx context.Context, filter bson.D) (*mongo.DeleteResult, error) {
+	return o.Collection().DeleteMany(ctx, filter)
+}
+
 func (o *DaoImpl[T]) Count(ctx context.Context, filter bson.D, opts ...*options.CountOptions) (total int64, err error) {
 	return o.Collection().CountDocuments(ctx, filter, opts...)
 }
