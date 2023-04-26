@@ -54,7 +54,7 @@ func (m *MemoryImpl) Load(key string, duration time.Duration, ds func() (out any
 	}
 	// 读数据源
 	out, err = ds()
-	if err != nil {
+	if err != nil || out == nil {
 		return
 	}
 	// 写入缓存
