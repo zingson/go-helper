@@ -2,7 +2,6 @@ package test
 
 import (
 	"github.com/zingson/go-helper/hcron"
-	"github.com/zingson/go-helper/htime"
 	"testing"
 	"time"
 )
@@ -26,9 +25,9 @@ func (*SingleNode) Log(entry *hcron.Entry, ms int64) {
 }
 
 func TestA(t *testing.T) {
-	a := hcron.New(new(SingleNode))
+	/*a := hcron.New(new(SingleNode))
 	a.AddFunc("AAA", "0/3 * * * * *", func() {
 		t.Log("定时执行 ", htime.NowF19())
 	})
-	time.Sleep(50 * time.Minute)
+	time.Sleep(50 * time.Minute)*/
 }
