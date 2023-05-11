@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// 使用内存Map作为应用缓存
+// Memory 使用内存Map作为应用缓存
 var Memory = new(MemoryImpl)
 
 type MemoryImpl struct {
@@ -39,7 +39,7 @@ func (m *MemoryImpl) clear() {
 	})
 }
 
-// 读取数据，存在则直接返回，不存在则保存缓存结果再返回
+// Load 读取数据，存在则直接返回，不存在则保存缓存结果再返回
 // key 缓存key必须全局唯一
 // duration 缓存有效时间
 // ds 当缓存没有数据时从数据源读取
