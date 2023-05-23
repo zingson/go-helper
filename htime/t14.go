@@ -41,7 +41,7 @@ func (nt *T14) UnmarshalJSON(data []byte) error {
 		*nt = T14(time.Time{})
 		return nil
 	}
-	t, err := time.Parse(LayoutT14, v)
+	t, err := time.ParseInLocation(LayoutT14, v, time.Local)
 	if err != nil {
 		return fmt.Errorf("解析时间字符串'%s'出错", v)
 	}
@@ -56,7 +56,7 @@ func NowF14() string {
 
 // ParseT14 解析时间
 func ParseT14(t14 string) time.Time {
-	t14Time, err := time.Parse(LayoutT14, t14)
+	t14Time, err := time.ParseInLocation(LayoutT14, t14, time.Local)
 	if err != nil {
 		return time.Time{}
 	}
