@@ -11,6 +11,8 @@ type Config struct {
 	RegionId        string `json:"region_id"`         // 可留空
 	AccessKeyId     string `json:"access_key_id"`     // 阿里云获取
 	AccessKeySecret string `json:"access_key_secret"` // 阿里云获取
+	SignName        string `json:"sign_name"`         // 签名，阿里云申请获取
+	TemplateCode    string `json:"template_code"`     // 模板编号，阿里云申请获取
 }
 
 func Client(config Config) (*dysmsapi.Client, error) {

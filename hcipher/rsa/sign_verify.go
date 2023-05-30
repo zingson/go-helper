@@ -2,7 +2,7 @@ package rsa
 
 import (
 	"crypto"
-	cryptorand "crypto/rand"
+	"crypto/rand"
 	"crypto/rsa"
 	"crypto/sha256"
 	"crypto/x509"
@@ -32,7 +32,7 @@ func RsaSign(value, priKey string) (sign string, err error) {
 	hash := sha256.New()
 	hash.Write([]byte(value))
 	shaBytes := hash.Sum(nil)
-	b, err := rsa.SignPKCS1v15(cryptorand.Reader, privateKey.(*rsa.PrivateKey), crypto.SHA256, shaBytes)
+	b, err := rsa.SignPKCS1v15(rand.Reader, privateKey.(*rsa.PrivateKey), crypto.SHA256, shaBytes)
 	if err != nil {
 		return
 	}
