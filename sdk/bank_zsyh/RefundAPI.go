@@ -1,4 +1,4 @@
-package cmbnetpay
+package bank_zsyh
 
 import (
 	"encoding/json"
@@ -7,19 +7,19 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-//Refund 退款 接口文档:http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/RefundAPI
-//生产环境 https://merchserv.netpay.cmbchina.com/merchserv/BaseHttp.dll?DoRefundV2
-//测试环境 http://merchserv.cmburl.cn/merchserv/BaseHttp.dll?DoRefundV2
-func Refund(conf *Config, req *RefundReq) (res *RefundRes, err error) {
-	reqMap := StructToMap(req.ReqData)
-	waitForSignStr := SortMap(reqMap, true) + "&" + conf.Merkey
-	req.Sign = Sha256Sign(waitForSignStr)
+// RefundAPI 退款 接口文档:http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/RefundAPI
+// 生产环境 https://merchserv.netpay.cmbchina.com/merchserv/BaseHttp.dll?DoRefundV2
+// 测试环境 http://merchserv.cmburl.cn/merchserv/BaseHttp.dll?DoRefundV2
+func RefundAPI(conf *Config, req *RefundReq) (res *RefundRes, err error) {
+	//reqMap := StructToMap(req.ReqData)
+	//waitForSignStr := SortMap(reqMap, true) + "&" + conf.Merkey
+	//req.Sign = Sha256Sign(waitForSignStr)
 
 	rBytes, err := json.Marshal(req)
 	if err != nil {
 		return
 	}
-	resBody, err := PostForm(conf, conf.ApiUrl, string(rBytes))
+	resBody, err := PostForm(conf, conf.MerchservUrl, string(rBytes))
 	if err != nil {
 		return
 	}
@@ -37,7 +37,6 @@ func Refund(conf *Config, req *RefundReq) (res *RefundRes, err error) {
 }
 
 type RefundReq struct {
-	FixedParams
 	ReqData *RefundReqData `json:"reqData"`
 }
 
@@ -53,7 +52,6 @@ type RefundReqData struct {
 }
 
 type RefundRes struct {
-	FixedParams
 	RspData struct {
 		RspCode        string `json:"rspCode"`        //处理结果,SUC0000：请求处理成功 其他：请求处理失败
 		RspMsg         string `json:"rspMsg"`         //详细信息,请求处理失败时返回错误描述

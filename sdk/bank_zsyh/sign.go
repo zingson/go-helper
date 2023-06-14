@@ -1,14 +1,9 @@
-package cmbnetpay
+package bank_zsyh
 
 import (
-	"crypto"
-	"crypto/rsa"
 	"crypto/sha256"
-	"crypto/x509"
-	"encoding/base64"
 	"encoding/hex"
-	"encoding/pem"
-	"errors"
+	"encoding/json"
 	"sort"
 	"strings"
 )
@@ -20,32 +15,7 @@ func Sha256Sign(targetStr string) (sign string) {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-// RSAVerify 验签响应报文签名
-func RSAVerify(origdata, sign string, publicKey []byte) (bool, error) {
-	block, _ := pem.Decode(publicKey)
-	if block == nil {
-		return false, errors.New("public key error")
-	}
-	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
-	if err != nil {
-		return false, err
-	}
-	pub := pubInterface.(*rsa.PublicKey)
-	h := crypto.Hash.New(crypto.SHA1)
-	h.Write([]byte(origdata))
-	digest := h.Sum(nil)
-	body, err := base64.StdEncoding.DecodeString(sign)
-	if err != nil {
-		return false, err
-	}
-	err = rsa.VerifyPKCS1v15(pub, crypto.SHA1, digest, body)
-	if err != nil {
-		return false, err
-	}
-	return true, nil
-}
-
-//SortMap map排序
+// SortMap map排序
 // @params containNilVal true空字段参与签名 false空字段不参与签名
 func SortMap(m map[string]string, containNilVal bool) string {
 	if m == nil {
@@ -75,4 +45,16 @@ func SortMap(m map[string]string, containNilVal bool) string {
 	s := buf.String()
 	s = s[0 : len(s)-1]
 	return s
+}
+
+func StructToMap(in interface{}) (pmap map[string]string) {
+	b, err := json.Marshal(in)
+	if err != nil {
+		panic(err)
+	}
+	err = json.Unmarshal(b, &pmap)
+	if err != nil {
+		panic(err)
+	}
+	return
 }

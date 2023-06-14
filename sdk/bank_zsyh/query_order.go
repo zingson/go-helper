@@ -1,4 +1,4 @@
-package cmbnetpay
+package bank_zsyh
 
 import (
 	"encoding/json"
@@ -7,19 +7,19 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-//QueryOrder 查询单笔订单 接口文档:http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/QuerySingleOrderAPI
-//生产环境 https://merchserv.netpay.cmbchina.com/merchserv/BaseHttp.dll?QuerySingleOrder
-//测试环境 http://merchserv.cmburl.cn/merchserv/BaseHttp.dll?QuerySingleOrder
+// QueryOrder 查询单笔订单 接口文档:http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/QuerySingleOrderAPI
+// 生产环境 https://merchserv.netpay.cmbchina.com/merchserv/BaseHttp.dll?QuerySingleOrder
+// 测试环境 http://merchserv.cmburl.cn/merchserv/BaseHttp.dll?QuerySingleOrder
 func QueryOrder(conf *Config, req *QueryOrderReq) (res *QueryOrderRes, err error) {
-	reqMap := StructToMap(req.ReqData)
-	waitForSignStr := SortMap(reqMap, true) + "&" + conf.Merkey
-	req.Sign = Sha256Sign(waitForSignStr)
+	//reqMap := StructToMap(req.ReqData)
+	//waitForSignStr := SortMap(reqMap, true) + "&" + conf.Merkey
+	//req.Sign = Sha256Sign(waitForSignStr)
 
 	rBytes, err := json.Marshal(req)
 	if err != nil {
 		return
 	}
-	resBody, err := PostForm(conf, conf.ApiUrl, string(rBytes))
+	resBody, err := PostForm(conf, conf.MerchservUrl, string(rBytes))
 	if err != nil {
 		return
 	}
@@ -37,7 +37,6 @@ func QueryOrder(conf *Config, req *QueryOrderReq) (res *QueryOrderRes, err error
 }
 
 type QueryOrderReq struct {
-	FixedParams
 	ReqData *QueryOrderReqData `json:"reqData"`
 }
 
@@ -53,7 +52,6 @@ type QueryOrderReqData struct {
 }
 
 type QueryOrderRes struct {
-	FixedParams
 	RspData struct {
 		RspCode            string `json:"rspCode"`            //处理结果,SUC0000：请求处理成功 其他：请求处理失败
 		RspMsg             string `json:"rspMsg"`             //详细信息,请求处理失败时返回错误描述

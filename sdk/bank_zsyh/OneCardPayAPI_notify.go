@@ -1,4 +1,4 @@
-package cmbnetpay
+package bank_zsyh
 
 import (
 	"fmt"
@@ -52,7 +52,6 @@ func NotifyResponse(w http.ResponseWriter, err error) {
 
 // PayNotify 成功支付结果
 type PayNotify struct {
-	FixedParams
 	NoticeData struct {
 		DateTime       string `json:"dateTime"`       //商户发起该请求的当前时间，精确到秒。 格式：yyyyMMddHHmmss
 		Date           string `json:"date"`           //商户订单日期，支付时的订单日期 格式：yyyyMMdd

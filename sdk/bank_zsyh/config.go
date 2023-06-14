@@ -1,12 +1,16 @@
-package cmbnetpay
+package bank_zsyh
 
-//Config 招行一网通接口配置参数
+// Config 招行一网通接口配置参数
 type Config struct {
-	BranchNo   string `json:"branchNo"`   //商户分行号，4位数字	0755
-	MerchantNo string `json:"merchantNo"` //商户号，6位数字	058624
-	Merkey     string `json:"merkey"`     //商户秘钥
-	FbPubKey   string `json:"fbPubKey"`   //用Base64编码的招行公钥
-	ApiUrl     string `json:"api_url"`    //接口地址
+	MerchservUrl  string `json:"merchserv_url"`  //https://merchserv.netpay.cmbchina.com/
+	CmbBankB2BUrl string `json:"cmbbankb2b_url"` //https://b2b.cmbchina.com/
+	NetpaymentUrl string `json:"netpayment_url"` //https://netpay.cmbchina.com/
+
+	ServiceUrl string `json:"service_url"` //服务地址
+	BranchNo   string `json:"branch_no"`   //商户分行号，4位数字	0755
+	MerchantNo string `json:"merchant_no"` //商户号，6位数字	058624
+	Merkey     string `json:"mer_key"`     //商户秘钥
+	FbPubKey   string `json:"fb_pub_key"`  //用Base64编码的招行公钥
 }
 
 const (

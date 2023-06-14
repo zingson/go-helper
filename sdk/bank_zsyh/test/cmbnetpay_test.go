@@ -1,4 +1,4 @@
-package cmbnetpay
+package test
 
 import (
 	"github.com/sirupsen/logrus"
