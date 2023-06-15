@@ -2,6 +2,7 @@ package bank_zsyh
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/sirupsen/logrus"
 	"io"
 	"net/http"
@@ -51,7 +52,7 @@ func Post[P, R any](conf *Config, apiUrl string, reqData P) (rspData R, err erro
 		if err != nil {
 			errMsg = "\n错误信息：" + err.Error()
 		}
-		logrus.WithField("mchid", conf.MerchantNo).Infof("招行一网通H5支付 \nPOST %s  \n请求报文：%s  \n响应报文：%s  %s  \n%dms", apiUrl, reqBody, resBody, errMsg, time.Now().UnixMilli()-begMilli)
+		logrus.WithField("mchid", conf.MerchantNo).Infof("招行一网通H5支付 \n接口：%s  \n请求：%s  \n响应：%s  %s  \n耗时：%dms", apiUrl, reqBody, resBody, errMsg, time.Now().UnixMilli()-begMilli)
 	}()
 
 	reqBody = jsonMarshal(&RequestBody[P]{
@@ -87,4 +88,37 @@ func Post[P, R any](conf *Config, apiUrl string, reqData P) (rspData R, err erro
 func jsonMarshal(v any) string {
 	b, _ := json.Marshal(v)
 	return string(b)
+}
+
+type NoticeBody[T any] struct {
+	Version    string `json:"version" `   //接口版本号,固定为”1.0”
+	Charset    string `json:"charset"`    //参数编码,固定为“UTF-8”
+	Sign       string `json:"sign"`       //报文签名,使用招行私钥对noticeData内的数据进行签名；商户需使用招行公钥验签。
+	SignType   string `json:"signType"`   //签名算法,固定为”RSA”
+	NoticeData T      `json:"noticeData"` //通知数据
+}
+
+func ParseNotice[T any](conf *Config, reqBody []byte) (noticeData T, err error) {
+	var noticeBody *NoticeBody[T]
+	err = json.Unmarshal(reqBody, &noticeBody)
+	if err != nil {
+		return
+	}
+
+	// 一网通RSA公钥
+	pubKey, err := conf.GetFbPubKey()
+	if err != nil {
+		return
+	}
+
+	// 验签
+	err = RsaVerify(noticeBody.Sign, SortMap(StructToMap(noticeBody.NoticeData), true), pubKey)
+	if err != nil {
+		logrus.Error("ParseNotice RsaVerify " + err.Error())
+		err = errors.New("签名验证失败")
+		return
+	}
+
+	noticeData = noticeBody.NoticeData
+	return
 }

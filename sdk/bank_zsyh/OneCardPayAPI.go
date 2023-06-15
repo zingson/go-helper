@@ -2,12 +2,13 @@ package bank_zsyh
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 )
 
 // OneCardPayAPI 一网通支付API  文档:http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/OneCardPayAPI
 // 生产环境 https://netpay.cmbchina.com/netpayment/BaseHttp.dll?MB_EUserPay
 // 测试环境 http://paytest.cmburl.cn:801/netpayment/BaseHttp.dll?MB_EUserPay
-func OneCardPayAPI(conf *Config, reqData OneCardPayAPIReq) (resHtml string, err error) {
+func OneCardPayAPI(conf *Config, reqData OneCardPayAPIReq) (rspData OneCardPayAPIRes, err error) {
 	jsonRequestData := jsonMarshal(&RequestBody[OneCardPayAPIReq]{
 		Version:  Version,
 		Charset:  Charset,
@@ -15,16 +16,37 @@ func OneCardPayAPI(conf *Config, reqData OneCardPayAPIReq) (resHtml string, err 
 		SignType: SignType,
 		ReqData:  reqData,
 	})
-	resHtml = fmt.Sprintf(`
-<form action="%s" method="post" id="OneCardPayAPI"/>
-    <input type="hidden" name="jsonRequestData" value="%s" />
-    <input type="hidden" name="charset" value="%s" />
+
+	logrus.WithField("mchid", conf.MerchantNo).Infof("招行一网通H5支付 下单 \n接口：%s  \n请求：%s  \n响应：%s", conf.NetpaymentUrl+"/netpayment/BaseHttp.dll?MB_EUserPay", jsonRequestData, "html")
+
+	rspData = OneCardPayAPIRes{
+		JsonRequestData: jsonRequestData,
+		Charset:         Charset,
+	}
+	return
+}
+
+// OneCardPayAPIForm 返回表单HTML，前端通过表单跳转支付
+func OneCardPayAPIForm(conf *Config, reqData OneCardPayAPIReq) (resHtml string, err error) {
+	rspData, err := OneCardPayAPI(conf, reqData)
+	if err != nil {
+		return
+	}
+	resHtml = fmt.Sprintf(`<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="%s" method="POST" id="form1">
+    <input type="hidden" name="jsonRequestData" value='%s'/>
+    <input type="hidden" name="charset" value='%s'/>
 </form>
-`, conf.NetpaymentUrl+"?MB_EUserPay", jsonRequestData, Charset)
-
-	// 返回表单HTML，前端通过表单跳转支付
-
-	return resHtml, nil
+<script>window.onload = function(){document.getElementById("form1").submit()}</script>
+</body>
+</html>`, conf.NetpaymentUrl+"/netpayment/BaseHttp.dll?MB_EUserPay", rspData.JsonRequestData, rspData.Charset)
+	return
 }
 
 type OneCardPayAPIReq struct {
@@ -51,4 +73,9 @@ type OneCardPayAPIReq struct {
 	SignNoticePara       string `json:"signNoticePara"`       //O
 	ExtendInfo           string `json:"extendInfo"`           //O
 	ExtendInfoEncrypType string `json:"extendInfoEncrypType"` //O
+}
+
+type OneCardPayAPIRes struct {
+	JsonRequestData string `json:"jsonRequestData"`
+	Charset         string `json:"charset"`
 }

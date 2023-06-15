@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title></head>
+<body>
+<form action="http://paytest.cmburl.cn:801/netpayment/BaseHttp.dll?MB_EUserPay" method="POST" id="form1">
+    <input type="hidden" name="jsonRequestData" value='{"version":"1.0","charset":"UTF-8","sign":"b0b972e5b7d1cedb82a4d92f4e8090f46fd934d378918f0013a1997d8c43ebed","signType":"SHA-256","reqData":{"dateTime":"20230615182627","branchNo":"0755","merchantNo":"058624","date":"20230615","orderNo":"16692902641098424321","amount":"0.01","expireTimeSpan":"15","payNoticeUrl":"https://msd.himkt.cn/gw/upmp/ywt/xx","payNoticePara":"","returnUrl":"","clientIP":"","cardType":"","agrNo":"","merchantSerialNo":"","userID":"","mobile":"","lon":"","lat":"","riskLevel":"","signNoticeUrl":"","signNoticePara":"","extendInfo":"","extendInfoEncrypType":""}}'/>
+    <input type="hidden" name="charset" value='UTF-8'/>
+</form>
+<script>window.onload = function(){document.getElementById("form1").submit()}</script>
+</body>
+</html>
