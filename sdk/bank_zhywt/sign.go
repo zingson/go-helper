@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"encoding/pem"
 	"errors"
+	"fmt"
 	"sort"
 	"strings"
 )
@@ -24,7 +25,7 @@ func Sha256Sign(targetStr string) (sign string) {
 
 // SortMap map排序
 // @params containNilVal true空字段参与签名 false空字段不参与签名
-func SortMap(m map[string]string, containNilVal bool) string {
+func SortMap(m map[string]any, containNilVal bool) string {
 	if m == nil {
 		return ""
 	}
@@ -45,7 +46,7 @@ func SortMap(m map[string]string, containNilVal bool) string {
 		}
 		buf.WriteString(k)
 		buf.WriteByte('=')
-		buf.WriteString(m[k])
+		buf.WriteString(fmt.Sprintf("%v", m[k]))
 		buf.WriteByte('&')
 	}
 	s := buf.String()
@@ -53,7 +54,7 @@ func SortMap(m map[string]string, containNilVal bool) string {
 	return s
 }
 
-func StructToMap(in interface{}) (pmap map[string]string) {
+func StructToMap(in interface{}) (pmap map[string]any) {
 	b, err := json.Marshal(in)
 	if err != nil {
 		panic(err)
