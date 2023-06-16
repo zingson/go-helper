@@ -1,6 +1,10 @@
-package bank_zsyh
+package bank_zhywt
 
 import "sync"
+
+//招行一网通支付
+//商户服务平台 https://pay.cmbchina.com
+//商户服务平台获取的商户号  前4位是分行号 后6位是商户号
 
 // Config 招行一网通接口配置参数
 type Config struct {

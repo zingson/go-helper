@@ -6,7 +6,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/zingson/go-helper/hid"
 	"github.com/zingson/go-helper/htime"
-	"github.com/zingson/go-helper/sdk/bank_zsyh"
+	"github.com/zingson/go-helper/sdk/bank_zhywt"
 	"os"
 	"testing"
 	"time"
@@ -21,7 +21,7 @@ import (
 // //go:embed .secret/test.json
 var configStr string
 
-var conf *bank_zsyh.Config
+var conf *bank_zhywt.Config
 
 func init() {
 	err := json.Unmarshal([]byte(configStr), &conf)
@@ -54,7 +54,7 @@ func TestQueryKeyAPI(t *testing.T) {
 // TestOneCardPayAPI 支付
 func TestOneCardPayAPI(t *testing.T) {
 	orderNo := hid.G20()
-	resHtml, err := bank_zsyh.OneCardPayAPIForm(conf, bank_zsyh.OneCardPayAPIReq{
+	resHtml, err := bank_zhywt.OneCardPayAPIForm(conf, bank_zhywt.OneCardPayAPIReq{
 		DateTime:             htime.NowF14(),
 		BranchNo:             conf.BranchNo,
 		MerchantNo:           conf.MerchantNo,
@@ -91,7 +91,7 @@ func TestOneCardPayAPI(t *testing.T) {
 // TestRefundAPI 退款
 func TestRefundAPI(t *testing.T) {
 	orderNo := "16696016991384371202"
-	_, err := bank_zsyh.RefundAPI(conf, bank_zsyh.RefundAPIReq{
+	_, err := bank_zhywt.RefundAPI(conf, bank_zhywt.RefundAPIReq{
 		DateTime:       htime.NowF14(),
 		BranchNo:       conf.BranchNo,
 		MerchantNo:     conf.MerchantNo,
@@ -110,7 +110,7 @@ func TestRefundAPI(t *testing.T) {
 // TestQuerySingleOrderAPI 单笔订单查询
 func TestQuerySingleOrderAPI(t *testing.T) {
 	orderNo := "16696016991384371202"
-	rspData, err := bank_zsyh.QuerySingleOrderAPI(conf, bank_zsyh.QuerySingleOrderAPIReq{
+	rspData, err := bank_zhywt.QuerySingleOrderAPI(conf, bank_zhywt.QuerySingleOrderAPIReq{
 		DateTime:   htime.NowF14(),
 		BranchNo:   conf.BranchNo,
 		MerchantNo: conf.MerchantNo,
@@ -128,7 +128,7 @@ func TestQuerySingleOrderAPI(t *testing.T) {
 // TestQuerySettledRefund 单笔退款查询
 func TestQuerySettledRefund(t *testing.T) {
 	orderNo := "16696016991384371202"
-	rspData, err := bank_zsyh.QuerySettledRefund(conf, bank_zsyh.QuerySettledRefundReq{
+	rspData, err := bank_zhywt.QuerySettledRefund(conf, bank_zhywt.QuerySettledRefundReq{
 		DateTime:         htime.NowF14(),
 		BranchNo:         conf.BranchNo,
 		MerchantNo:       conf.MerchantNo,
@@ -148,7 +148,7 @@ func TestQuerySettledRefund(t *testing.T) {
 // TestSuccessPayAPI 支付成功通知
 func TestSuccessPayAPI(t *testing.T) {
 	noticeBody := `{}`
-	noticeData, err := bank_zsyh.SuccessPayApi(conf, "/notice/path", []byte(noticeBody))
+	noticeData, err := bank_zhywt.SuccessPayApi(conf, "/notice/path", []byte(noticeBody))
 	if err != nil {
 		t.Error(err.Error())
 		return

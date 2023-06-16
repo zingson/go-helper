@@ -1,4 +1,4 @@
-package bank_zsyh
+package bank_zhywt
 
 // SuccessPayApi 成功支付结果通知API
 // 一网通支付API中的payNoticeUrl参数
@@ -18,8 +18,8 @@ type SuccessPayData struct {
 	Date           string `json:"date"`           //商户订单日期 格式：yyyyMMdd
 	OrderNo        string `json:"orderNo"`        //商户订单号
 	Amount         string `json:"amount"`         //订单金额,单位元，格式：XXXX.XX
-	BankDate       string `json:"bankDate"`       //
-	BankSerialNo   string `json:"bankSerialNo"`   //
+	BankDate       string `json:"bankDate"`       //银行受理日期,格式：yyyyMMdd
+	BankSerialNo   string `json:"bankSerialNo"`   //银行的订单流水号
 	DiscountFlag   string `json:"discountFlag"`   //
 	DiscountAmount string `json:"discountAmount"` //
 	MerchantPara   string `json:"merchantPara"`   //
