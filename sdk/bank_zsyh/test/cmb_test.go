@@ -14,11 +14,11 @@ import (
 
 // 生产环境
 //
-// //go:embed .secret/production.json
+//go:embed .secret/production.json
 
 // 测试环境
 //
-//go:embed .secret/test.json
+// //go:embed .secret/test.json
 var configStr string
 
 var conf *bank_zsyh.Config
@@ -90,7 +90,7 @@ func TestOneCardPayAPI(t *testing.T) {
 
 // TestRefundAPI 退款
 func TestRefundAPI(t *testing.T) {
-	orderNo := hid.G20()
+	orderNo := "16696016991384371202"
 	_, err := bank_zsyh.RefundAPI(conf, bank_zsyh.RefundAPIReq{
 		DateTime:       htime.NowF14(),
 		BranchNo:       conf.BranchNo,
@@ -109,7 +109,7 @@ func TestRefundAPI(t *testing.T) {
 
 // TestQuerySingleOrderAPI 单笔订单查询
 func TestQuerySingleOrderAPI(t *testing.T) {
-	orderNo := "2023021714592336af1d1d826e64e3d6"
+	orderNo := "16696016991384371202"
 	rspData, err := bank_zsyh.QuerySingleOrderAPI(conf, bank_zsyh.QuerySingleOrderAPIReq{
 		DateTime:   htime.NowF14(),
 		BranchNo:   conf.BranchNo,
@@ -127,12 +127,12 @@ func TestQuerySingleOrderAPI(t *testing.T) {
 
 // TestQuerySettledRefund 单笔退款查询
 func TestQuerySettledRefund(t *testing.T) {
-	orderNo := "2023021714592336af1d1d826e64e3d6"
+	orderNo := "16696016991384371202"
 	rspData, err := bank_zsyh.QuerySettledRefund(conf, bank_zsyh.QuerySettledRefundReq{
 		DateTime:         htime.NowF14(),
 		BranchNo:         conf.BranchNo,
 		MerchantNo:       conf.MerchantNo,
-		Type:             "B",
+		Type:             "C",
 		BankSerialNo:     "",
 		Date:             htime.NowF8(),
 		OrderNo:          orderNo,
@@ -143,4 +143,15 @@ func TestQuerySettledRefund(t *testing.T) {
 		return
 	}
 	t.Log(rspData)
+}
+
+// TestSuccessPayAPI 支付成功通知
+func TestSuccessPayAPI(t *testing.T) {
+	noticeBody := `{}`
+	noticeData, err := bank_zsyh.SuccessPayApi(conf, "/notice/path", []byte(noticeBody))
+	if err != nil {
+		t.Error(err.Error())
+		return
+	}
+	t.Log(json.Marshal(noticeData))
 }

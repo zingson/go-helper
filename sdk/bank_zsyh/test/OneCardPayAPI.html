@@ -2,10 +2,11 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title></title></head>
+    <title></title>
+</head>
 <body>
-<form action="http://paytest.cmburl.cn:801/netpayment/BaseHttp.dll?MB_EUserPay" method="POST" id="form1">
-    <input type="hidden" name="jsonRequestData" value='{"version":"1.0","charset":"UTF-8","sign":"b0b972e5b7d1cedb82a4d92f4e8090f46fd934d378918f0013a1997d8c43ebed","signType":"SHA-256","reqData":{"dateTime":"20230615182627","branchNo":"0755","merchantNo":"058624","date":"20230615","orderNo":"16692902641098424321","amount":"0.01","expireTimeSpan":"15","payNoticeUrl":"https://msd.himkt.cn/gw/upmp/ywt/xx","payNoticePara":"","returnUrl":"","clientIP":"","cardType":"","agrNo":"","merchantSerialNo":"","userID":"","mobile":"","lon":"","lat":"","riskLevel":"","signNoticeUrl":"","signNoticePara":"","extendInfo":"","extendInfoEncrypType":""}}'/>
+<form action="https://netpay.cmbchina.com/netpayment/BaseHttp.dll?MB_EUserPay" method="POST" id="form1">
+    <input type="hidden" name="jsonRequestData" value='{"version":"1.0","charset":"UTF-8","sign":"f5f80973915d8aa812bc94bb8368db226b6db0b84a768c3f40eb0ce148d7ddf6","signType":"SHA-256","reqData":{"dateTime":"20230616150359","branchNo":"0574","merchantNo":"630317","date":"20230616","orderNo":"16696016991384371202","amount":"0.01","expireTimeSpan":"15","payNoticeUrl":"https://msd.himkt.cn/gw/upmp/ywt/xx","payNoticePara":"","returnUrl":"","clientIP":"","cardType":"","agrNo":"","merchantSerialNo":"","userID":"","mobile":"","lon":"","lat":"","riskLevel":"","signNoticeUrl":"","signNoticePara":"","extendInfo":"","extendInfoEncrypType":""}}'/>
     <input type="hidden" name="charset" value='UTF-8'/>
 </form>
 <script>window.onload = function(){document.getElementById("form1").submit()}</script>

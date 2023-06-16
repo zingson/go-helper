@@ -17,7 +17,7 @@ func OneCardPayAPI(conf *Config, reqData OneCardPayAPIReq) (rspData OneCardPayAP
 		ReqData:  reqData,
 	})
 
-	logrus.WithField("mchid", conf.MerchantNo).Infof("招行一网通H5支付 下单 \n接口：%s  \n请求：%s  \n响应：%s", conf.NetpaymentUrl+"/netpayment/BaseHttp.dll?MB_EUserPay", jsonRequestData, "html")
+	logrus.WithField("mchid", conf.BranchNo+conf.MerchantNo).Infof("招行一网通H5支付 下单 \n接口：%s  \n请求：%s  \n响应：%s", conf.NetpaymentUrl+"/netpayment/BaseHttp.dll?MB_EUserPay", jsonRequestData, "html")
 
 	rspData = OneCardPayAPIRes{
 		JsonRequestData: jsonRequestData,

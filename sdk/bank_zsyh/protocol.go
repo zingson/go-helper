@@ -52,7 +52,7 @@ func Post[P, R any](conf *Config, apiUrl string, reqData P) (rspData R, err erro
 		if err != nil {
 			errMsg = "\n错误信息：" + err.Error()
 		}
-		logrus.WithField("mchid", conf.MerchantNo).Infof("招行一网通H5支付 \n接口：%s  \n请求：%s  \n响应：%s  %s  \n耗时：%dms", apiUrl, reqBody, resBody, errMsg, time.Now().UnixMilli()-begMilli)
+		logrus.WithField("mchid", conf.BranchNo+conf.MerchantNo).Infof("招行一网通H5支付 \n接口：%s  \n请求：%s  \n响应：%s  %s  \n耗时：%dms", apiUrl, reqBody, resBody, errMsg, time.Now().UnixMilli()-begMilli)
 	}()
 
 	reqBody = jsonMarshal(&RequestBody[P]{
@@ -98,7 +98,21 @@ type NoticeBody[T any] struct {
 	NoticeData T      `json:"noticeData"` //通知数据
 }
 
-func ParseNotice[T any](conf *Config, reqBody []byte) (noticeData T, err error) {
+func ParseNotice[T any](conf *Config, path string, reqBody []byte) (noticeData T, err error) {
+
+	defer func() {
+		resBody := "成功"
+		errMsg := ""
+		if e := recover(); e != nil {
+			err = e.(error)
+		}
+		if err != nil {
+			resBody = "异常"
+			errMsg = "\n异常：" + err.Error()
+		}
+		logrus.WithField("mchid", conf.BranchNo+conf.MerchantNo).Infof("招行一网通H5支付 通知 \n接口：%s  \n请求：%s  \n响应：%s  %s ", path, string(reqBody), resBody, errMsg)
+	}()
+
 	var noticeBody *NoticeBody[T]
 	err = json.Unmarshal(reqBody, &noticeBody)
 	if err != nil {

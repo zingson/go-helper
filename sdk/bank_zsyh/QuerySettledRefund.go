@@ -6,6 +6,7 @@ import (
 )
 
 // QuerySettledRefund 文档：http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/QuerySettledRefund
+// 单笔退款查询
 func QuerySettledRefund(conf *Config, reqData QuerySettledRefundReq) (rspData QuerySettledRefundRes, err error) {
 	rspData, err = Post[QuerySettledRefundReq, QuerySettledRefundRes](conf, conf.MerchservUrl+"/merchserv/BaseHttp.dll?QuerySettledRefundV2", reqData)
 	if err != nil {

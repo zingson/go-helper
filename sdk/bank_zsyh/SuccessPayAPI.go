@@ -3,8 +3,8 @@ package bank_zsyh
 // SuccessPayApi 成功支付结果通知API
 // 一网通支付API中的payNoticeUrl参数
 // 文档：http://openhome.cmbchina.com/PayNew/pay/doc/cell/H5/SuccessPayAPI
-func SuccessPayApi(conf *Config, body []byte) (noticeData SuccessPayData, err error) {
-	return ParseNotice[SuccessPayData](conf, body)
+func SuccessPayApi(conf *Config, path string, body []byte) (noticeData SuccessPayData, err error) {
+	return ParseNotice[SuccessPayData](conf, path, body)
 }
 
 type SuccessPayData struct {
