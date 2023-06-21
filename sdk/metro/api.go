@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"sort"
@@ -22,7 +22,7 @@ const (
 	APPLICATION_FORM = "application/x-www-form-urlencoded"
 )
 
-//AuthByMobile 用户互认接口，根据手机号返回用户编号
+// AuthByMobile 用户互认接口，根据手机号返回用户编号
 func AuthByMobile(conf *Config, userPhone string) (userId string, err error) {
 	bm := make(map[string]string)
 	bm["userPhone"] = userPhone
@@ -97,7 +97,6 @@ type TicketDataTickets struct {
 
 // Entry 计次票二维码H5页面嵌入
 func Entry(conf *Config, code, mobile string) (h5 string, err error) {
-	// AES加密
 	sign := base64.StdEncoding.EncodeToString(AesEncryptECB([]byte(mobile), []byte(conf.SecretAes)))
 	h5 = conf.QrCode
 	h5 = strings.ReplaceAll(h5, "{code}", code)
@@ -107,7 +106,7 @@ func Entry(conf *Config, code, mobile string) (h5 string, err error) {
 	return
 }
 
-// 签名
+// Sign 签名
 func Sign(conf *Config, bm map[string]string) string {
 	var (
 		buf     strings.Builder
@@ -142,10 +141,9 @@ func Sign(conf *Config, bm map[string]string) string {
 	return strings.ToUpper(sign)
 }
 
-// 表单Post请求
+// Request 表单Post请求
 func Request(conf *Config, path string, contentType, method string, bm map[string]string) (data []byte, err error) {
 	var (
-		flog     = logrus.WithField("rid", Rand32()).WithField("appid", conf.AppId)
 		surl     = conf.ServiceUrl + path
 		reqBody  string
 		resBody  string
@@ -154,10 +152,10 @@ func Request(conf *Config, path string, contentType, method string, bm map[strin
 	defer func() {
 		errMsg := ""
 		if err != nil {
-			errMsg = "Error: " + err.Error()
+			errMsg = "\n异常: " + err.Error()
 		}
 		ms := fmt.Sprintf("%d", time.Now().UnixMilli()-begmilli)
-		flog.WithField("ms", ms).Infof("hmetro 请求URL %s  请求报文：%s  响应报文：%s  %s  %sms", surl, reqBody, resBody, errMsg, ms)
+		logrus.WithField("appid", conf.AppId).Infof("hmetro \n接口：%s  \n请求：%s  \n响应：%s  %s  \n耗时：%sms ", surl, reqBody, resBody, errMsg, ms)
 	}()
 
 	bm["appId"] = conf.AppId
@@ -190,7 +188,7 @@ func Request(conf *Config, path string, contentType, method string, bm map[strin
 		return
 	}
 
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return
 	}

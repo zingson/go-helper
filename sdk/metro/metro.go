@@ -1,6 +1,9 @@
 package metro
 
-import "errors"
+import (
+	"encoding/json"
+	"errors"
+)
 
 // TicketOpen 地铁票开通
 func TicketOpen(cfg *Config, mobile, productCode, outOrderNo string) (ticketCode *TicketCode, err error) {
@@ -30,10 +33,15 @@ func TicketOpen(cfg *Config, mobile, productCode, outOrderNo string) (ticketCode
 }
 
 type TicketCode struct {
-	OutOrderNo      string `json:"outOrderNo"`      // 接入方系统订单号
-	OrderNo         string `json:"orderNo"`         // 票务平台订单号
+	OutOrderNo      string `json:"outOrderNo"`      //接入方系统订单号
+	OrderNo         string `json:"orderNo"`         //票务平台订单号
 	TicketCode      string `json:"ticketCode"`      //月票编号
 	TicketTimes     int    `json:"ticketTimes"`     //月票次数
 	TicketStartTime string `json:"ticketStartTime"` //月票有效起始时间，yyyy-MM-ddHH:mm:ss
 	TicketEndTime   string `json:"ticketEndTime"`   //月票有效截止时间，yyyy-MM-ddHH:mm:ss
+}
+
+func (o *TicketCode) JSON() string {
+	b, _ := json.Marshal(o)
+	return string(b)
 }

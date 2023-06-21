@@ -9,7 +9,6 @@ import (
 	"github.com/zingson/go-helper/sdk/bank_zhywt"
 	"os"
 	"testing"
-	"time"
 )
 
 // 生产环境
@@ -28,17 +27,6 @@ func init() {
 	if err != nil {
 		logrus.Error(err.Error())
 	}
-}
-
-func init() {
-	_ = os.MkdirAll("logs/"+time.Now().Format("200601"), 0600)
-	file, err := os.OpenFile("logs/"+time.Now().Format("200601")+"/"+time.Now().Format("20060102T15")+".log", os.O_WRONLY|os.O_APPEND|os.O_CREATE|os.O_SYNC, 0600)
-	if err != nil {
-		panic(err)
-	}
-	logrus.SetOutput(file)
-	logrus.SetFormatter(&logrus.TextFormatter{DisableQuote: true})
-	logrus.SetLevel(logrus.DebugLevel)
 }
 
 // TestQueryKeyAPI 查询招行公钥
