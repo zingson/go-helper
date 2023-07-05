@@ -6,16 +6,15 @@ import (
 	"fmt"
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/crypto/pkcs12"
-	"io/ioutil"
 	"os"
 )
 
 // 解析pfx证书获取pem格式私钥
 func main() {
-	pfxFile := os.Args[1]  // pfx路径
-	password := os.Args[2] // pfx密码
+	pfxFile := "D:\\netdisk\\company\\中国银联\\11-银联全渠道支付商户\\银联支付-全渠道-89833027922F01E-广电广通（地铁购票）\\89833027922F01E.pfx" // os.Args[1]  // pfx路径
+	password := "123456"                                                                                            //os.Args[2] // pfx密码
 
-	fbytes, err := ioutil.ReadFile(pfxFile)
+	fbytes, err := os.ReadFile(pfxFile)
 	if err != nil {
 		panic(err)
 	}
@@ -35,7 +34,7 @@ func main() {
 	})
 
 	// 写入到文件
-	ioutil.WriteFile("private.key", pemBytes, os.ModeType)
+	os.WriteFile("private.key", pemBytes, os.ModeType)
 
 	fmt.Println("*************** 解析银联pfx证书私钥与序列号 ***************")
 	fmt.Println("SerialNumber=" + cert[0].SerialNumber.String())

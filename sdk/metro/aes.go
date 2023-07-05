@@ -4,7 +4,6 @@ import (
 	"crypto/aes"
 )
 
-// AesEncryptECB =================== AES ECB ======================
 func AesEncryptECB(origData []byte, key []byte) (encrypted []byte) {
 	// key长度只能32位
 	cipher, _ := aes.NewCipher(generateKey(key, 32))
