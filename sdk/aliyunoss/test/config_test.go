@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 )
 
-func getConfig() (config *aliyunoss.Config) {
+func getConfig() (config aliyunoss.Config) {
 	// 读取阿里云AccessKey，从阿里云后台获取
 	akjson, err := ioutil.ReadFile(".secret/access-key.json")
 	if err != nil {
