@@ -5,15 +5,9 @@ import (
 	"strconv"
 )
 
-type Bytes []byte
-
-func (b *Bytes) Write(p []byte) (n int, err error) {
-	*b = p
-	return len(*b), nil
-}
-
-// ArrayToXlsx 二维数组转为Excel
-func ArrayToXlsx(data [][]string) (out *Bytes, err error) {
+// ArrayToXlsx 二维数组转为Excel表格
+// 文件过大时，请注意内存是否足够
+func ArrayToXlsx(data [][]any) (xlsxBytes []byte, err error) {
 
 	var lineHeight float64 = 26 // 行高
 	var colWidth float64 = 22   // 列宽
@@ -32,7 +26,7 @@ func ArrayToXlsx(data [][]string) (out *Bytes, err error) {
 			return
 		}
 		var style int
-		style, err = f.NewStyle(`{"alignment":{"horizontal":"left","vertical":"center"} }`)
+		style, err = f.NewStyle(&excelize.Style{Alignment: &excelize.Alignment{Horizontal: "left", Vertical: "center"}})
 		if err != nil {
 			return
 		}
@@ -41,16 +35,17 @@ func ArrayToXlsx(data [][]string) (out *Bytes, err error) {
 			return
 		}
 		for j, col := range row {
-			err = f.SetCellStr(sheetNmae, COL[j]+strconv.Itoa(i+1), col)
+			err = f.SetCellValue(sheetNmae, COL[j]+strconv.Itoa(i+1), col)
 			if err != nil {
 				return
 			}
 		}
 	}
 
-	err = f.Write(out)
+	buffer, err := f.WriteToBuffer()
 	if err != nil {
 		return
 	}
+	xlsxBytes = buffer.Bytes()
 	return
 }
