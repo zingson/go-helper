@@ -2,6 +2,7 @@ package upapi
 
 // Config 银联云闪付接口配置
 type Config struct {
+	MiniAppid     string `json:"mini_appid" description:"小程序应用ID"`
 	ServiceUrl    string `json:"service_url"  description:"接口链接前缀，结尾不带'/'"` // https://open.95516.com/open/access/1.0
 	Appid         string `json:"appid,omitempty" description:"接入方唯一标识"`
 	Secret        string `json:"secret,omitempty" description:"接入方秘钥，用于基础令牌接口的签名"`
