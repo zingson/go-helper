@@ -91,7 +91,11 @@ func (o *DaoImpl[T]) Count(ctx context.Context, filter bson.D, opts ...*options.
 	return o.Collection().CountDocuments(ctx, filter, opts...)
 }
 
-func (o *DaoImpl[T]) FindAll(ctx context.Context) (values []*T, err error) {
+func (o *DaoImpl[T]) CountDocuments(ctx context.Context, filter bson.D, opts ...*options.CountOptions) (total int64, err error) {
+	return o.Collection().CountDocuments(ctx, filter, opts...)
+}
+
+func (o *DaoImpl[T]) FindAll(ctx context.Context) (values []T, err error) {
 	return o.Find(ctx, bson.D{}, options.Find().SetSort(bson.M{"_id": -1}))
 }
 
@@ -105,19 +109,19 @@ func (o *DaoImpl[T]) FindOneAndUpdate(ctx context.Context, filter bson.D, update
 	return
 }
 
-func (o *DaoImpl[T]) Find(ctx context.Context, filter bson.D, opts ...*options.FindOptions) (list []*T, err error) {
+func (o *DaoImpl[T]) Find(ctx context.Context, filter bson.D, opts ...*options.FindOptions) (list []T, err error) {
 	return DaoFind[T](ctx, o.Collection(), filter, opts...)
 }
 
-func DaoFind[R any](ctx context.Context, col *mongo.Collection, filter bson.D, opts ...*options.FindOptions) (list []*R, err error) {
+func DaoFind[R any](ctx context.Context, col *mongo.Collection, filter bson.D, opts ...*options.FindOptions) (list []R, err error) {
 	return DaoCursor[R](col.Find(ctx, filter, opts...))
 }
 
-func (o *DaoImpl[T]) FindPage(ctx context.Context, filter bson.D, sort bson.D, pageNum, pageSize int64) (list []*T, total int64, err error) {
+func (o *DaoImpl[T]) FindPage(ctx context.Context, filter bson.D, sort bson.D, pageNum, pageSize int64) (list []T, total int64, err error) {
 	return DaoFindPage[T](ctx, o.Collection(), filter, sort, pageNum, pageSize)
 }
 
-func DaoFindPage[T any](ctx context.Context, c *mongo.Collection, filter bson.D, sort bson.D, pageNum, pageSize int64) (list []*T, total int64, err error) {
+func DaoFindPage[T any](ctx context.Context, c *mongo.Collection, filter bson.D, sort bson.D, pageNum, pageSize int64) (list []T, total int64, err error) {
 	if sort == nil || len(sort) == 0 {
 		sort = append(sort, bson.E{"_id", -1})
 	}
@@ -140,16 +144,16 @@ func DaoFindPage[T any](ctx context.Context, c *mongo.Collection, filter bson.D,
 	return
 }
 
-func (o *DaoImpl[T]) Aggregate(ctx context.Context, pipeline bson.A, opts ...*options.AggregateOptions) (list []*T, err error) {
+func (o *DaoImpl[T]) Aggregate(ctx context.Context, pipeline bson.A, opts ...*options.AggregateOptions) (list []T, err error) {
 	return o.Cursor(o.Collection().Aggregate(ctx, pipeline, opts...))
 }
 
 // DaoAggregate 聚合查询返回自定义类型
-func DaoAggregate[R any](ctx context.Context, c *mongo.Collection, pipeline bson.A, opts ...*options.AggregateOptions) (list []*R, err error) {
+func DaoAggregate[R any](ctx context.Context, c *mongo.Collection, pipeline bson.A, opts ...*options.AggregateOptions) (list []R, err error) {
 	return DaoCursor[R](c.Aggregate(ctx, pipeline, opts...))
 }
 
-func DaoCursor[R any](cursor *mongo.Cursor, e error) (values []*R, err error) {
+func DaoCursor[R any](cursor *mongo.Cursor, e error) (values []R, err error) {
 	if err = e; err != nil {
 		return
 	}
@@ -162,7 +166,7 @@ func DaoCursor[R any](cursor *mongo.Cursor, e error) (values []*R, err error) {
 	return
 }
 
-func (o *DaoImpl[T]) Cursor(cursor *mongo.Cursor, e error) (values []*T, err error) {
+func (o *DaoImpl[T]) Cursor(cursor *mongo.Cursor, e error) (values []T, err error) {
 	return DaoCursor[T](cursor, e)
 }
 
