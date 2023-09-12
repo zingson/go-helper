@@ -1,6 +1,9 @@
 package hjson
 
-import "encoding/json"
+import (
+	"bytes"
+	"encoding/json"
+)
 
 // Stringify 对象转为json字符串
 func Stringify(v any) string {
@@ -38,4 +41,14 @@ func Must[T any](v T, err error) T {
 		panic(err)
 	}
 	return v
+}
+
+// Marshal  escapeHTML=false 则不转义符号 & < >
+func Marshal(v any, escapeHTML bool) (b []byte, err error) {
+	bf := bytes.NewBuffer([]byte{})
+	jsonEncoder := json.NewEncoder(bf)
+	jsonEncoder.SetEscapeHTML(escapeHTML)
+	err = jsonEncoder.Encode(v)
+	b = bf.Bytes()
+	return
 }

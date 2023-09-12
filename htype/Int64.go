@@ -21,7 +21,7 @@ func (t Int64) MarshalJSON() ([]byte, error) {
 
 func (t *Int64) UnmarshalJSON(data []byte) (err error) {
 	v := strings.Trim(string(data), "\"")
-	if data == nil || v == "" {
+	if data == nil || v == "" || v == "null" {
 		return
 	}
 	pint, err := strconv.ParseInt(v, 10, 64)

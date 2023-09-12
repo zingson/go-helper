@@ -11,8 +11,8 @@ import (
 
 // 解析pfx证书获取pem格式私钥
 func main() {
-	pfxFile := "D:\\netdisk\\company\\中国银联\\11-银联全渠道支付商户\\银联支付-全渠道-89833027922F01E-广电广通（地铁购票）\\89833027922F01E.pfx" // os.Args[1]  // pfx路径
-	password := "123456"                                                                                            //os.Args[2] // pfx密码
+	pfxFile := "D:\\netdisk\\company\\中国银联\\11-银联全渠道支付商户\\银联支付-全渠道-89833027372F284-海脉云-甬城天天惠-盲盒抽奖\\89833027372F284.pfx" // os.Args[1]  // pfx路径
+	password := "123456"                                                                                                //os.Args[2] // pfx密码
 
 	fbytes, err := os.ReadFile(pfxFile)
 	if err != nil {

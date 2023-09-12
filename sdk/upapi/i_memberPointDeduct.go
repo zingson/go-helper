@@ -17,7 +17,7 @@ func MemberPointDeduct(c *Config, p *MemberPointDeductParams) (r *MemberPointDed
 	bm.Set("sysId", p.SysId)
 	bm.Set("openId", p.OpenId)
 	bm.Set("mobile", p.Mobile)
-	bm.Set("costSource", p.costSource)
+	bm.Set("costSource", p.CostSource)
 	bm.Set("transSeqId", p.TransSeqId)
 	bm.Set("transTs", p.TransTs)
 	bm.Set("pointAt", p.PointAt)
@@ -73,7 +73,7 @@ type MemberPointDeductParams struct {
 	SysId       string `json:"sysId"`
 	OpenId      string `json:"openId"`
 	Mobile      string `json:"mobile"`
-	costSource  string `json:"costSource"`
+	CostSource  string `json:"costSource"`
 	TransSeqId  string `json:"transSeqId"`
 	TransTs     string `json:"transTs"`
 	PointAt     string `json:"pointAt"`
