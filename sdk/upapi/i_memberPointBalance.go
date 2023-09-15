@@ -4,10 +4,7 @@ import (
 	"encoding/json"
 )
 
-/**
- * 5.70.1
- * 本接口提供会员中心积点余额查询的功能
- */
+// MemberPointBalance 本接口提供会员中心积点余额查询的功能
 func MemberPointBalance(c *Config, p *MemberPointBalanceParams) (r *MemberPointBalanceResult, err error) {
 	bm := NewBodyMap()
 	bm.Set("appId", c.Appid)

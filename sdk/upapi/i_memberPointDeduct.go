@@ -6,11 +6,7 @@ import (
 	"time"
 )
 
-/**
- * 5.72.1
- * 本接口提供核销用户积点的功能
- * 注:暂不支持手机号
- */
+// MemberPointDeduct 本接口提供核销用户积点的功能
 func MemberPointDeduct(c *Config, p *MemberPointDeductParams) (r *MemberPointDeductResult, err error) {
 	bm := NewBodyMap()
 	bm.Set("appId", c.Appid)
@@ -70,15 +66,15 @@ func MemberPointDeduct(c *Config, p *MemberPointDeductParams) (r *MemberPointDed
 
 // 请求参数
 type MemberPointDeductParams struct {
-	SysId       string `json:"sysId"`
-	OpenId      string `json:"openId"`
-	Mobile      string `json:"mobile"`
-	CostSource  string `json:"costSource"`
-	TransSeqId  string `json:"transSeqId"`
-	TransTs     string `json:"transTs"`
-	PointAt     string `json:"pointAt"`
-	TransDigest string `json:"transDigest"`
-	DescCode    string `json:"descCode"`
+	SysId       string `json:"sysId"`       //
+	OpenId      string `json:"openId"`      //
+	Mobile      string `json:"mobile"`      //
+	CostSource  string `json:"costSource"`  //必填，积点消耗渠道标识
+	TransSeqId  string `json:"transSeqId"`  //
+	TransTs     string `json:"transTs"`     //
+	PointAt     string `json:"pointAt"`     //
+	TransDigest string `json:"transDigest"` //必填，积点消耗描述
+	DescCode    string `json:"descCode"`    // 必填，文案代码	会员中心系统为接入方分配
 }
 
 // 响应结构体

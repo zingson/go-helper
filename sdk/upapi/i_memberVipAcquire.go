@@ -6,10 +6,7 @@ import (
 	"time"
 )
 
-/**
- * 5.69.1
- * 本接口提供给用户赠送62VIP会员的功能
- */
+// MemberVipAcquire 本接口提供给用户赠送62VIP会员的功能
 func MemberVipAcquire(c *Config, p *MemberVipAcquireParams) (r *MemberVipAcquireResult, err error) {
 	bm := NewBodyMap()
 	bm.Set("appId", c.Appid)
@@ -58,13 +55,13 @@ func MemberVipAcquire(c *Config, p *MemberVipAcquireParams) (r *MemberVipAcquire
 
 // 请求参数
 type MemberVipAcquireParams struct {
-	SysId      string `json:"sysId"`
-	OpenId     string `json:"openId"`
-	Mobile     string `json:"mobile"`
-	MemberType string `json:"memberType"`
-	TransSeqId string `json:"transSeqId"`
-	TransTs    string `json:"transTs"`
-	IsLimit    string `json:"isLimit"`
+	SysId      string `json:"sysId"`      //
+	OpenId     string `json:"openId"`     //
+	Mobile     string `json:"mobile"`     //
+	MemberType string `json:"memberType"` // 必填，开通会员类型 01-月卡  02-季卡  03-年卡  05-食神卡  08-svip
+	TransSeqId string `json:"transSeqId"` //
+	TransTs    string `json:"transTs"`    //
+	IsLimit    string `json:"isLimit"`    // 必填，是否限制用户开通年限  0=不限制 1=显示
 }
 
 // 响应结构体

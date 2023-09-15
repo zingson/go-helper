@@ -6,11 +6,7 @@ import (
 	"time"
 )
 
-/**
- * 5.71.1
- * 本接口提供了会员中心积点赠送的功能
- * 注:暂不支持手机号,inMode参数使用0-主动领取入账，其中1-直接入账不成功
- */
+// MemberPointAcquire 本接口提供了会员中心积点赠送的功能
 func MemberPointAcquire(c *Config, p *MemberPointAcquireParams) (r *MemberPointAcquireResult, err error) {
 	bm := NewBodyMap()
 	bm.Set("appId", c.Appid)
@@ -71,16 +67,16 @@ func MemberPointAcquire(c *Config, p *MemberPointAcquireParams) (r *MemberPointA
 
 // 请求参数
 type MemberPointAcquireParams struct {
-	SysId       string `json:"sysId"`
-	OpenId      string `json:"openId"`
-	Mobile      string `json:"mobile"`
-	GetSource   string `json:"getSource"`
-	TransSeqId  string `json:"transSeqId"`
-	TransTs     string `json:"transTs"`
-	PointAt     string `json:"pointAt"`
-	TransDigest string `json:"transDigest"`
-	DescCode    string `json:"descCode"`
-	InMode      string `json:"inMode"`
+	SysId       string `json:"sysId"`       //必填，系统ID 会员中心系统为接入方分配
+	OpenId      string `json:"openId"`      //openid与手机号二选一
+	Mobile      string `json:"mobile"`      //
+	GetSource   string `json:"getSource"`   //必填。 积点获取渠道标识，会员中心系统为接入方分配
+	TransSeqId  string `json:"transSeqId"`  //必填，流水号
+	TransTs     string `json:"transTs"`     //必填，交易时间 t14
+	PointAt     string `json:"pointAt"`     //必填，积点值
+	TransDigest string `json:"transDigest"` //必填，积点赠送描述
+	DescCode    string `json:"descCode"`    //必填，文案代码，会员中心系统为接入方分配
+	InMode      string `json:"inMode"`      //必填，是否直接入账 0-主动领取入账  1-直接入账
 }
 
 // 响应结构体
