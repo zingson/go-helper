@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 )
@@ -17,7 +17,7 @@ func Jscode2session(cfg *Config, code string) (r *Jscode2sessionResult, err erro
 	if err != nil {
 		return
 	}
-	rbytes, err := ioutil.ReadAll(resp.Body)
+	rbytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return
 	}

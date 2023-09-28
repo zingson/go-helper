@@ -16,15 +16,15 @@ import (
  */
 func TestMemberPointAcquire(t *testing.T) {
 	result, err := upapi.MemberPointAcquire(cfgtoml(), &upapi.MemberPointAcquireParams{
-		SysId:  "1026",
-		OpenId: "AwwA3GYyDmuLcX1M/1AKbi2WngbhguDCqeDiHaAWQR0qa/JmNYBXjhPWqPa+Rdbd",
-		//Mobile:      "13611703040",
-		GetSource:   "tt",
+		SysId: "6010",
+		//OpenId: "AwwA3GYyDmuLcX1M/1AKbi2WngbhguDCqeDiHaAWQR0qa/JmNYBXjhPWqPa+Rdbd",
+		Mobile:      "13611703040",
+		GetSource:   "827072017227587584",
 		TransSeqId:  upapi.Rand32(),
 		TransTs:     time.Now().Format("20060102030405"),
-		PointAt:     "1",
-		TransDigest: "积点赠送测试2",
-		DescCode:    "tt",
+		PointAt:     "5",
+		TransDigest: "甬城天天惠",
+		DescCode:    "827072017227587584",
 		InMode:      "0",
 	})
 	if err != nil {
