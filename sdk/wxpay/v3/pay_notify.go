@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-//Notify 微信支付通知
+// Notify 微信支付通知
 func (pay *PayService) Notify(request *http.Request, writer http.ResponseWriter, resolve func(rs *PayResult) error) {
 	var (
 		err       error
@@ -23,11 +23,15 @@ func (pay *PayService) Notify(request *http.Request, writer http.ResponseWriter,
 		mchid     string
 	)
 	defer func() {
+		resBody = notifyResponse(err)
 		logrus.
 			WithField("rid", rid).
 			WithField("millisecond", fmt.Sprintf("%d", time.Now().UnixMilli()-milli)).
-			Infof("wxpay mchid=%s 支付通知 通知URI：%s  通知解密结果：%s   通知原报文：%s   响应报文：%s ", mchid, notifyURI, reqBody, oriBody, resBody)
-		NotifyResponse(writer, err)
+			Infof("wxpay mchid=%s 微信支付通知 \n通知URI：%s  \n通知明文：%s   \n通知密文：%s   \n响应报文：%s ", mchid, notifyURI, reqBody, oriBody, resBody)
+		_, _ = writer.Write([]byte(resBody))
+		if err != nil {
+			writer.WriteHeader(500)
+		}
 	}()
 	rBytes, err := io.ReadAll(request.Body)
 	if err != nil {
@@ -62,24 +66,15 @@ func (pay *PayService) Notify(request *http.Request, writer http.ResponseWriter,
 	mchid = payResult.Mchid
 }
 
-//NotifyResponse 通知应答
-func NotifyResponse(w http.ResponseWriter, err error) {
+// 通知应答
+func notifyResponse(err error) string {
 	if err != nil {
-		_, err = w.Write([]byte(fmt.Sprintf(`{"code": "FAIL","message": "%s"}`, err.Error())))
-		if err != nil {
-			panic(err)
-		}
-		w.WriteHeader(500)
-		return
+		return fmt.Sprintf(`{"code": "FAIL","message": "%s"}`, err.Error())
 	}
-	_, err = w.Write([]byte(`{"code": "SUCCESS","message": "成功"}`))
-	if err != nil {
-		panic(err)
-	}
-	w.WriteHeader(200)
+	return `{"code": "SUCCESS","message": "成功"}`
 }
 
-//NotifyVerifySign 微信支付与退款通知验签
+// NotifyVerifySign 微信支付与退款通知验签
 func NotifyVerifySign(c *Client, h http.Header, body string) (err error) {
 	signature := h.Get("Wechatpay-Signature")
 	serial := h.Get("Wechatpay-Serial")
