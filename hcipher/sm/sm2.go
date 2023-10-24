@@ -3,8 +3,12 @@ package sm
 import (
 	"crypto/rand"
 	"encoding/base64"
+	"github.com/tjfoc/gmsm/sm2"
 	"github.com/tjfoc/gmsm/x509"
 )
+
+// 注意加密模式 C1C2C3,C1C3C2,Asn1
+// Java bouncycastle 与  hutool 使用的是 C1C3C2
 
 // Sm2Decode 解密
 func Sm2Decode(data string, priKey string) (v string, err error) {
@@ -20,7 +24,8 @@ func Sm2Decode(data string, priKey string) (v string, err error) {
 	if err != nil {
 		return
 	}
-	b, err := privateKey.DecryptAsn1(ciphertext)
+
+	b, err := sm2.Decrypt(privateKey, ciphertext, sm2.C1C3C2)
 	if err != nil {
 		return
 	}
@@ -38,7 +43,7 @@ func Sm2Encode(data string, pubKey string) (v string, err error) {
 	if err != nil {
 		return
 	}
-	b, err := publicKey.EncryptAsn1([]byte(data), rand.Reader)
+	b, err := sm2.Encrypt(publicKey, []byte(data), rand.Reader, sm2.C1C3C2)
 	if err != nil {
 		return
 	}

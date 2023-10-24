@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"errors"
+	"github.com/tjfoc/gmsm/sm2"
 	"github.com/tjfoc/gmsm/x509"
 )
 
@@ -26,7 +27,7 @@ func Sm2Decode(data string, priKey string) (v string, err error) {
 	if err != nil {
 		return
 	}
-	b, err := privateKey.DecryptAsn1(ciphertext)
+	b, err := sm2.Decrypt(privateKey, ciphertext, sm2.C1C3C2)
 	if err != nil {
 		return
 	}
@@ -51,7 +52,7 @@ func Sm2Encode(data string, pubKey string) (v string, err error) {
 	if err != nil {
 		return
 	}
-	b, err := publicKey.EncryptAsn1([]byte(data), rand.Reader)
+	b, err := sm2.Encrypt(publicKey, []byte(data), rand.Reader, sm2.C1C3C2)
 	if err != nil {
 		return
 	}

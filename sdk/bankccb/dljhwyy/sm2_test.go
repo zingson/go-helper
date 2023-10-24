@@ -30,8 +30,16 @@ func TestGenKey(t *testing.T) {
 }
 
 func TestSm2Decode(t *testing.T) {
-	prib64 := "MIGTAgEAMBMGByqGSM49AgEGCCqBHM9VAYItBHkwdwIBAQQg5qUWfiMsx/w9Jl1LOwehL+5H/Tuqjg9SHuZRt8+uZuygCgYIKoEcz1UBgi2hRANCAATI5dWSwLgWc3nuek7jgsJgecGQfqTlk9wth/DoF5Di6GpQoF0Db/wB2+XHHN8/L4Gq1/j+9JOCDxJsIRftgl0h"
-	pubb64 := "MFkwEwYHKoZIzj0CAQYIKoEcz1UBgi0DQgAEyOXVksC4FnN57npO44LCYHnBkH6k5ZPcLYfw6BeQ4uhqUKBdA2/8AdvlxxzfPy+Bqtf4/vSTgg8SbCEX7YJdIQ=="
+	/*
+		Java demo
+		生成的公钥：MFkwEwYHKoZIzj0CAQYIKoEcz1UBgi0DQgAEGdwOnkpfJqP8DMxuaNnB7U2YP2jWZ6UK/nGcX0E23lsapo5e/mgBQ8thVhOpIgDZ8BdYmF0+Xf3Et9RDQuv2YA==
+		生成的私钥：MIGTAgEAMBMGByqGSM49AgEGCCqBHM9VAYItBHkwdwIBAQQgWmuKc/BhVTK4ztyzkETcI0qFxwvZGnUYelCrydd18kqgCgYIKoEcz1UBgi2hRANCAAQZ3A6eSl8mo/wMzG5o2cHtTZg/aNZnpQr+cZxfQTbeWxqmjl7+aAFDy2FWE6kiANnwF1iYXT5d/cS31ENC6/Zg
+		加密字符串：BLy1ToTgaztxWsteCwDfGxoLaOo94imjdcjBGWm6lajnGvKKfr6KwKkMndDECeVateW1A2A740J1QiVuVSAU1jhFJHvXugUQ/Oni7scJzVAW5e6IgTYntEkO+s4DMwkyDWD1Uw==
+		解密字符串：CCB
+	*/
+
+	prib64 := "MIGTAgEAMBMGByqGSM49AgEGCCqBHM9VAYItBHkwdwIBAQQgWmuKc/BhVTK4ztyzkETcI0qFxwvZGnUYelCrydd18kqgCgYIKoEcz1UBgi2hRANCAAQZ3A6eSl8mo/wMzG5o2cHtTZg/aNZnpQr+cZxfQTbeWxqmjl7+aAFDy2FWE6kiANnwF1iYXT5d/cS31ENC6/Zg"
+	pubb64 := "MFkwEwYHKoZIzj0CAQYIKoEcz1UBgi0DQgAEGdwOnkpfJqP8DMxuaNnB7U2YP2jWZ6UK/nGcX0E23lsapo5e/mgBQ8thVhOpIgDZ8BdYmF0+Xf3Et9RDQuv2YA=="
 	data := "CCB"
 
 	v, err := Sm2Encode(data, pubb64)
@@ -41,12 +49,13 @@ func TestSm2Decode(t *testing.T) {
 	}
 	t.Logf("加密结果：%s", v)
 
-	v, err = Sm2Decode(v, prib64)
+	v = "BLy1ToTgaztxWsteCwDfGxoLaOo94imjdcjBGWm6lajnGvKKfr6KwKkMndDECeVateW1A2A740J1QiVuVSAU1jhFJHvXugUQ/Oni7scJzVAW5e6IgTYntEkO+s4DMwkyDWD1Uw=="
+	r, err := Sm2Decode(v, prib64)
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	t.Logf("解密结果：%s", v)
+	t.Logf("解密结果：%s", r)
 }
 
 func TestSm2Encode(t *testing.T) {
