@@ -10,9 +10,9 @@ import (
 )
 
 func TestRefund(t *testing.T) {
-	r, err := ocapp.Refund(cfg, &ocapp.RefundParams{
-		OrigQryId: "212102011124137231278",
-		OrderId:   "135610866920014233616", //"1356108669200142336"
+	r, err := ocapp.Refund(cfg821330248164060, &ocapp.RefundParams{
+		OrigQryId: "932310101145069866198",
+		OrderId:   "17115886431066808327", //"1356108669200142336"
 		TxnAmt:    "1",
 		BackUrl:   "https://msd.himkt.cn/work/refund/notify",
 		TxnTime:   ocapp.TxnTime(),

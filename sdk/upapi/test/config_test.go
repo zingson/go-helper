@@ -23,7 +23,7 @@ func init() {
 
 // 注意：toml字段名需要与Config结构体属性名大小写一致. .secret文件夹未提交到git，需要自行创建
 
-//go:embed .secret/宁波银联-甬城天天惠.toml
+//go:embed .secret/宁波银联-闪券发券.toml
 var config string
 
 // cfgtoml 通过开发环境配置接口参数，测试验证接口

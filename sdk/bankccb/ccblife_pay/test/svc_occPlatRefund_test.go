@@ -8,7 +8,7 @@ import (
 // 退款测试
 func TestRefund(t *testing.T) {
 	conf := getConfig()
-	cldBody, err := ccblife_pay.PlatRefund(conf, "17111484196507525138", 1, "20231009063549")
+	cldBody, err := ccblife_pay.PlatRefund(conf, "17111601004266823690", 1, "20231009072214")
 	if err != nil {
 		t.Error(err)
 		return
