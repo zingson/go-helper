@@ -1,6 +1,6 @@
 package v3
 
-//Refund 申请退款API
+// Refund 申请退款API
 func (pay *PayService) Refund(params *RefundParams) (r *RefundResult, err error) {
 	err = pay.HttpPost("/v3/refund/domestic/refunds", params, &r)
 	return
@@ -20,7 +20,7 @@ type RefundParams struct {
 type RefundParamsAmount struct {
 	Refund   int64  `json:"refund"`
 	Total    int64  `json:"total"`
-	Currency string `json:"currency,omitempty"`
+	Currency string `json:"currency,omitempty"` // 币种必填    CNY：人民币
 }
 
 type RefundParamsGoods struct {

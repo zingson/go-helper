@@ -1,17 +1,20 @@
-package sm
+package dljhwyy
 
 import (
 	"crypto/rand"
 	"encoding/base64"
+	"errors"
 	"github.com/tjfoc/gmsm/sm2"
 	"github.com/tjfoc/gmsm/x509"
 )
 
-// 注意加密模式 C1C2C3,C1C3C2,Asn1
-// Java bouncycastle 与  hutool 使用的是 C1C3C2
-
-// Sm2Decode 解密
+// Sm2Decode 建行-约惠大连微应用-授权参数解密
 func Sm2Decode(data string, priKey string) (v string, err error) {
+	defer func() {
+		if err != nil {
+			err = errors.New("ERR_CCB:" + err.Error())
+		}
+	}()
 	ciphertext, err := base64.StdEncoding.DecodeString(data)
 	if err != nil {
 		return
@@ -24,17 +27,23 @@ func Sm2Decode(data string, priKey string) (v string, err error) {
 	if err != nil {
 		return
 	}
-
 	b, err := sm2.Decrypt(privateKey, ciphertext, sm2.C1C3C2)
 	if err != nil {
 		return
 	}
+
 	v = string(b)
 	return
 }
 
-// Sm2Encode 加密
+// Sm2Encode 建行生活加密
 func Sm2Encode(data string, pubKey string) (v string, err error) {
+	defer func() {
+		if err != nil {
+			err = errors.New("ERR_CCB:" + err.Error())
+		}
+	}()
+
 	pubKeyBytes, err := base64.StdEncoding.DecodeString(pubKey)
 	if err != nil {
 		return

@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 )
 
+// GetPhoneNumber
 // 解密小程序返回的密文手机号  https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html
+// deprecated: 微信改为code方式，使用接口  https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-info/phone-number/getPhoneNumber.html
 func GetPhoneNumber(appid, sessionKey, iv, encryptedData string) (r *PhoneNumberResult, err error) {
 	rbytes, err := DecryptData(appid, sessionKey, encryptedData, iv)
 	if err != nil {

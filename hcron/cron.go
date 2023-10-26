@@ -1,6 +1,7 @@
 package hcron
 
 import (
+	"fmt"
 	"github.com/robfig/cron/v3"
 	"sync"
 	"time"
@@ -42,10 +43,11 @@ type Cron struct {
 
 func (c *Cron) AddFunc(key, spec string, f func()) {
 	c.Handler(newCustomHandler(key, f)).addJob(key, key, spec, nil)
+	println(fmt.Sprintf("hcron AddFunc key=%s spec=%s ", key, spec))
 }
 
 func (c *Cron) AddJob(key, spec string, job cron.Job) {
-	c.Handler(newCustomHandler(key, job.Run)).addJob(key, key, spec, nil)
+	c.AddFunc(key, spec, job.Run)
 }
 
 // Handler 任务处理

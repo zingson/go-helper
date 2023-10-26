@@ -28,7 +28,7 @@ func Authorization(c *Client, method, path, body string) (authorization string, 
 	return
 }
 
-//Call 需要验签的接口使用此方法调用
+// Call 需要验签的接口使用此方法调用
 func Call(c *Client, method, path string, i interface{}, o interface{}) (err error) {
 	var (
 		reqBody string
@@ -80,12 +80,12 @@ func Do(c *Client, method, path, reqBody string) (rBytes []byte, header http.Hea
 	defer func() {
 		errMsg := ""
 		if err != nil {
-			errMsg = "响应异常：" + err.Error()
+			errMsg = "\n响应异常：" + err.Error()
 		}
 		logrus.
 			WithField("rid", rid).
 			WithField("ms", fmt.Sprintf("%d", time.Now().UnixMilli()-milli)).
-			Infof("wxpay 请求URL：%s %s  请求报文：%s  响应报文：%s  %s ", method, reqUrl, reqBody, resBody, errMsg)
+			Infof("wxpay 微信支付 \n请求URL：%s %s  \n请求报文：%s  \n响应报文：%s  %s ", method, reqUrl, reqBody, resBody, errMsg)
 	}()
 
 	authorization, err := Authorization(c, method, path, reqBody)
