@@ -101,7 +101,7 @@ var (
 		"GCUP06036": ErrNew("GCUP06036", "卡号受限无法领券"),                                         //Coupon download failed due to cardNo is limited.[GCUP06036]
 		"GCUP07058": ErrNew("GCUP07058", "黄名单用户不能参与，谢谢！"),                                    //Coupon download failed due to yellowNameList check failed.[GCUP07058]
 		"GCUP07060": ErrNew("GCUP07060", "您不符合领券要求，请查看活动说明"),                                 //Coupon download failed due to userId check failed.[GCUP07060]
-		"GCUP07050": ErrNew("GCUP07050", " 闪券”entityTp“参数配置不一致"),                             //The coupon entityTp is not match
+		"GCUP07050": ErrNew("GCUP07050", "闪券”entityTp“参数配置不一致"),                              //The coupon entityTp is not match
 		"GCUP07051": ErrNew("GCUP07051", "当前用户未实名认证"),
 	}
 )
