@@ -3,6 +3,9 @@ package test
 import (
 	"encoding/json"
 	"github.com/zingson/go-helper/sdk/upapi"
+	"io/fs"
+	"os"
+	"strings"
 	"testing"
 	"time"
 )
@@ -21,13 +24,12 @@ import (
 */
 // 5.8.9  赠送优惠券 <coupon.download>
 func TestCouponDownload(t *testing.T) {
-
 	r, err := upapi.CouponDownload(cfgtoml(), &upapi.CouponDownloadParams{
 		TransSeqId: upapi.Rand32(),
 		TransTs:    time.Now().Format("20060102"),
-		CouponId:   "3102023092825658",
+		CouponId:   "3102023102130556",
 		CouponNum:  1,
-		Mobile:     "13611703040",
+		Mobile:     "-13486456066",
 	})
 	if err != nil {
 		t.Error(err.Error())
@@ -35,7 +37,6 @@ func TestCouponDownload(t *testing.T) {
 	}
 	b, _ := json.Marshal(r)
 	t.Log(string(b))
-
 }
 
 /*13566569175
@@ -44,7 +45,7 @@ func TestCouponDownload(t *testing.T) {
 18658298350
 15958373097*/
 
-/*func TestCouponDownload2(t *testing.T) {
+func TestCouponDownload2(t *testing.T) {
 	tels := ""
 	ts := strings.Split(tels, "\n")
 
@@ -53,7 +54,7 @@ func TestCouponDownload(t *testing.T) {
 		r, err := upapi.CouponDownload(cfgtoml(), &upapi.CouponDownloadParams{
 			TransSeqId: upapi.Rand32(),
 			TransTs:    time.Now().Format("20060102"),
-			CouponId:   "3102022070782331",
+			CouponId:   "3102023060888228",
 			CouponNum:  1,
 			Mobile:     tel,
 		})
@@ -64,11 +65,11 @@ func TestCouponDownload(t *testing.T) {
 		s += tel + "," + r.TransSeqId + "\n"
 		t.Log("success ", tel, " ", r.CouponId, " ", r.TransSeqId)
 	}
-	err := ioutil.WriteFile("fq3.txt", []byte(s), fs.ModeType)
+	err := os.WriteFile("fq3.txt", []byte(s), fs.ModeType)
 	if err != nil {
 		t.Log(err)
 	}
-}*/
+}
 
 /*
 3102022072187196

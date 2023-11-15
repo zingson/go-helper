@@ -8,6 +8,8 @@ import (
 	"github.com/tjfoc/gmsm/x509"
 )
 
+// 2023-10-24
+
 // Sm2Decode 建行-约惠大连微应用-授权参数解密
 func Sm2Decode(data string, priKey string) (v string, err error) {
 	defer func() {
