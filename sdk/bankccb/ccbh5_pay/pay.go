@@ -31,6 +31,7 @@ type PayParams struct {
 	//MAC          string `json:"MAC"`          //MD5加密串 CHAR(32) Y 采用标准MD5算法，对以上字段进行MAC加密（32位小写），由商户实现。
 	//PLATFORMID string `json:"PLATFORMID"` //服务方编号 CHAR(16) Y 仅作为参数传递，不参与MAC校验
 	//ENCPUB       string `json:"ENCPUB"`       //商户公钥密文 VARCHAR(512) Y 使用服务方公钥对商户公钥后30位进行RSA加密后的密文，仅作为参数传递，不参与MAC校验
+	IsUseNewPay string `json:"isUseNewPay"` //是否使用新的支付网关  1=是
 }
 
 // MacSign Md5签名 注意参数顺序，需要文档一致
@@ -57,7 +58,7 @@ func (p *PayParams) PayInfo(qid string) (v string, err error) {
 		p.TIMEOUT = time.Now().Local().Add(10 * time.Minute).Format("20060102150405")
 	}
 
-	v = "MERCHANTID=" + p.MERCHANTID + "&POSID=" + p.POSID + "&BRANCHID=" + p.BRANCHID + "&ORDERID=" + p.ORDERID + "&PAYMENT=" + p.PAYMENT + "&CURCODE=01&TXCODE=520100&REMARK1=" + "" + "&REMARK2=" + "" + "&TYPE=1" + "&GATEWAY=0" + "" + "&CLIENTIP=" + "&REGINFO=" + p.REGINFO + "&PROINFO=" + p.PROINFO + "&REFERER=&THIRDAPPINFO=comccbpay" + p.MERCHANTID + "yhdl&TIMEOUT=" + p.TIMEOUT + "&MAC=" + p.MacSign(qid)
+	v = "MERCHANTID=" + p.MERCHANTID + "&POSID=" + p.POSID + "&BRANCHID=" + p.BRANCHID + "&ORDERID=" + p.ORDERID + "&PAYMENT=" + p.PAYMENT + "&CURCODE=01&TXCODE=520100&REMARK1=" + "" + "&REMARK2=" + "" + "&TYPE=1" + "&GATEWAY=0" + "" + "&CLIENTIP=" + "&REGINFO=" + p.REGINFO + "&PROINFO=" + p.PROINFO + "&REFERER=&THIRDAPPINFO=comccbpay" + p.MERCHANTID + "yhdl&TIMEOUT=" + p.TIMEOUT + "&MAC=" + p.MacSign(qid) + "&isUseNewPay=1"
 
 	logrus.WithField("qid", qid).Infof("ccbh5_pay PayInfo 建行支付下单参数: %s", v)
 	return
