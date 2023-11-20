@@ -1,35 +1,14 @@
 package wxapp
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
-	"io"
-	"net/http"
-	"strconv"
 )
 
 // https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/mp-access-token/getAccessToken.html
 
 // Token 获取接口调用凭据，token有效期为7200s，开发者需要进行妥善保存。
 func Token(config *Config) (rs TokenResult, err error) {
-	resp, err := http.Get(fmt.Sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", config.Appid, config.Secret))
-	if err != nil {
-		return
-	}
-	b, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return
-	}
-	err = json.Unmarshal(b, &rs)
-	if err != nil {
-		return
-	}
-	if rs.Errcode != 0 {
-		err = errors.New(strconv.FormatInt(rs.Errcode, 10) + ":" + rs.Errmsg)
-		return
-	}
-	return
+	return get[TokenResult](fmt.Sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", config.Appid, config.Secret))
 }
 
 type TokenResult struct {
