@@ -1,4 +1,4 @@
-package main
+package example
 
 import (
 	"github.com/zingson/go-helper/sdk/uppay/ocapp"

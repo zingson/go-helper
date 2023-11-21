@@ -27,7 +27,7 @@ func Post(trace string, serviceUrl, body string) (resBytes []byte, err error) {
 		if err != nil {
 			errMsg = "\n错误信息：" + err.Error()
 		}
-		nlog.Infof("%s ocapp POST \n请求地址：%s  \n请求报文：%s  \n 响应报文：%s %s \n响应耗时：%vms", trace, serviceUrl+"    "+contentType, body, string(resBytes), errMsg, (endTime-begTime)/1e6)
+		nlog.Infof("%s ocapp POST \n请求地址：%s  \n请求报文：%s  \n响应报文：%s %s \n响应耗时：%vms", trace, serviceUrl+"    "+contentType, body, string(resBytes), errMsg, (endTime-begTime)/1e6)
 	}()
 	resp, err := http.Post(serviceUrl, contentType, strings.NewReader(body))
 	endTime = time.Now().UnixNano()
