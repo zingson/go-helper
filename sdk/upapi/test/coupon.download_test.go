@@ -14,7 +14,6 @@ import (
 测试活动ID：
 云闪付删券活动ID: 1320200615282456   couponId:3102020072729846
 
-
 活动ID1：1320200615282427
 活动ID2：1320200615282448
 
@@ -27,9 +26,9 @@ func TestCouponDownload(t *testing.T) {
 	r, err := upapi.CouponDownload(cfgtoml(), &upapi.CouponDownloadParams{
 		TransSeqId: upapi.Rand32(),
 		TransTs:    time.Now().Format("20060102"),
-		CouponId:   "3102023102130556",
+		CouponId:   "3102023021455770",
 		CouponNum:  1,
-		Mobile:     "-13486456066",
+		Mobile:     "-13940884118",
 	})
 	if err != nil {
 		t.Error(err.Error())

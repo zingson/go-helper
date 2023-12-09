@@ -9,9 +9,19 @@ import (
 	"time"
 )
 
+var i = rand.Intn(10)
+
+func inci() int {
+	i = i + 1
+	if i > 9 {
+		i = 0
+	}
+	return i
+}
+
 // G20 SnowFlake 生成长度20位的数字编号
 func G20() string {
-	return g.Generate().String() + strconv.Itoa(rand.Intn(10))
+	return g.Generate().String() + strconv.Itoa(inci())
 }
 
 var g *snowflake.Node
